@@ -5,10 +5,22 @@ PUSH=$1
 [ -z $PUSH ] && PUSH="0"
 
 NS=bellsoft
-[ -z $LIBERICA_ARCH ] && LIBERICA_ARCH="amd64"
+if [ -z $LIBERICA_ARCH ]; then
+	#LIBERICA_ARCH="amd64"
+
+	LOCAL_ARCH=`uname -m`
+	case $LOCAL_ARCH in
+		x86_64)
+			LIBERICA_ARCH="amd64"
+			;;
+		*)
+			LIBERICA_ARCH=$LOCAL_ARCH
+			;;
+	esac
+fi
 [ -z $LIBERICA_VERSION ] && LIBERICA_VERSION="10.0.2 10.0.2:10 10.0.2:latest"
 [ -z $LIBERICA_VARIANT ] && LIBERICA_VARIANT="jdk jre"
-[ -z $LIBERICA_OS ] && LIBERICA_OS="debian centos"
+[ -z $LIBERICA_OS ] && LIBERICA_OS="debian centos alpine"
 
 for os in $LIBERICA_OS; do
 	for version in $LIBERICA_VERSION; do
@@ -16,12 +28,14 @@ for os in $LIBERICA_OS; do
 			TAG=$version
 			V=$version
 			`echo "$version" | grep -q -- ':'` && TAG=`echo "$version" | cut -d: -f2` && V=`echo "$version" | cut -d: -f1`
+			BUILD_PATH="./$os"
+			[ -f ./$LIBERICA_ARCH/$os/Dockerfile ] && BUILD_PATH="./$LIBERICA_ARCH/$os"
 			echo "Building Liberica $variant v $version..."
 			docker build -t ${NS}/liberica-open${variant}-$os:$TAG \
 				--build-arg LIBERICA_ARCH=$LIBERICA_ARCH \
 				--build-arg LIBERICA_VERSION=$V \
 				--build-arg LIBERICA_VARIANT=$variant \
-				./$os
+				$BUILD_PATH
 			[ "$PUSH" = "1" ] && docker push ${NS}/liberica-open${variant}-$os:$TAG
 		done
 	done
