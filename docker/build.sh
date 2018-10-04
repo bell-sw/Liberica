@@ -51,7 +51,10 @@ for os in $LIBERICA_OS; do
 				--build-arg LIBERICA_VARIANT=$variant \
 				$EXTRA_ARGS \
 				$BUILD_PATH
-			[ "$PUSH" = "1" ] && docker push ${NS}/liberica-open${variant}-$os:$TAG
+			if [ "$PUSH" = "1" ]; then
+				docker tag  ${NS}/liberica-open${variant}-$os:$TAG  ${NS}/liberica-open${variant}-$os:$TAG-$LIBERICA_ARCH
+				docker push ${NS}/liberica-open${variant}-$os:$TAG-$LIBERICA_ARCH
+			fi
 		done
 	done
 done
