@@ -13,11 +13,16 @@ if [ -z $LIBERICA_ARCH ]; then
 		x86_64)
 			LIBERICA_ARCH="amd64"
 			;;
+		aarch64)
+			LIBERICA_ARCH=$LOCAL_ARCH
+			LIBERICA_ARCH_TAG="ARMv8"
+			;;
 		*)
 			LIBERICA_ARCH=$LOCAL_ARCH
 			;;
 	esac
 fi
+[ -z $LIBERICA_ARCH_TAG ] && LIBERICA_ARCH_TAG="$LIBERICA_ARCH"
 [ -z $LIBERICA_VERSION ] && LIBERICA_VERSION="10.0.2 10.0.2:10 10.0.2:latest"
 [ -z $LIBERICA_VARIANT ] && LIBERICA_VARIANT="jdk jre"
 [ -z $LIBERICA_OS ] && LIBERICA_OS="debian centos alpine"
@@ -33,6 +38,7 @@ for os in $LIBERICA_OS; do
 			echo "Building Liberica $variant v $version..."
 			docker build -t ${NS}/liberica-open${variant}-$os:$TAG \
 				--build-arg LIBERICA_ARCH=$LIBERICA_ARCH \
+				--build-arg LIBERICA_ARCH_TAG=$LIBERICA_ARCH_TAG \
 				--build-arg LIBERICA_VERSION=$V \
 				--build-arg LIBERICA_VARIANT=$variant \
 				$BUILD_PATH
