@@ -41,6 +41,7 @@ for os in $LIBERICA_OS; do
 				#Add some caching
 				docker build -t ${NS}/glibc-cache --target glibc-base --cache-from ${NS}/glibc-cache $BUILD_PATH
 				EXTRA_ARGS="--cache-from ${NS}/glibc-cache --cache-from ${NS}/liberica-open${variant}-$os:$TAG --cache-from ${NS}/liberica-open${variant}-$os"
+				[ "$TAG" = "V" ] || EXTRA_ARGS="$EXTRA_ARGS --cache-from ${NS}/liberica-open${variant}-$os:$V"
 			fi
 			echo "Building Liberica $variant v $version..."
 			docker build -t ${NS}/liberica-open${variant}-$os:$TAG \

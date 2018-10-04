@@ -17,12 +17,13 @@ RUN apt-get update && apt-get install -y \
     --enable-stack-protector=strong \
   && \
   make -j`nproc` && make DESTDIR=/root/dest install && \
+  cd /root && rm -rf build glibc-${GLIBC_VERSION} && \
   cd /root/dest${GLIBC_PREFIX} && \
-  rm -rf etc/rpc var include share bin sbin  \
-	lib/*.o lib/*.a lib/audit lib/gconv lib/getconf \
-  && \
-  ( strip sbin/* lib/* || true ) && \
-  cd /root && rm -rf build glibc-${GLIBC_VERSION}
+  ( strip bin/* sbin/* lib/* || true )
+
+RUN cd /root/dest${GLIBC_PREFIX} && \
+  rm -rf etc/rpc var include share bin sbin/[^l]*  \
+	lib/*.o lib/*.a lib/audit lib/gconv lib/getconf
 
 #sbin/[^l]*
 
@@ -49,9 +50,16 @@ RUN ln -s ${GLIBC_PREFIX}/lib/ld-linux-*.so.* /lib && \
   echo "${GLIBC_PREFIX}/lib" > ${GLIBC_PREFIX}/etc/ld.so.conf && \
   echo "/usr/lib" > ${GLIBC_PREFIX}/etc/ld.so.conf && \
   echo "/lib" > ${GLIBC_PREFIX}/etc/ld.so.conf && \
+  ${GLIBC_PREFIX}/sbin/ldconfig && \
   \
   mkdir -p $LIBERICA_ROOT && \
-  wget -O - "https://github.com/bell-sw/Liberica/releases/download/${LIBERICA_VERSION}.${LIBERICA_ARCH_TAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}.tar.gz" | tar xzf - -C $LIBERICA_ROOT
+  wget -O - "https://github.com/bell-sw/Liberica/releases/download/${LIBERICA_VERSION}.${LIBERICA_ARCH_TAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}.tar.gz" | tar xzf - -C $LIBERICA_ROOT && \
+  if [ "$LIBERICA_VARIANT" = "jdk" ]; then \
+    ls /opt/liberica/jdk-10.0.2/jmods/ | sed 's/\.[^.]*$//' | xargs | sed 's/ /,/g' | xargs \
+	  ${LIBERICA_ROOT}/${LIBERICA_VARIANT}-${LIBERICA_VERSION}/bin/jlink --compress 2 --module-path ${LIBERICA_ROOT}/${LIBERICA_VARIANT}-${LIBERICA_VERSION}/jmods/ --output  ${LIBERICA_ROOT}/jdk-min --add-modules && \
+   rm -rf "${LIBERICA_ROOT}/${LIBERICA_VARIANT}-${LIBERICA_VERSION}" && \
+   mv  "${LIBERICA_ROOT}/jdk-min" "${LIBERICA_ROOT}/${LIBERICA_VARIANT}-${LIBERICA_VERSION}"; \
+  fi
 
-ENV JAVA_HOME=${LIBERICA_ROOT} \
+ENV JAVA_HOME=${LIBERICA_ROOT}/${LIBERICA_VARIANT}-${LIBERICA_VERSION} \
 	PATH=${LIBERICA_ROOT}/${LIBERICA_VARIANT}-${LIBERICA_VERSION}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
