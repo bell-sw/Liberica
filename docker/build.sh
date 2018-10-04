@@ -35,12 +35,20 @@ for os in $LIBERICA_OS; do
 			`echo "$version" | grep -q -- ':'` && TAG=`echo "$version" | cut -d: -f2` && V=`echo "$version" | cut -d: -f1`
 			BUILD_PATH="./$os"
 			[ -f ./$LIBERICA_ARCH/$os/Dockerfile ] && BUILD_PATH="./$LIBERICA_ARCH/$os"
+
+			EXTRA_ARGS=
+			if [ "$os" = "alpine" ]; then
+				#Add some caching
+				docker build -t ${NS}/glibc-cache --target glibc-base --cache-from ${NS}/glibc-cache $BUILD_PATH
+				EXTRA_ARGS="--cache-from ${NS}/glibc-cache --cache-from ${NS}/liberica-open${variant}-$os:$TAG --cache-from ${NS}/liberica-open${variant}-$os"
+			fi
 			echo "Building Liberica $variant v $version..."
 			docker build -t ${NS}/liberica-open${variant}-$os:$TAG \
 				--build-arg LIBERICA_ARCH=$LIBERICA_ARCH \
 				--build-arg LIBERICA_ARCH_TAG=$LIBERICA_ARCH_TAG \
 				--build-arg LIBERICA_VERSION=$V \
 				--build-arg LIBERICA_VARIANT=$variant \
+				$EXTRA_ARGS \
 				$BUILD_PATH
 			[ "$PUSH" = "1" ] && docker push ${NS}/liberica-open${variant}-$os:$TAG
 		done

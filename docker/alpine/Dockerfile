@@ -1,4 +1,34 @@
-FROM frolvlad/alpine-glibc:alpine-3.8
+FROM debian:stable-slim as glibc-base
+
+ARG GLIBC_VERSION=2.28
+ARG GLIBC_PREFIX=/usr/glibc
+
+RUN apt-get update && apt-get install -y \
+  curl build-essential gawk bison python3 texinfo gettext \
+  && \
+  cd /root && \
+  curl -SL http://ftp.gnu.org/gnu/glibc/glibc-${GLIBC_VERSION}.tar.gz | tar xzf - && \
+  mkdir -p /root/build && cd /root/build && \
+  ../glibc-${GLIBC_VERSION}/configure \
+    --prefix=${GLIBC_PREFIX} \
+    --libdir="${GLIBC_PREFIX}/lib" \
+    --libexecdir="${GLIBC_PREFIX}/lib" \
+    --enable-multi-arch \
+    --enable-stack-protector=strong \
+  && \
+  make -j`nproc` && make DESTDIR=/root/dest install && \
+  cd /root/dest${GLIBC_PREFIX} && \
+  rm -rf etc/rpc var include share bin sbin  \
+	lib/*.o lib/*.a lib/audit lib/gconv lib/getconf \
+  && \
+  ( strip sbin/* lib/* || true ) && \
+  cd /root && rm -rf build glibc-${GLIBC_VERSION}
+
+#sbin/[^l]*
+
+FROM alpine:3.8 as liberica
+
+ARG GLIBC_PREFIX=/usr/glibc
 
 ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
@@ -10,8 +40,18 @@ ARG LIBERICA_ARCH=amd64
 ARG LIBERICA_ARCH_TAG=amd64
 ARG LIBERICA_VARIANT=jdk
 
-RUN mkdir -p $LIBERICA_ROOT && \
-	wget -O - "https://github.com/bell-sw/Liberica/releases/download/${LIBERICA_VERSION}.${LIBERICA_ARCH_TAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}.tar.gz" | tar xzf - -C $LIBERICA_ROOT
+COPY --from=glibc-base /root/dest/ /
+
+RUN ln -s ${GLIBC_PREFIX}/lib/ld-linux-*.so.* /lib && \
+  ln -s ${GLIBC_PREFIX}/etc/ld.so.cache /etc && \
+  ( [ "$LIBERICA_ARCH" = "amd64" ] && ln -s /lib /lib64 || true ) && \
+  echo "/usr/local/lib" > ${GLIBC_PREFIX}/etc/ld.so.conf && \
+  echo "${GLIBC_PREFIX}/lib" > ${GLIBC_PREFIX}/etc/ld.so.conf && \
+  echo "/usr/lib" > ${GLIBC_PREFIX}/etc/ld.so.conf && \
+  echo "/lib" > ${GLIBC_PREFIX}/etc/ld.so.conf && \
+  \
+  mkdir -p $LIBERICA_ROOT && \
+  wget -O - "https://github.com/bell-sw/Liberica/releases/download/${LIBERICA_VERSION}.${LIBERICA_ARCH_TAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}.tar.gz" | tar xzf - -C $LIBERICA_ROOT
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
 	PATH=${LIBERICA_ROOT}/${LIBERICA_VARIANT}-${LIBERICA_VERSION}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
