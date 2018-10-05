@@ -22,17 +22,25 @@ if [ -z $LIBERICA_ARCH ]; then
 	case $LOCAL_ARCH in
 		x86_64)
 			LIBERICA_ARCH="amd64"
+			LIBERICA_ARCH_TAG="amd64"
 			;;
 		aarch64)
 			LIBERICA_ARCH=$LOCAL_ARCH
 			LIBERICA_ARCH_TAG="ARMv8"
 			;;
+		armv[67]l)	
+			LIBERICA_ARCH="arm32-vfp-hflt"
+			LIBERICA_ARCH_TAG=""
+			;;
 		*)
 			LIBERICA_ARCH=$LOCAL_ARCH
+			[ -z $LIBERICA_ARCH_TAG ] && LIBERICA_ARCH_TAG="$LIBERICA_ARCH"
 			;;
 	esac
+else
+	[ -z $LIBERICA_ARCH_TAG ] && LIBERICA_ARCH_TAG="$LIBERICA_ARCH"
 fi
-[ -z $LIBERICA_ARCH_TAG ] && LIBERICA_ARCH_TAG="$LIBERICA_ARCH"
+
 [ -z $LIBERICA_VERSION ] && LIBERICA_VERSION="10.0.2 10.0.2:10 10.0.2:latest"
 [ -z $LIBERICA_VARIANT ] && LIBERICA_VARIANT="jdk jre"
 [ -z $LIBERICA_OS ] && LIBERICA_OS="debian centos alpine"

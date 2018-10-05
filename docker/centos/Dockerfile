@@ -11,7 +11,8 @@ ARG LIBERICA_ARCH_TAG=amd64
 ARG LIBERICA_VARIANT=jdk
 
 RUN mkdir -p $LIBERICA_ROOT && \
-	curl -SL "https://github.com/bell-sw/Liberica/releases/download/${LIBERICA_VERSION}.${LIBERICA_ARCH_TAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}.tar.gz" | tar xzf - -C $LIBERICA_ROOT
+    MSEP="." && if [ -z $LIBERICA_ARCH_TAG ]; then MSEP=""; fi && \
+    curl -SL "https://github.com/bell-sw/Liberica/releases/download/${LIBERICA_VERSION}${MSEP}${LIBERICA_ARCH_TAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}.tar.gz" | tar xzf - -C $LIBERICA_ROOT
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
 	PATH=${LIBERICA_ROOT}/${LIBERICA_VARIANT}-${LIBERICA_VERSION}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
