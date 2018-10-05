@@ -53,7 +53,8 @@ RUN ln -s ${GLIBC_PREFIX}/lib/ld-linux-*.so.* /lib && \
   ${GLIBC_PREFIX}/sbin/ldconfig && \
   \
   mkdir -p $LIBERICA_ROOT && \
-  wget -O - "https://github.com/bell-sw/Liberica/releases/download/${LIBERICA_VERSION}.${LIBERICA_ARCH_TAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}.tar.gz" | tar xzf - -C $LIBERICA_ROOT && \
+  MSEP="." && if [ -z $LIBERICA_ARCH_TAG ]; then MSEP=""; fi && \
+  wget -O - "https://github.com/bell-sw/Liberica/releases/download/${LIBERICA_VERSION}${MSEP}${LIBERICA_ARCH_TAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}.tar.gz" | tar xzf - -C $LIBERICA_ROOT && \
   if [ "$LIBERICA_VARIANT" = "jdk" ]; then \
     ls /opt/liberica/jdk-10.0.2/jmods/ | sed 's/\.[^.]*$//' | xargs | sed 's/ /,/g' | xargs \
 	  ${LIBERICA_ROOT}/${LIBERICA_VARIANT}-${LIBERICA_VERSION}/bin/jlink --compress 2 --module-path ${LIBERICA_ROOT}/${LIBERICA_VARIANT}-${LIBERICA_VERSION}/jmods/ --output  ${LIBERICA_ROOT}/jdk-min --add-modules && \
