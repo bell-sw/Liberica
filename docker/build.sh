@@ -1,8 +1,18 @@
 #!/bin/sh
 set -x
 
+getTags() {
+	image="$1"
+	_grep="$2"
+	tags=`curl -sSL https://registry.hub.docker.com/v1/repositories/${image}/tags | sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' | tr '}' '\n'  | awk -F: '{print $3}' | grep -E -- "$_grep"`
+	echo $tags
+}
+
 PUSH=$1
 [ -z $PUSH ] && PUSH="0"
+
+PUSH_MANIFEST=$2
+[ -z $PUSH_MANIFEST ] && PUSH_MANIFEST="0"
 
 NS=bellsoft
 if [ -z $LIBERICA_ARCH ]; then
@@ -54,6 +64,19 @@ for os in $LIBERICA_OS; do
 			if [ "$PUSH" = "1" ]; then
 				docker tag  ${NS}/liberica-open${variant}-$os:$TAG  ${NS}/liberica-open${variant}-$os:$TAG-$LIBERICA_ARCH
 				docker push ${NS}/liberica-open${variant}-$os:$TAG-$LIBERICA_ARCH
+
+				if [ "$PUSH_MANIFEST" = "1" ]; then
+					tags=`getTags ${NS}/liberica-open${variant}-$os "^$TAG-"`
+					images=""
+					for tag in $tags; do
+						images="$images ${NS}/liberica-open${variant}-$os:$tag"
+						docker pull "${NS}/liberica-open${variant}-$os:$tag"
+					done
+					if [ -n "$images" ]; then
+						docker manifest create ${NS}/liberica-open${variant}-$os:$TAG $images
+						docker manifest push ${NS}/liberica-open${variant}-$os:$TAG
+					fi
+				fi
 			fi
 		done
 	done
