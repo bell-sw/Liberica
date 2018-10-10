@@ -39,7 +39,7 @@ ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-bellsoft
+ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-10.0.2-bellsoft
 ARG LIBERICA_VERSION=10.0.2
 ARG LIBERICA_VARIANT=jdk
 

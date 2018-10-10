@@ -8,9 +8,9 @@ ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-bellsoft
+ARG LIBERICA_ROOT=/usr/lib/jvm/jre-10.0.2-bellsoft
 ARG LIBERICA_VERSION=10.0.2
-ARG LIBERICA_VARIANT=jdk
+ARG LIBERICA_VARIANT=jre
 
 RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   case `uname -m` in \
