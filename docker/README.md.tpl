@@ -19,7 +19,8 @@ This repository contain ${OS_CAPITALIZED} Docker images of Liberica Open${JDKJRE
 
 The Liberica repository bellsoft/liberica-open${JDKJRE_LOW}-${OS_LOW} provides multiple tagged images. The latest Liberica versions are:
 
-[`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/10.0.2/Dockerfile), `10`(https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/10.0.2/Dockerfile), `latest`(https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/10.0.2/Dockerfile)
+* [`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/11/Dockerfile), [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/11/Dockerfile)
+* [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/10.0.2/Dockerfile), [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/10.0.2/Dockerfile)
 
 # Usage
 

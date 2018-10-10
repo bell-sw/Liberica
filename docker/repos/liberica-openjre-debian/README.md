@@ -19,7 +19,7 @@ This repository contain Debian Docker images of Liberica OpenJRE and available f
 
 The Liberica repository bellsoft/liberica-openjre-debian provides multiple tagged images. The latest Liberica versions are:
 
-[`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/10.0.2/Dockerfile), `10`(https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/10.0.2/Dockerfile), `latest`(https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/10.0.2/Dockerfile)
+[`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/10.0.2/Dockerfile), [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/10.0.2/Dockerfile), [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/10.0.2/Dockerfile)
 
 # Usage
 

@@ -17,8 +17,8 @@ PUSH_MANIFEST=$2
 NS=bellsoft
 ARCH=`uname -m`
 
-[ -z $LIBERICA_VERSION ] && LIBERICA_VERSION="10.0.2 10.0.2:10 10.0.2:latest"
-[ -z $LIBERICA_VARIANT ] && LIBERICA_VARIANT="jdk jre"
+[ -z $LIBERICA_VERSION ] && LIBERICA_VERSION="11 11:11.0.0 11:latest"
+[ -z $LIBERICA_VARIANT ] && LIBERICA_VARIANT="jdk"
 [ -z $LIBERICA_OS ] && LIBERICA_OS="debian centos alpine"
 
 for os in $LIBERICA_OS; do
@@ -34,8 +34,10 @@ for os in $LIBERICA_OS; do
 			if [ "$os" = "alpine" ]; then
 				#Add some caching
 				docker build -t ${NS}/glibc-cache --target glibc-base --cache-from ${NS}/glibc-cache $BUILD_PATH
-				EXTRA_ARGS="--cache-from ${NS}/glibc-cache --cache-from ${NS}/liberica-open${variant}-$os:$TAG --cache-from ${NS}/liberica-open${variant}-$os"
-				[ "$TAG" = "$V" ] || EXTRA_ARGS="$EXTRA_ARGS --cache-from ${NS}/liberica-open${variant}-$os:$V"
+				EXTRA_ARGS="--cache-from ${NS}/glibc-cache --cache-from ${NS}/liberica-open${variant}-$os:$V --cache-from ${NS}/liberica-open${variant}-$os"
+				if [ "$TAG" != "$V" ]; then
+					EXTRA_ARGS="$EXTRA_ARGS --cache-from ${NS}/liberica-open${variant}-$os:$TAG"
+				fi
 			fi
 			echo "Building Liberica $variant v $version..."
 			docker build -t ${NS}/liberica-open${variant}-$os:$TAG \

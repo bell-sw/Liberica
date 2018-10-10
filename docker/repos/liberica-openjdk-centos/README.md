@@ -19,7 +19,8 @@ This repository contain Centos Docker images of Liberica OpenJDK and available f
 
 The Liberica repository bellsoft/liberica-openjdk-centos provides multiple tagged images. The latest Liberica versions are:
 
-[`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/10.0.2/Dockerfile), `10`(https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/10.0.2/Dockerfile), `latest`(https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/10.0.2/Dockerfile)
+* [`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile), [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile)
+* [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/10.0.2/Dockerfile), [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/10.0.2/Dockerfile)
 
 # Usage
 

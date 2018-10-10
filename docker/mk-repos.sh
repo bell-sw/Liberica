@@ -1,8 +1,8 @@
 #!/bin/sh
 set -x
 
-[ -z $LIBERICA_VERSION ] && LIBERICA_VERSION="10.0.2"
-[ -z $LIBERICA_VARIANT ] && LIBERICA_VARIANT="jdk jre"
+[ -z $LIBERICA_VERSION ] && LIBERICA_VERSION="11"
+[ -z $LIBERICA_VARIANT ] && LIBERICA_VARIANT="jdk"
 [ -z $LIBERICA_OS ] && LIBERICA_OS="debian centos alpine"
 
 REPROOT="./repos"
