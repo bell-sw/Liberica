@@ -65,6 +65,7 @@ for os in $LIBERICA_OS; do
 					docker pull "${NS}/liberica-open${variant}-$os:$tag"
 				done
 				if [ -n "$images" ]; then
+					docker image rm ${NS}/liberica-open${variant}-$os:$TAG || true
 					docker manifest create ${NS}/liberica-open${variant}-$os:$TAG $images
 					docker manifest push ${NS}/liberica-open${variant}-$os:$TAG
 				fi
