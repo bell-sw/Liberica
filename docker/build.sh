@@ -14,6 +14,9 @@ PUSH=$1
 PUSH_MANIFEST=$2
 [ -z $PUSH_MANIFEST ] && PUSH_MANIFEST="0"
 
+DO_BUILD=$3
+[ -z $DO_BUILD ] && DO_BUILD="1"
+
 NS=bellsoft
 ARCH=`uname -m`
 
@@ -39,13 +42,15 @@ for os in $LIBERICA_OS; do
 					EXTRA_ARGS="$EXTRA_ARGS --cache-from ${NS}/liberica-open${variant}-$os:$TAG"
 				fi
 			fi
-			echo "Building Liberica $variant v $version..."
-			docker build -t ${NS}/liberica-open${variant}-$os:$TAG \
-				--build-arg LIBERICA_VERSION=$V \
-				--build-arg LIBERICA_VARIANT=$variant \
-				--build-arg LIBERICA_ROOT="/usr/lib/jvm/${variant}-${V}-bellsoft-${ARCH}" \
-				$EXTRA_ARGS \
-				$BUILD_PATH
+			if [ "$DO_BUILD" = "1" ]; then
+				echo "Building Liberica $variant v $version..."
+				docker build -t ${NS}/liberica-open${variant}-$os:$TAG \
+					--build-arg LIBERICA_VERSION=$V \
+					--build-arg LIBERICA_VARIANT=$variant \
+					--build-arg LIBERICA_ROOT="/usr/lib/jvm/${variant}-${V}-bellsoft-${ARCH}" \
+					$EXTRA_ARGS \
+					$BUILD_PATH
+		    fi
 
 			if [ "$PUSH" = "1" ]; then
 				docker tag  ${NS}/liberica-open${variant}-$os:$TAG ${NS}/liberica-open${variant}-$os:$TAG-$ARCH

@@ -24,10 +24,10 @@ The Liberica repository bellsoft/liberica-openjdk-centos provides multiple tagge
 
 # Usage
 
-For example, you can run a Liberica OpenJDK 10 container with the following command:
+For example, you can run a Liberica OpenJDK 11 container with the following command:
 
- `docker run -it --rm bellsoft/liberica-openjdk-centos:10 java -version`
+ `docker run -it --rm bellsoft/liberica-openjdk-centos:11 java -version`
 
 To run some application you can create Dockerfile, based on bellsoft/liberica-openjdk-centos image or mount volume with your code/applicaiton, for example:
 
- `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjdk-centos:10 java -jar /data/MyApp.jar`
+ `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjdk-centos:11 java -jar /data/MyApp.jar`
