@@ -62,12 +62,13 @@ for os in $LIBERICA_OS; do
 				images=""
 				for tag in $tags; do
 					images="$images ${NS}/liberica-open${variant}-$os:$tag"
-					docker pull "${NS}/liberica-open${variant}-$os:$tag"
+					#docker pull "${NS}/liberica-open${variant}-$os:$tag"
 				done
 				if [ -n "$images" ]; then
-					docker image rm ${NS}/liberica-open${variant}-$os:$TAG || true
-					docker manifest create --amend ${NS}/liberica-open${variant}-$os:$TAG $images
-					docker manifest push ${NS}/liberica-open${variant}-$os:$TAG
+					#We do push first as it's only way to purge local manifest for now
+					docker manifest push -p ${NS}/liberica-open${variant}-$os:$TAG || true
+					docker manifest create ${NS}/liberica-open${variant}-$os:$TAG $images
+					docker manifest push -p ${NS}/liberica-open${variant}-$os:$TAG
 				fi
 			fi
 
