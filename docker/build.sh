@@ -33,16 +33,16 @@ for os in $LIBERICA_OS; do
 			BUILD_PATH="./$os"
 			#[ -f ./$ARCH/$os/Dockerfile ] && BUILD_PATH="./$ARCH/$os"
 
-			EXTRA_ARGS=
-			if [ "$os" = "alpine" ]; then
-				#Add some caching
-				docker build -t ${NS}/glibc-cache --target glibc-base --cache-from ${NS}/glibc-cache $BUILD_PATH
-				EXTRA_ARGS="--cache-from ${NS}/glibc-cache --cache-from ${NS}/liberica-open${variant}-$os:$V --cache-from ${NS}/liberica-open${variant}-$os"
-				if [ "$TAG" != "$V" ]; then
-					EXTRA_ARGS="$EXTRA_ARGS --cache-from ${NS}/liberica-open${variant}-$os:$TAG"
-				fi
-			fi
 			if [ "$DO_BUILD" = "1" ]; then
+				EXTRA_ARGS=
+				if [ "$os" = "alpine" ]; then
+					#Add some caching
+					docker build -t ${NS}/glibc-cache --target glibc-base --cache-from ${NS}/glibc-cache $BUILD_PATH
+					EXTRA_ARGS="--cache-from ${NS}/glibc-cache --cache-from ${NS}/liberica-open${variant}-$os:$V --cache-from ${NS}/liberica-open${variant}-$os"
+					if [ "$TAG" != "$V" ]; then
+						EXTRA_ARGS="$EXTRA_ARGS --cache-from ${NS}/liberica-open${variant}-$os:$TAG"
+					fi
+				fi
 				echo "Building Liberica $variant v $version..."
 				docker build -t ${NS}/liberica-open${variant}-$os:$TAG \
 					--build-arg LIBERICA_VERSION=$V \
@@ -66,7 +66,7 @@ for os in $LIBERICA_OS; do
 				done
 				if [ -n "$images" ]; then
 					docker image rm ${NS}/liberica-open${variant}-$os:$TAG || true
-					docker manifest create ${NS}/liberica-open${variant}-$os:$TAG $images
+					docker manifest create --amend ${NS}/liberica-open${variant}-$os:$TAG $images
 					docker manifest push ${NS}/liberica-open${variant}-$os:$TAG
 				fi
 			fi
