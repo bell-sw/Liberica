@@ -21,6 +21,8 @@ The Liberica repository bellsoft/liberica-open${JDKJRE_LOW}-${OS_LOW} provides m
 
 * [`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/11/Dockerfile), [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/11/Dockerfile)
 * [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/10.0.2/Dockerfile), [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/10.0.2/Dockerfile)
+* [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/9.0.4/Dockerfile), [`9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/9.0.4/Dockerfile) - armhf only (Raspberry Pi 2/3)
+* [`8u192`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/8u192/Dockerfile), [`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-open${JDKJRE_LOW}-${OS_LOW}/8/Dockerfile) - amd64 only
 
 # Usage
 

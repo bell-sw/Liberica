@@ -23,6 +23,8 @@ ARCH=`uname -m`
 [ -z $LIBERICA_VERSION ] && LIBERICA_VERSION="11 11:11.0.0 11:latest"
 [ -z $LIBERICA_VARIANT ] && LIBERICA_VARIANT="jdk"
 [ -z $LIBERICA_OS ] && LIBERICA_OS="debian centos alpine"
+[ -z $LIBERICA_RELEASE_TAG ] && LIBERICA_RELEASE_TAG=""
+[ -z $LIBERICA_USE_LITE ] && LIBERICA_USE_LITE=""
 
 for os in $LIBERICA_OS; do
 	for version in $LIBERICA_VERSION; do
@@ -32,6 +34,8 @@ for os in $LIBERICA_OS; do
 			`echo "$version" | grep -q -- ':'` && TAG=`echo "$version" | cut -d: -f2` && V=`echo "$version" | cut -d: -f1`
 			BUILD_PATH="./$os"
 			#[ -f ./$ARCH/$os/Dockerfile ] && BUILD_PATH="./$ARCH/$os"
+			RELEASE_TAG="$LIBERICA_RELEASE_TAG"
+			[ -z $RELEASE_TAG ] && RELEASE_TAG="$V"
 
 			if [ "$DO_BUILD" = "1" ]; then
 				EXTRA_ARGS=
@@ -43,8 +47,13 @@ for os in $LIBERICA_OS; do
 						EXTRA_ARGS="$EXTRA_ARGS --cache-from ${NS}/liberica-open${variant}-$os:$TAG"
 					fi
 				fi
-				echo "Building Liberica $variant v $version..."
+
+				if [ "x$LIBERICA_USE_LITE" != "x" ]; then
+					EXTRA_ARGS="$EXTRA_ARGS --build-arg LIBERICA_USE_LITE=${LIBERICA_USE_LITE}"
+				fi
+				echo "Building Liberica $variant v $version based on ${os}..."
 				docker build -t ${NS}/liberica-open${variant}-$os:$TAG \
+					--build-arg LIBERICA_RELEASE_TAG=$RELEASE_TAG \
 					--build-arg LIBERICA_VERSION=$V \
 					--build-arg LIBERICA_VARIANT=$variant \
 					--build-arg LIBERICA_ROOT="/usr/lib/jvm/${variant}-${V}-bellsoft-${ARCH}" \

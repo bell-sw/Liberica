@@ -1,12 +1,16 @@
-FROM centos:7
+FROM debian:9 
+
+RUN apt-get update && \
+	apt-get install -y curl && \
+	rm -rf /var/lib/apt/lists/*
 
 ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-bellsoft
-ARG LIBERICA_VERSION=11
-ARG LIBERICA_VARIANT=jdk
+ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u192-bellsoft
+ARG LIBERICA_VERSION=8u192
+ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_RELEASE_TAG=
 ARG LIBERICA_USE_LITE=0
 
@@ -34,6 +38,8 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   rm -rf /tmp/java
 
-
 ENV JAVA_HOME=${LIBERICA_ROOT} \
 	PATH=${LIBERICA_ROOT}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+#RUN sed -i -e "s,\(PATH=\"\),\1${LIBERICA_ROOT}/${LIBERICA_VARIANT}-${LIBERICA_VERSION}/bin:," /etc/profile && \
+# sed -i -e "s,\(PATH=\),\1${LIBERICA_ROOT}/${LIBERICA_VARIANT}-${LIBERICA_VERSION}/bin:,"	/etc/login.defs
