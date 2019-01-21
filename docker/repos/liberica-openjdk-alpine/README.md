@@ -12,6 +12,7 @@ https://bell-sw.com/java.html
 
 This repository contain Alpine Docker images of Liberica OpenJDK and available for following architectures:
 * x86_64 (aka amd64)
+* x86 (aka i586)
 * aarch64 (i.e. ARM64)
 * armhf (for devices like Raspberry Pi 2/3)
 
@@ -22,7 +23,7 @@ The Liberica repository bellsoft/liberica-openjdk-alpine provides multiple tagge
 * [`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile), [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile)
 * [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/10.0.2/Dockerfile), [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/10.0.2/Dockerfile)
 * [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/9.0.4/Dockerfile), [`9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/9.0.4/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u192`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8u192/Dockerfile), [`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile) - amd64 only
+* [`8u202`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8u202/Dockerfile), [`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile) - amd64, i586, aarch64
 
 # Usage
 

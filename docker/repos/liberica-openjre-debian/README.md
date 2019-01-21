@@ -12,6 +12,7 @@ https://bell-sw.com/java.html
 
 This repository contain Debian Docker images of Liberica OpenJRE and available for following architectures:
 * x86_64 (aka amd64)
+* x86 (aka i586)
 * aarch64 (i.e. ARM64)
 * armhf (for devices like Raspberry Pi 2/3)
 
@@ -21,14 +22,14 @@ The Liberica repository bellsoft/liberica-openjre-debian provides multiple tagge
 
 * [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/10.0.2/Dockerfile), [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/10.0.2/Dockerfile), [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/10.0.2/Dockerfile)
 * [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/9.0.4/Dockerfile), [`9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/9.0.4/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u192`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8u192/Dockerfile), [`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile) - amd64 only
+* [`8u202`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8u202/Dockerfile), [`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile) - amd64, i586, aarch64
 
 # Usage
 
-For example, you can run a Liberica OpenJRE 10 container with the following command:
+For example, you can run a Liberica OpenJRE 8u202 container with the following command:
 
- `docker run -it --rm bellsoft/liberica-openjre-debian:10 java -version`
+ `docker run -it --rm bellsoft/liberica-openjre-debian:8 java -version`
 
 To run some application you can create Dockerfile, based on bellsoft/liberica-openjre-debian image or mount volume with your code/applicaiton, for example:
 
- `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjre-debian:10 java -jar /data/MyApp.jar`
+ `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjre-debian:8 java -jar /data/MyApp.jar`
