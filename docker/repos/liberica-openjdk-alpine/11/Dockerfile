@@ -50,6 +50,9 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
         x86_64) \
             LIBERICA_ARCH="amd64" \
             ;; \
+        i686) \
+            LIBERICA_ARCH="i586" \
+            ;; \
         aarch64) \
             LIBERICA_ARCH="aarch64" \
             ;; \
