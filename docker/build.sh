@@ -22,7 +22,7 @@ ARCH=`uname -m`
 
 [ -z "$LIBERICA_VERSION" ] && LIBERICA_VERSION="11 11:11.0.0 11:latest"
 [ -z "$LIBERICA_VARIANT" ] && LIBERICA_VARIANT="jdk"
-[ -z "$LIBERICA_OS" ] && LIBERICA_OS="debian centos alpine"
+[ -z "$LIBERICA_OS" ] && LIBERICA_OS="debian centos alpine alpine-musl"
 [ -z "$LIBERICA_RELEASE_TAG" ] && LIBERICA_RELEASE_TAG=""
 [ -z "$LIBERICA_USE_LITE" ] && LIBERICA_USE_LITE=""
 
