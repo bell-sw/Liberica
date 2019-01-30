@@ -17,14 +17,14 @@ This repository contain Alpine Musl Docker images of Liberica OpenJDK and availa
 
 The Liberica repository bellsoft/liberica-openjdk-alpine-musl provides multiple tagged images. The latest Liberica versions are:
 
-* [`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile), [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile)
+* [`11.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile), [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile)
 
 # Usage
 
 For example, you can run a Liberica OpenJDK 11 container with the following command:
 
- `docker run -it --rm bellsoft/liberica-openjdk-alpine-musl:11 java -version`
+ `docker run -it --rm bellsoft/liberica-openjdk-alpine-musl:latest java -version`
 
 To run some application you can create Dockerfile, based on bellsoft/liberica-openjdk-alpine-musl image or mount volume with your code/applicaiton, for example:
 
- `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjdk-alpine-musl:11 java -jar /data/MyApp.jar`
+ `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjdk-alpine-musl:latest java -jar /data/MyApp.jar`
