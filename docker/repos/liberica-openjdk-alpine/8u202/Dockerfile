@@ -77,7 +77,7 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   mkdir -p /tmp/java && \
   echo "${LITE_VERSION_EXCLUDES}" && \
   wget -O - "https://github.com/bell-sw/Liberica/releases/download/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}.tar.gz" | \
-  tar xzvf - -C /tmp/java $LITE_VERSION_EXCLUDES && \
+  tar xzf - -C /tmp/java $LITE_VERSION_EXCLUDES && \
   find "/tmp/java/${LIBERICA_VARIANT}${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   rm -rf /tmp/java
 
