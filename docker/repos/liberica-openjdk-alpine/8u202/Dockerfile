@@ -43,7 +43,7 @@ ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-8u202-bellsoft
 ARG LIBERICA_VERSION=8u202
 ARG LIBERICA_VARIANT=jdk
 ARG LIBERICA_RELEASE_TAG=8u202
-ARG LIBERICA_USE_LITE=0
+ARG LIBERICA_USE_LITE=1
 
 COPY --from=glibc-base /root/dest/ /
 
@@ -66,7 +66,8 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
             ;; \
   esac  && \
   RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
-  RSUFFIX="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then RSUFFIX="-lite"; fi && \
+  FX_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then FX_EXCLUDES=`wget -qO- "https://github.com/bell-sw/Liberica/releases/download/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}-fx.bom" | sed -e 's/^\(.*\)/--exclude \*\/\1/g' | tr '\n' ' '`; fi && \
+  LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then LITE_VERSION_EXCLUDES="--exclude=*/demo --exclude=*/sample --exclude=*/src.zip ${FX_EXCLUDES}"; fi && \
   ln -s ${GLIBC_PREFIX}/lib/ld-*.so* /lib && \
   ln -s ${GLIBC_PREFIX}/etc/ld.so.cache /etc && \
   if [ "$LIBERICA_ARCH" = "amd64" ]; then ln -s /lib /lib64; fi && \
@@ -74,9 +75,10 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
-  wget -O - "https://github.com/bell-sw/Liberica/releases/download/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}${RSUFFIX}.tar.gz" | \
-    tar xzf - -C /tmp/java && \
-  find "/tmp/java/${LIBERICA_VARIANT}${LIBERICA_VERSION}${RSUFFIX}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
+  echo "${LITE_VERSION_EXCLUDES}" && \
+  wget -O - "https://github.com/bell-sw/Liberica/releases/download/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}.tar.gz" | \
+  tar xzvf - -C /tmp/java $LITE_VERSION_EXCLUDES && \
+  find "/tmp/java/${LIBERICA_VARIANT}${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   rm -rf /tmp/java
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
