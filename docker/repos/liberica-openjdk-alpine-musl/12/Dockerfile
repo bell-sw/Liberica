@@ -27,7 +27,6 @@ RUN RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERIC
   /usr/bin/wget -O - "https://github.com/bell-sw/Liberica/releases/download/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz" | \
     tar xzf - -C /tmp/java && \
   UNPACKED_ROOT="/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}" && \
-  echo $LIBERICA_IMAGE_VARIANT && \
   if [ "$LIBERICA_IMAGE_VARIANT" = "lite" ]; then mkdir -pv "${LIBERICA_ROOT}" && find /tmp/java/${LIBERICA_VARIANT}* -maxdepth 1 -mindepth 1 -exec mv -v "{}" "${LIBERICA_ROOT}/" \; ; fi && \
   if [ "$LIBERICA_IMAGE_VARIANT" = "base" ]; then mkdir -pv "${LIBERICA_JVM_DIR}" && "${UNPACKED_ROOT}/bin/jlink" --add-modules java.base --compress=2 --no-header-files --no-man-pages --strip-debug --module-path \
     "${UNPACKED_ROOT}"/jmods --vm=server --output "${LIBERICA_ROOT}"; fi && \

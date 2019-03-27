@@ -32,7 +32,8 @@ for os in $LIBERICA_OS; do
 			TAG=$version
 			V=$version
 			`echo "$version" | grep -q -- ':'` && TAG=`echo "$version" | cut -d: -f2` && V=`echo "$version" | cut -d: -f1`
-			BUILD_PATH="./repos/liberica-open${variant}-$os/${V}"
+      major=$(echo $V | sed -e 's,\([1-9][0-9]*\).*,\1,')
+			BUILD_PATH="./repos/liberica-open${variant}-$os/${major}"
 			#[ -f ./$ARCH/$os/Dockerfile ] && BUILD_PATH="./$ARCH/$os"
       [ ! -d ${BUILD_PATH} ] && echo "Skipping target: ${variant}-${os}" && continue
 			RELEASE_TAG="$LIBERICA_RELEASE_TAG"

@@ -34,6 +34,7 @@ RUN cd /root/dest${GLIBC_PREFIX} && \
 FROM alpine:3.8 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
+ARG EXT_ZLIB_URL=https://archive.archlinux.org/packages/z/zlib/zlib-1%3A1.2.11-3-x86_64.pkg.tar.xz
 
 ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
@@ -42,6 +43,7 @@ ENV  LANG=en_US.UTF-8 \
 ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-11-bellsoft
 ARG LIBERICA_VERSION=11
 ARG LIBERICA_VARIANT=jdk
+ARG LIBERICA_USE_LITE=1
 
 COPY --from=glibc-base /root/dest/ /
 
@@ -65,14 +67,17 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   esac  && \
   ln -s ${GLIBC_PREFIX}/lib/ld-*.so* /lib && \
   ln -s ${GLIBC_PREFIX}/etc/ld.so.cache /etc && \
-  if [ "$LIBERICA_ARCH" = "amd64" ]; then ln -s /lib /lib64; fi && \
+  if [ "$LIBERICA_ARCH" = "amd64" ]; then ln -s /lib /lib64 && \
+  mkdir /tmp/zlib && wget -O - "${EXT_ZLIB_URL}" | tar xJf - -C /tmp/zlib && \
+  cp -dP /tmp/zlib/usr/lib/libz.so* "${GLIBC_PREFIX}/lib" && \
+  rm -rf /tmp/zlib; fi && \
   ${GLIBC_PREFIX}/sbin/ldconfig && \
-  \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
-  wget -O - "https://github.com/bell-sw/Liberica/releases/download/${LIBERICA_VERSION}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}-lite.tar.gz" | \
+  RSUFFIX="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then RSUFFIX="-lite"; fi && \
+  wget -O - "https://github.com/bell-sw/Liberica/releases/download/${LIBERICA_VERSION}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}${RSUFFIX}.tar.gz" | \
     tar xzf - -C /tmp/java && \
-  find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}-lite" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
+  find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}${RSUFFIX}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   rm -rf /tmp/java
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
