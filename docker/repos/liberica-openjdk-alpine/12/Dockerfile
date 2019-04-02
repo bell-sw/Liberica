@@ -72,10 +72,11 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   cp -dP /tmp/zlib/usr/lib/libz.so* "${GLIBC_PREFIX}/lib" && \
   rm -rf /tmp/zlib; fi && \
   ${GLIBC_PREFIX}/sbin/ldconfig && \
+  echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' > /etc/nsswitch.conf && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
   RSUFFIX="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then RSUFFIX="-lite"; fi && \
-  wget -O - "https://github.com/bell-sw/Liberica/releases/download/${LIBERICA_VERSION}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}-lite.tar.gz" | \
+  wget -O - "https://download.bell-sw.com/java/${LIBERICA_VERSION}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}-lite.tar.gz" | \
     tar xzf - -C /tmp/java && \
   find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}${RSUFFIX}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   rm -rf /tmp/java
