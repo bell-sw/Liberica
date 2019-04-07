@@ -34,13 +34,15 @@ RUN cd /root/dest${GLIBC_PREFIX} && \
 FROM alpine:3.8 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
+ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.2.1%2B20180831-1-x86_64.pkg.tar.xz
+ARG EXT_ZLIB_URL=https://archive.archlinux.org/packages/z/zlib/zlib-1%3A1.2.11-3-x86_64.pkg.tar.xz
 
 ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8-bellsoft
-ARG LIBERICA_VERSION=8
+ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u202-bellsoft
+ARG LIBERICA_VERSION=8u202
 ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_RELEASE_TAG=8u202
 ARG LIBERICA_USE_LITE=1
@@ -70,7 +72,13 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then LITE_VERSION_EXCLUDES="--exclude=*/demo --exclude=*/sample --exclude=*/src.zip ${FX_EXCLUDES}"; fi && \
   ln -s ${GLIBC_PREFIX}/lib/ld-*.so* /lib && \
   ln -s ${GLIBC_PREFIX}/etc/ld.so.cache /etc && \
-  if [ "$LIBERICA_ARCH" = "amd64" ]; then ln -s /lib /lib64; fi && \
+  if [ "$LIBERICA_ARCH" = "amd64" ]; then ln -s /lib /lib64 && \
+  mkdir /tmp/zlib && wget -O - "${EXT_ZLIB_URL}" | tar xJf - -C /tmp/zlib && \
+  cp -dP /tmp/zlib/usr/lib/libz.so* "${GLIBC_PREFIX}/lib" && \
+  rm -rf /tmp/zlib && \
+  mkdir /tmp/gcc && wget -O - "${EXT_GCC_LIBS_URL}" | tar xJf - -C /tmp/gcc && \
+  cp -dP /tmp/gcc/usr/lib/libgcc* /tmp/gcc/usr/lib/libstdc++* "${GLIBC_PREFIX}/lib" && \
+  rm -rf /tmp/gcc; fi && \
   ${GLIBC_PREFIX}/sbin/ldconfig && \
   echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' > /etc/nsswitch.conf && \
   mkdir -p $LIBERICA_ROOT && \
