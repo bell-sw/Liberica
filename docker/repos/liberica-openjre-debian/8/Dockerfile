@@ -8,10 +8,10 @@ ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8-bellsoft
-ARG LIBERICA_VERSION=8
+ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u212-bellsoft
+ARG LIBERICA_VERSION=8u212
 ARG LIBERICA_VARIANT=jre
-ARG LIBERICA_RELEASE_TAG=
+ARG LIBERICA_RELEASE_TAG=8u212
 ARG LIBERICA_USE_LITE=0
 
 RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
@@ -33,7 +33,7 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   RSUFFIX="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then RSUFFIX="-lite"; fi && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
-  curl -SL "https://github.com/bell-sw/Liberica/releases/download/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}${RSUFFIX}.tar.gz" | \
+  curl -SL "https://download.bell-sw.com/java/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}${RSUFFIX}.tar.gz" | \
     tar xzf - -C /tmp/java && \
   find "/tmp/java/${LIBERICA_VARIANT}${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   rm -rf /tmp/java
