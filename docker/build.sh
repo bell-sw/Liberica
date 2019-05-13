@@ -54,7 +54,7 @@ for os in $LIBERICA_OS; do
 					EXTRA_ARGS="$EXTRA_ARGS --build-arg LIBERICA_USE_LITE=${LIBERICA_USE_LITE}"
 				fi
 				echo "Building Liberica $variant v $version based on ${os}..."
-				docker build -t ${NS}/liberica-open${variant}-$os:$TAG \
+				docker build --pull -t ${NS}/liberica-open${variant}-$os:$TAG \
 					--build-arg LIBERICA_RELEASE_TAG="$RELEASE_TAG" \
 					--build-arg LIBERICA_VERSION="$V" \
 					--build-arg LIBERICA_VARIANT="$variant" \
