@@ -43,7 +43,7 @@ for os in $LIBERICA_OS; do
 				EXTRA_ARGS=
 				if [ "$os" = "alpine" ]; then
 					#Add some caching
-					docker build -t ${NS}/glibc-cache --target glibc-base --cache-from ${NS}/glibc-cache $BUILD_PATH
+					docker build --pull -t ${NS}/glibc-cache --target glibc-base --cache-from ${NS}/glibc-cache $BUILD_PATH
 					EXTRA_ARGS="--cache-from ${NS}/glibc-cache --cache-from ${NS}/liberica-open${variant}-$os:$V --cache-from ${NS}/liberica-open${variant}-$os"
 					if [ "$TAG" != "$V" ]; then
 						EXTRA_ARGS="$EXTRA_ARGS --cache-from ${NS}/liberica-open${variant}-$os:$TAG"
