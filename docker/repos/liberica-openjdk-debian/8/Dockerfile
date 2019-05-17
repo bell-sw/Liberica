@@ -1,4 +1,4 @@
-FROM debian:9-slim
+FROM debian:9 
 
 RUN apt-get update && \
 	apt-get install -y curl && \
