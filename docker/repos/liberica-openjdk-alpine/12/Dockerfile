@@ -90,8 +90,11 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
   RSUFFIX="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then RSUFFIX="-lite"; fi && \
-  wget -O - "https://download.bell-sw.com/java/${LIBERICA_VERSION}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}-lite.tar.gz" | \
-    tar xzf - -C /tmp/java && \
+  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}${RSUFFIX}.tar.gz"` && \
+  wget "https://download.bell-sw.com/java/${LIBERICA_VERSION}/${PKG}" -O /tmp/java/jdk.tar.gz && \
+  SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}" -O - | grep ${PKG} | cut -f1 -d' '` && \
+  echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - && \
+  tar xzf /tmp/java/jdk.tar.gz -C /tmp/java && \
   find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}${RSUFFIX}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   rm -rf /tmp/java
 
