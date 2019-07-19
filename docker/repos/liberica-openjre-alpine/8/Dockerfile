@@ -43,7 +43,7 @@ RUN cd /root/dest${GLIBC_PREFIX} && \
 FROM alpine:3.8 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
-ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.2.1%2B20180831-1-x86_64.pkg.tar.xz
+ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.3.0-1-x86_64.pkg.tar.xz
 ARG EXT_ZLIB_URL=https://archive.archlinux.org/packages/z/zlib/zlib-1%3A1.2.11-3-x86_64.pkg.tar.xz
 ARG LANG=en_US.UTF-8
 
@@ -51,10 +51,10 @@ ENV  LANG=${LANG} \
      LANGUAGE=${LANG}:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u212-bellsoft
-ARG LIBERICA_VERSION=8u212
+ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u222-bellsoft
+ARG LIBERICA_VERSION=8u222
 ARG LIBERICA_VARIANT=jre
-ARG LIBERICA_RELEASE_TAG=8u212
+ARG LIBERICA_RELEASE_TAG=8u222
 ARG LIBERICA_USE_LITE=1
 
 COPY --from=glibc-base /root/dest/ /
