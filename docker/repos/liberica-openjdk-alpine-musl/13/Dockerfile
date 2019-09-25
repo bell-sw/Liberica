@@ -31,8 +31,8 @@ RUN RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERIC
   tar xzf /tmp/java/jdk.tar.gz -C /tmp/java && \
   UNPACKED_ROOT="/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}" && \
   if [ "$LIBERICA_IMAGE_VARIANT" = "lite" ]; then mkdir -pv "${LIBERICA_ROOT}" && find /tmp/java/${LIBERICA_VARIANT}* -maxdepth 1 -mindepth 1 -exec mv -v "{}" "${LIBERICA_ROOT}/" \; ; fi && \
-  if [ "$LIBERICA_IMAGE_VARIANT" = "base" ]; then mkdir -pv "${LIBERICA_JVM_DIR}" && "${UNPACKED_ROOT}/bin/jlink" --add-modules java.base --compress=2 --no-header-files --no-man-pages --strip-debug --module-path \
-    "${UNPACKED_ROOT}"/jmods --vm=server --output "${LIBERICA_ROOT}"; fi && \
+  if [ "$LIBERICA_IMAGE_VARIANT" = "base" ]; then apk add binutils && mkdir -pv "${LIBERICA_JVM_DIR}" && "${UNPACKED_ROOT}/bin/jlink" --add-modules java.base --compress=2 --no-header-files --no-man-pages --strip-debug --module-path \
+    "${UNPACKED_ROOT}"/jmods --vm=server --output "${LIBERICA_ROOT}" && apk del binutils; fi && \
   if [ "$LIBERICA_IMAGE_VARIANT" = "full" ]; then mkdir -pv "${LIBERICA_JVM_DIR}" && MODS=`ls "${UNPACKED_ROOT}/jmods/" | sed "s/.jmod//" | grep -v javafx | tr '\n' ', ' | sed "s/,$//"` && \
     "${UNPACKED_ROOT}/bin/jlink" --add-modules "${MODS}" --module-path "${UNPACKED_ROOT}/jmods" --vm=server --output "${LIBERICA_ROOT}"; fi && \
   ln -s $LIBERICA_ROOT /usr/lib/jvm/jdk && \
