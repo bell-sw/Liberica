@@ -31,11 +31,12 @@ for os in $LIBERICA_OS; do
 		for variant in $LIBERICA_VARIANT; do
 			TAG=$version
 			V=$version
-			`echo "$version" | grep -q -- ':'` && TAG=`echo "$version" | cut -d: -f2` && V=`echo "$version" | cut -d: -f1`
-      major=$(echo $V | sed -e 's,\([1-9][0-9]*\).*,\1,')
+			`echo "$version" | grep -q -- ':'` && TAG=`echo "$version" | cut -d: -f2` && V=`echo "$version" | cut -d: -f1 | cut -f 1 -d\+` &&\
+			  BUILD=`echo "$version" | cut -d: -f1 | cut -f 2 -d\+`
+            major=$(echo $V | sed -e 's,\([1-9][0-9]*\).*,\1,')
 			BUILD_PATH="./repos/liberica-open${variant}-$os/${major}"
 			#[ -f ./$ARCH/$os/Dockerfile ] && BUILD_PATH="./$ARCH/$os"
-      [ ! -d ${BUILD_PATH} ] && echo "Skipping target: ${variant}-${os}" && continue
+            [ ! -d ${BUILD_PATH} ] && echo "Skipping target: ${variant}-${os}" && continue
 			RELEASE_TAG="$LIBERICA_RELEASE_TAG"
 			[ -z $RELEASE_TAG ] && RELEASE_TAG="$V"
 
@@ -57,6 +58,7 @@ for os in $LIBERICA_OS; do
 				docker build --pull -t ${NS}/liberica-open${variant}-$os:$TAG \
 					--build-arg LIBERICA_RELEASE_TAG="$RELEASE_TAG" \
 					--build-arg LIBERICA_VERSION="$V" \
+					--build-arg LIBERICA_BUILD="$BUILD" \
 					--build-arg LIBERICA_VARIANT="$variant" \
 					--build-arg LIBERICA_ROOT="/usr/lib/jvm/${variant}-${V}-bellsoft-${ARCH}" \
 					$EXTRA_ARGS \
