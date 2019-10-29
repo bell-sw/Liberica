@@ -71,7 +71,7 @@ for os in $LIBERICA_OS; do
 			fi
 
 			if [ "$PUSH_MANIFEST" = "1" ]; then
-				tags=`getTags ${NS}/liberica-open${variant}-$os "^$TAG-"`
+				tags=`getTags ${NS}/liberica-open${variant}-$os "^$TAG-[a-zA-Z]"`
 				images=""
 				for tag in $tags; do
 					images="$images ${NS}/liberica-open${variant}-$os:$tag"
