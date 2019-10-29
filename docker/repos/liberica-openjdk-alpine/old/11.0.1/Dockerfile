@@ -54,7 +54,7 @@ ENV  LANG=${LANG} \
 ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-11.0.1-bellsoft
 ARG LIBERICA_VERSION=11.0.1
 ARG LIBERICA_VARIANT=jdk
-ARG LIBERICA_USE_LITE=0
+ARG LIBERICA_USE_LITE=1
 
 COPY --from=glibc-base /root/dest/ /
 
@@ -97,7 +97,7 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}" -O - | grep ${PKG} | cut -f1 -d' '` && \
   echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - && \
   tar xzf /tmp/java/jdk.tar.gz -C /tmp/java && \
-  find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}${RSUFFIX}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
+  find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   rm -rf /tmp/java
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \

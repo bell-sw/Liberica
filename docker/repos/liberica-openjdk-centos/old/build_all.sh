@@ -8,6 +8,7 @@ do
   docker build . 2>&1  > log || { cat log; echo $f; exit 1; }
 
   id=`grep "Successfully built" log | cut -f 3 -d \ `
+  echo "-----"
   docker run $id java -version
   rm -f log
   cd -
