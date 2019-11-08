@@ -40,6 +40,12 @@ for os in $LIBERICA_OS; do
 			RELEASE_TAG="$LIBERICA_RELEASE_TAG"
 			[ -z $RELEASE_TAG ] && RELEASE_TAG="$V"
 
+			# Skip some configurations
+			if [ "$os" = "alpine-musl" ] && ([ "$ARCH" = "aarch64" ] || [ "$ARCH" = "armv7l" ]) ; then
+			  continue
+			fi
+
+
 			if [ "$DO_BUILD" = "1" ]; then
 				EXTRA_ARGS=
 				if [ "$os" = "alpine" ]; then
