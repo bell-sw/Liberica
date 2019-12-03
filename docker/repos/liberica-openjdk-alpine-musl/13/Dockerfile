@@ -23,7 +23,8 @@ ARG LIBERICA_GLIBC=no
 RUN RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
   RSUFFIX="" && if [ "$LIBERICA_IMAGE_VARIANT" = "lite" ]; then RSUFFIX="-lite"; fi && \
   LIBSUFFIX="" && if [ "$LIBERICA_GLIBC" = "no" ]; then LIBSUFFIX="-musl"; fi && \
-  apk add ttf-dejavu && \
+  apk --no-cache upgrade -U musl musl-utils && \
+  apk --no-cache add ttf-dejavu && \
   mkdir -p /tmp/java && \
   PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz"` && \
   PKG_URL="https://download.bell-sw.com/java/${LIBERICA_VERSION}/${PKG}" && \
