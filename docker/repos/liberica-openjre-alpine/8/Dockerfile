@@ -51,10 +51,11 @@ ENV  LANG=${LANG} \
      LANGUAGE=${LANG}:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u222-bellsoft
-ARG LIBERICA_VERSION=8u222
+ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u232-bellsoft
+ARG LIBERICA_VERSION=8u232
 ARG LIBERICA_VARIANT=jre
-ARG LIBERICA_RELEASE_TAG=8u222
+ARG LIBERICA_BUILD=10
+ARG LIBERICA_RELEASE_TAG=8u232+10
 ARG LIBERICA_USE_LITE=1
 
 COPY --from=glibc-base /root/dest/ /
@@ -77,8 +78,8 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
             LIBERICA_ARCH=`uname -m` \
             ;; \
   esac  && \
-  RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
-  FX_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then FX_EXCLUDES=`wget -qO- "https://download.bell-sw.com/java/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}-fx.bom" | sed -e 's/^\(.*\)/--exclude \*\/\1/g' | tr '\n' ' '`; fi && \
+  RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="${LIBERICA_VERSION}+${LIBERICA_BUILD}"; fi && \
+  FX_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then FX_EXCLUDES=`wget -qO- "https://download.bell-sw.com/java/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}+${LIBERICA_BUILD}-linux-${LIBERICA_ARCH}-fx.bom" | sed -e 's/^\(.*\)/--exclude \*\/\1/g' | tr '\n' ' '`; fi && \
   LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then LITE_VERSION_EXCLUDES="--exclude=*/demo --exclude=*/sample --exclude=*/src.zip ${FX_EXCLUDES}"; fi && \
   ln -s ${GLIBC_PREFIX}/lib/ld-*.so* /lib && \
   ln -s ${GLIBC_PREFIX}/etc/ld.so.cache /etc && \
@@ -90,10 +91,11 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   cp -dP /tmp/gcc/usr/lib/libgcc* /tmp/gcc/usr/lib/libstdc++* "${GLIBC_PREFIX}/lib" && \
   rm -rf /tmp/gcc; fi && \
   ${GLIBC_PREFIX}/sbin/ldconfig && \
+  apk --no-cache upgrade -U musl musl-utils && \
   echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' > /etc/nsswitch.conf && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
-  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}.tar.gz"` && \
+  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}+${LIBERICA_BUILD}-linux-${LIBERICA_ARCH}.tar.gz"` && \
   wget "https://download.bell-sw.com/java/${RTAG}/${PKG}" -O /tmp/java/jdk.tar.gz && \
   SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${RTAG}" -O - | grep ${PKG} | cut -f1 -d' '` && \
   echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - && \
