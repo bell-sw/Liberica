@@ -1,7 +1,7 @@
 FROM debian:9 
 
 RUN apt-get update && \
-	apt-get install -y curl fontconfig && \
+	apt-get install -y curl && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV  LANG=en_US.UTF-8 \
