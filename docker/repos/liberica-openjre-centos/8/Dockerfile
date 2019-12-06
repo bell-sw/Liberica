@@ -29,6 +29,7 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
             LIBERICA_ARCH=`uname -m` \
             ;; \
   esac  && \
+  yum install -y fontconfig && \
   RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="${LIBERICA_VERSION}+${LIBERICA_BUILD}"; fi && \
   curl -sfI "https://download.bell-sw.com/java/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}+${LIBERICA_BUILD}-linux-${LIBERICA_ARCH}-fx.bom" && \
   FX_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then FX_EXCLUDES=`curl -SL "https://download.bell-sw.com/java/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}+${LIBERICA_BUILD}-linux-${LIBERICA_ARCH}-fx.bom" | sed -e 's/^\(.*\)/--exclude \1/g' | tr '\n' ' '`; fi && \

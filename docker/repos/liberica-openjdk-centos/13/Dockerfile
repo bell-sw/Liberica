@@ -27,6 +27,7 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
             LIBERICA_ARCH=`uname -m` \
             ;; \
   esac  && \
+  yum install -y fontconfig && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
   RSUFFIX="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then RSUFFIX="-lite"; fi && \

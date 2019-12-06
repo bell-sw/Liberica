@@ -88,6 +88,7 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   rm -rf /tmp/gcc; fi && \
   ${GLIBC_PREFIX}/sbin/ldconfig && \
   apk --no-cache upgrade -U musl musl-utils && \
+  apk --no-cache add ttf-dejavu && \
   echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' > /etc/nsswitch.conf && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
