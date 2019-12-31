@@ -1,4 +1,4 @@
-FROM debian:9 
+FROM debian:9
 
 RUN apt-get update && \
 	apt-get install -y curl fontconfig && \
@@ -38,9 +38,10 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then LITE_VERSION_EXCLUDES="--exclude=demo --exclude=sample --exclude=src.zip ${FX_EXCLUDES}"; fi && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
-  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}+${LIBERICA_BUILD}-linux-${LIBERICA_ARCH}${RSUFFIX}.tar.gz"` && \
-  curl -SL "https://download.bell-sw.com/java/${LIBERICA_VERSION}+${LIBERICA_BUILD}/${PKG}" -o /tmp/java/jdk.tar.gz && \
-  SHA1=`curl -fSL "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}+${LIBERICA_BUILD}" | grep ${PKG} | cut -f1 -d' '` && \
+  LIBERICA_BUILD_STR=${LIBERICA_BUILD:+"+${LIBERICA_BUILD}"} && \
+  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}${LIBERICA_BUILD_STR}-linux-${LIBERICA_ARCH}${RSUFFIX}.tar.gz"` && \
+  curl -SL "https://download.bell-sw.com/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}/${PKG}" -o /tmp/java/jdk.tar.gz && \
+  SHA1=`curl -fSL "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}" | grep ${PKG} | cut -f1 -d' '` && \
   echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - && \
   tar xzf /tmp/java/jdk.tar.gz -C /tmp/java $LITE_VERSION_EXCLUDES && \
   find "/tmp/java/${LIBERICA_VARIANT}${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \

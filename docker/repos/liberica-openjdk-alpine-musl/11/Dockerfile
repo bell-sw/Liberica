@@ -27,9 +27,10 @@ RUN RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERIC
   apk --no-cache upgrade -U musl musl-utils && \
   apk --no-cache add ttf-dejavu && \
   mkdir -p /tmp/java && \
-  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}+${LIBERICA_BUILD}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz"` && \
-  wget "https://download.bell-sw.com/java/${LIBERICA_VERSION}+${LIBERICA_BUILD}/${PKG}" -O /tmp/java/jdk.tar.gz && \
-  SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}+${LIBERICA_BUILD}" -O - | grep ${PKG} | cut -f1 -d' '` && \
+  LIBERICA_BUILD_STR=${LIBERICA_BUILD:+"+${LIBERICA_BUILD}"} && \
+  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}${LIBERICA_BUILD_STR}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz"` && \
+  wget "https://download.bell-sw.com/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}/${PKG}" -O /tmp/java/jdk.tar.gz && \
+  SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}" -O - | grep ${PKG} | cut -f1 -d' '` && \
   echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - && \
   tar xzf /tmp/java/jdk.tar.gz -C /tmp/java && \
   UNPACKED_ROOT="/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}${RUSUFFIX}" && \

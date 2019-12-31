@@ -15,6 +15,7 @@ ARG LIBERICA_IMAGE_VARIANT=lite
 ARG LIBERICA_JVM_DIR=/usr/lib/jvm
 ARG LIBERICA_ROOT=${LIBERICA_JVM_DIR}/bellsoft-java13
 ARG LIBERICA_VERSION=13.0.1
+ARG LIBERICA_BUILD=
 ARG LIBERICA_VARIANT=jdk
 ARG LIBERICA_RELEASE_TAG=
 ARG LIBERICA_ARCH=x64
@@ -26,11 +27,12 @@ RUN RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERIC
   apk --no-cache upgrade -U musl musl-utils && \
   apk --no-cache add ttf-dejavu && \
   mkdir -p /tmp/java && \
-  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz"` && \
-  PKG_URL="https://download.bell-sw.com/java/${LIBERICA_VERSION}/${PKG}" && \
+  LIBERICA_BUILD_STR=${LIBERICA_BUILD:+"+${LIBERICA_BUILD}"} && \
+  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}${LIBERICA_BUILD_STR}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz"` && \
+  PKG_URL="https://download.bell-sw.com/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}/${PKG}" && \
   echo "Download ${PKG_URL}" && \
   wget "${PKG_URL}" -O /tmp/java/jdk.tar.gz && \
-  SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}" -O - | grep ${PKG} | cut -f1 -d' '` && \
+  SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}" -O - | grep ${PKG} | cut -f1 -d' '` && \
   echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - && \
   tar xzf /tmp/java/jdk.tar.gz -C /tmp/java && \
   UNPACKED_ROOT="/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}" && \
