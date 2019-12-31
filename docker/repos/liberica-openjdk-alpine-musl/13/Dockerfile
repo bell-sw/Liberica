@@ -1,4 +1,4 @@
-FROM alpine:3.8 as liberica
+FROM alpine:3.11 as liberica
 
 ### Modify argument LIBERICA_IMAGE_VARIANT or redefine it via --build-arg parameter to have specific liberica image installed:
 ###    docker build . --build-arg LIBERICA_IMAGE_VARIANT=[full|lite|base]
@@ -23,7 +23,6 @@ ARG LIBERICA_GLIBC=no
 RUN RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
   RSUFFIX="" && if [ "$LIBERICA_IMAGE_VARIANT" = "lite" ]; then RSUFFIX="-lite"; fi && \
   LIBSUFFIX="" && if [ "$LIBERICA_GLIBC" = "no" ]; then LIBSUFFIX="-musl"; fi && \
-  apk --no-cache upgrade -U musl musl-utils && \
   apk --no-cache add ttf-dejavu && \
   mkdir -p /tmp/java && \
   PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz"` && \

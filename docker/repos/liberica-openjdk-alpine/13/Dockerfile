@@ -40,7 +40,7 @@ RUN cd /root/dest${GLIBC_PREFIX} && \
 
 #sbin/[^l]*
 
-FROM alpine:3.8 as liberica
+FROM alpine:3.11 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
 ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.3.0-1-x86_64.pkg.tar.xz
@@ -86,7 +86,6 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   cp -dP /tmp/gcc/usr/lib/libgcc* /tmp/gcc/usr/lib/libstdc++* "${GLIBC_PREFIX}/lib" && \
   rm -rf /tmp/gcc; fi && \
   ${GLIBC_PREFIX}/sbin/ldconfig && \
-  apk --no-cache upgrade -U musl musl-utils && \
   apk --no-cache add ttf-dejavu && \
   echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' > /etc/nsswitch.conf && \
   mkdir -p $LIBERICA_ROOT && \
