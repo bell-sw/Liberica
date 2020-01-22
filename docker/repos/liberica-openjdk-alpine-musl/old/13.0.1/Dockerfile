@@ -1,4 +1,4 @@
-FROM alpine:3.11 as liberica
+FROM alpine:3.8 as liberica
 
 ### Modify argument LIBERICA_IMAGE_VARIANT or redefine it via --build-arg parameter to have specific liberica image installed:
 ###    docker build . --build-arg LIBERICA_IMAGE_VARIANT=[full|lite|base]
@@ -14,8 +14,7 @@ ARG LIBERICA_IMAGE_VARIANT=lite
 
 ARG LIBERICA_JVM_DIR=/usr/lib/jvm
 ARG LIBERICA_ROOT=${LIBERICA_JVM_DIR}/bellsoft-java13
-ARG LIBERICA_VERSION=13.0.2
-ARG LIBERICA_BUILD=9
+ARG LIBERICA_VERSION=13.0.1
 ARG LIBERICA_VARIANT=jdk
 ARG LIBERICA_RELEASE_TAG=
 ARG LIBERICA_ARCH=x64
@@ -24,14 +23,12 @@ ARG LIBERICA_GLIBC=no
 RUN RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
   RSUFFIX="" && if [ "$LIBERICA_IMAGE_VARIANT" = "lite" ]; then RSUFFIX="-lite"; fi && \
   LIBSUFFIX="" && if [ "$LIBERICA_GLIBC" = "no" ]; then LIBSUFFIX="-musl"; fi && \
-  apk --no-cache add ttf-dejavu && \
   mkdir -p /tmp/java && \
-  LIBERICA_BUILD_STR=${LIBERICA_BUILD:+"+${LIBERICA_BUILD}"} && \
-  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}${LIBERICA_BUILD_STR}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz"` && \
-  PKG_URL="https://download.bell-sw.com/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}/${PKG}" && \
+  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz"` && \
+  PKG_URL="https://download.bell-sw.com/java/${LIBERICA_VERSION}/${PKG}" && \
   echo "Download ${PKG_URL}" && \
   wget "${PKG_URL}" -O /tmp/java/jdk.tar.gz && \
-  SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}" -O - | grep ${PKG} | cut -f1 -d' '` && \
+  SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}" -O - | grep ${PKG} | cut -f1 -d' '` && \
   echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - && \
   tar xzf /tmp/java/jdk.tar.gz -C /tmp/java && \
   UNPACKED_ROOT="/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}" && \
