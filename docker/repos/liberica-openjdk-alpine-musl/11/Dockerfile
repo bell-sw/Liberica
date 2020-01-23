@@ -21,10 +21,12 @@ ARG LIBERICA_RELEASE_TAG=
 ARG LIBERICA_ARCH=x64
 ARG LIBERICA_GLIBC=no
 
+ARG OPT_PKGS=
+
 RUN RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
   RSUFFIX="" && if [ "$LIBERICA_IMAGE_VARIANT" = "lite" ]; then RSUFFIX="-lite"; fi && \
   LIBSUFFIX="" && if [ "$LIBERICA_GLIBC" = "no" ]; then LIBSUFFIX="-musl"; fi && \
-  apk --no-cache add ttf-dejavu && \
+  for pkg in $OPT_PKGS ; do apk --no-cache add $pkg ; done && \
   mkdir -p /tmp/java && \
   LIBERICA_BUILD_STR=${LIBERICA_BUILD:+"+${LIBERICA_BUILD}"} && \
   PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}${LIBERICA_BUILD_STR}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz"` && \
