@@ -8,11 +8,11 @@ ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u232-bellsoft
-ARG LIBERICA_VERSION=8u232
+ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u242-bellsoft
+ARG LIBERICA_VERSION=8u242
 ARG LIBERICA_VARIANT=jre
-ARG LIBERICA_BUILD=10
-ARG LIBERICA_RELEASE_TAG=8u232+10
+ARG LIBERICA_BUILD=7
+ARG LIBERICA_RELEASE_TAG=8u242+7
 ARG LIBERICA_USE_LITE=1
 
 RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
@@ -34,9 +34,7 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
             ;; \
   esac  && \
   RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="${LIBERICA_VERSION}+${LIBERICA_BUILD}"; fi && \
-  curl -sfI "https://download.bell-sw.com/java/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}+${LIBERICA_BUILD}-linux-${LIBERICA_ARCH}-fx.bom" && \
-  FX_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then FX_EXCLUDES=`curl -SL "https://download.bell-sw.com/java/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}+${LIBERICA_BUILD}-linux-${LIBERICA_ARCH}-fx.bom" | sed -e 's/^\(.*\)/--exclude \1/g' | tr '\n' ' '`; fi && \
-  LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then LITE_VERSION_EXCLUDES="--exclude=demo --exclude=sample --exclude=src.zip ${FX_EXCLUDES}"; fi && \
+  LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then LITE_VERSION_EXCLUDES="--exclude=demo --exclude=sample --exclude=src.zip"; fi && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
   PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}+${LIBERICA_BUILD}-linux-${LIBERICA_ARCH}${RSUFFIX}.tar.gz"` && \

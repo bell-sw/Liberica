@@ -40,7 +40,7 @@ RUN cd /root/dest${GLIBC_PREFIX} && \
 
 #sbin/[^l]*
 
-FROM alpine:3.11 as liberica
+FROM alpine:3.8 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
 ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.3.0-1-x86_64.pkg.tar.xz
@@ -51,14 +51,12 @@ ENV  LANG=${LANG} \
      LANGUAGE=${LANG}:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u242-bellsoft
-ARG LIBERICA_VERSION=8u242
+ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u232-bellsoft
+ARG LIBERICA_VERSION=8u232
 ARG LIBERICA_VARIANT=jre
-ARG LIBERICA_BUILD=7
-ARG LIBERICA_RELEASE_TAG=8u242+7
+ARG LIBERICA_BUILD=10
+ARG LIBERICA_RELEASE_TAG=8u232+10
 ARG LIBERICA_USE_LITE=1
-
-ARG OPT_PKGS=
 
 COPY --from=glibc-base /root/dest/ /
 
@@ -92,8 +90,9 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   mkdir /tmp/gcc && wget -O - "${EXT_GCC_LIBS_URL}" | tar xJf - -C /tmp/gcc && \
   cp -dP /tmp/gcc/usr/lib/libgcc* /tmp/gcc/usr/lib/libstdc++* "${GLIBC_PREFIX}/lib" && \
   rm -rf /tmp/gcc; fi && \
-  for pkg in $OPT_PKGS ; do apk add --no-cache $pkg ; done && \
   ${GLIBC_PREFIX}/sbin/ldconfig && \
+  apk --no-cache upgrade -U musl musl-utils && \
+  apk --no-cache add ttf-dejavu && \
   echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' > /etc/nsswitch.conf && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
