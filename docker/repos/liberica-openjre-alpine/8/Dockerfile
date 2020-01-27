@@ -81,8 +81,7 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
             ;; \
   esac  && \
   RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="${LIBERICA_VERSION}+${LIBERICA_BUILD}"; fi && \
-  FX_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then FX_EXCLUDES=`wget -qO- "https://download.bell-sw.com/java/${RTAG}/bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}+${LIBERICA_BUILD}-linux-${LIBERICA_ARCH}-fx.bom" | sed -e 's/^\(.*\)/--exclude \*\/\1/g' | tr '\n' ' '`; fi && \
-  LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then LITE_VERSION_EXCLUDES="--exclude=*/demo --exclude=*/sample --exclude=*/src.zip ${FX_EXCLUDES}"; fi && \
+  LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then LITE_VERSION_EXCLUDES="--exclude=*/demo --exclude=*/sample --exclude=*/src.zip"; fi && \
   ln -s ${GLIBC_PREFIX}/lib/ld-*.so* /lib && \
   ln -s ${GLIBC_PREFIX}/etc/ld.so.cache /etc && \
   if [ "$LIBERICA_ARCH" = "amd64" ]; then ln -s /lib /lib64 && \
