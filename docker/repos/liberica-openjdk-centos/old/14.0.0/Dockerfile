@@ -4,9 +4,9 @@ ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-11.0.7-bellsoft
-ARG LIBERICA_VERSION=11.0.7
-ARG LIBERICA_BUILD=10
+ARG LIBERICA_ROOT=/usr/lib/jvm/bellsoft-java14
+ARG LIBERICA_VERSION=14
+ARG LIBERICA_BUILD=36
 ARG LIBERICA_VARIANT=jdk
 ARG LIBERICA_USE_LITE=1
 
@@ -41,6 +41,7 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - && \
   tar xzf /tmp/java/jdk.tar.gz -C /tmp/java && \
   find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}${RSUFFIX}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
+  ln -s $LIBERICA_ROOT /usr/lib/jvm/jdk && \
   rm -rf /tmp/java
 
 

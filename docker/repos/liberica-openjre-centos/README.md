@@ -10,9 +10,8 @@ Liberica is built, tested, supported and made available by BellSoft.
 
 https://bell-sw.com/java.html
 
-This repository contain Centos Docker images of Liberica OpenJRE and available for following architectures:
+This repository contains CentOS Docker images of Liberica OpenJRE and available for following architectures:
 * x86_64 (aka amd64)
-* x86 (aka i586)
 * aarch64 (i.e. ARM64)
 * armhf (for devices like Raspberry Pi 2/3)
 
@@ -20,16 +19,26 @@ This repository contain Centos Docker images of Liberica OpenJRE and available f
 
 The Liberica repository bellsoft/liberica-openjre-centos provides multiple tagged images. The latest Liberica versions are:
 
-* [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/10.0.2/Dockerfile), [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/10.0.2/Dockerfile), [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/10.0.2/Dockerfile)
-* [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/9.0.4/Dockerfile), [`9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/9.0.4/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u202`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/8u202/Dockerfile), [`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/8/Dockerfile) - amd64, i586, aarch64
+* [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/10.0.2/Dockerfile), 
+[`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/10.0.2/Dockerfile), 
+[`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/10.0.2/Dockerfile)
+* [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/9.0.4/Dockerfile), 
+[`9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/9.0.4/Dockerfile) - armhf only (Raspberry Pi 2/3)
+* [`8u252`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/8/Dockerfile), 
+[`8u242`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/8u242/Dockerfile), 
+[`8u232`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/8u232/Dockerfile), 
+[`8u222`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/8u222/Dockerfile), 
+[`8u212`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/8u212/Dockerfile),  
+[`8u202`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/8u202/Dockerfile),  
+[`8u192`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/8u192/Dockerfile), 
+[`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/8/Dockerfile) - amd64 and aarch64 only
 
 # Usage
 
-For example, you can run a Liberica OpenJRE 8u202 container with the following command:
+For example, you can run a Liberica OpenJRE 8u212 container with the following command:
 
- `docker run -it --rm bellsoft/liberica-openjre-centos:8 java -version`
+ `docker run -it --rm bellsoft/liberica-openjre-centos:8u212 java -version`
 
 To run some application you can create Dockerfile, based on bellsoft/liberica-openjre-centos image or mount volume with your code/applicaiton, for example:
 
- `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjre-centos:8 java -jar /data/MyApp.jar`
+ `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjre-centos:8u212 java -jar /data/MyApp.jar`
