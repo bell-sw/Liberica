@@ -40,6 +40,7 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - && \
   tar xzf /tmp/java/jdk.tar.gz -C /tmp/java $LITE_VERSION_EXCLUDES && \
   find "/tmp/java/${LIBERICA_VARIANT}${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
+  ln -s "${LIBERICA_ROOT}" /usr/lib/jvm/jre && \
   yum clean all && \
   rm -rf /var/cache/yum && \
   rm -rf /var/lib/rpm/__db* && \

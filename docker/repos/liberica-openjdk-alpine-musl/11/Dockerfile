@@ -40,6 +40,7 @@ RUN RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERIC
     "${UNPACKED_ROOT}"/jmods --vm=server --output "${LIBERICA_ROOT}"; fi && \
   if [ "$LIBERICA_IMAGE_VARIANT" = "full" ]; then mkdir -p "${LIBERICA_JVM_DIR}" && MODS=`ls "${UNPACKED_ROOT}/jmods/" | sed "s/.jmod//" | grep -v javafx | tr '\n' ', ' | sed "s/,$//"` && \
     "${UNPACKED_ROOT}/bin/jlink" --add-modules "${MODS}" --module-path "${UNPACKED_ROOT}/jmods" --vm=server --output "${LIBERICA_ROOT}"; fi && \
+  ln -s "${LIBERICA_ROOT}" /usr/lib/jvm/jdk && \
   rm -rf /tmp/java && rm -rf /tmp/hsperfdata_root
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
