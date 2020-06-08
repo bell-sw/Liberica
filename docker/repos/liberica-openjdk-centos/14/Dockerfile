@@ -42,8 +42,11 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   tar xzf /tmp/java/jdk.tar.gz -C /tmp/java && \
   find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}${RSUFFIX}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   ln -s $LIBERICA_ROOT /usr/lib/jvm/jdk && \
+  yum clean all && \
+  rm -rf /var/cache/yum && \
+  rm -rf /var/lib/rpm/__db* && \
+  rpm --rebuilddb && \
   rm -rf /tmp/java
-
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
 	PATH=${LIBERICA_ROOT}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
