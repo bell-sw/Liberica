@@ -4,11 +4,11 @@ ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u252-bellsoft
-ARG LIBERICA_VERSION=8u252
+ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u262-bellsoft
+ARG LIBERICA_VERSION=8u262
 ARG LIBERICA_VARIANT=jre
-ARG LIBERICA_BUILD=9
-ARG LIBERICA_RELEASE_TAG=8u252+9
+ARG LIBERICA_BUILD=10
+ARG LIBERICA_RELEASE_TAG=8u262+10
 ARG LIBERICA_USE_LITE=1
 
 RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
@@ -35,8 +35,8 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
   PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}+${LIBERICA_BUILD}-linux-${LIBERICA_ARCH}${RSUFFIX}.tar.gz"` && \
-  curl -SL "https://download.bell-sw.com/java/${RTAG}/${PKG}" -o /tmp/java/jdk.tar.gz && \
-  SHA1=`curl -fSL "https://download.bell-sw.com/sha1sum/java/${RTAG}" | grep ${PKG} | cut -f1 -d' '` && \
+  curl -SL "https://download.bell-sw.com/java/${LIBERICA_VERSION}+${LIBERICA_BUILD}/${PKG}" -o /tmp/java/jdk.tar.gz && \
+  SHA1=`curl -fSL "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}+${LIBERICA_BUILD}" | grep ${PKG} | cut -f1 -d' '` && \
   echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - && \
   tar xzf /tmp/java/jdk.tar.gz -C /tmp/java $LITE_VERSION_EXCLUDES && \
   find "/tmp/java/${LIBERICA_VARIANT}${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
