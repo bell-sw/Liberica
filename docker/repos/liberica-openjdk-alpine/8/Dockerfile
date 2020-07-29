@@ -36,7 +36,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN cd /root/dest${GLIBC_PREFIX} && \
   rm -rf etc/rpc var include share bin sbin/[^l]*  \
-	lib/*.o lib/*.a lib/audit lib/gconv lib/getconf
+        lib/*.o lib/*.a lib/audit lib/gconv lib/getconf
 
 #sbin/[^l]*
 
@@ -44,18 +44,20 @@ FROM alpine:3.11 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
 ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.3.0-1-x86_64.pkg.tar.xz
+ARG EXT_GCC_LIBS_URL_AARCH64=https://download.bell-sw.com/archives/aarch64/gcc-libs-9.3.0-1-aarch64.pkg.tar.xz
+ARG EXT_GCC_LIBS_SHA256_AARCH64=cd4dfebb74a170fcae47fd12c4d2fef4cf6dc337a2edbb57c84a3a92afc9d89a
 ARG EXT_ZLIB_URL=https://archive.archlinux.org/packages/z/zlib/zlib-1%3A1.2.11-3-x86_64.pkg.tar.xz
 ARG LANG=en_US.UTF-8
 
 ENV  LANG=${LANG} \
      LANGUAGE=${LANG}:en
-#	 LC_ALL=en_US.UTF-8
+#        LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-8u262-bellsoft
-ARG LIBERICA_VERSION=8u262
-ARG LIBERICA_BUILD=10
+ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-8u265-bellsoft
+ARG LIBERICA_VERSION=8u265
+ARG LIBERICA_BUILD=1
 ARG LIBERICA_VARIANT=jdk
-ARG LIBERICA_RELEASE_TAG=8u262
+ARG LIBERICA_RELEASE_TAG=8u265
 ARG LIBERICA_USE_LITE=1
 
 COPY --from=glibc-base /root/dest/ /
@@ -87,7 +89,14 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   rm -rf /tmp/zlib && \
   mkdir /tmp/gcc && wget -O - "${EXT_GCC_LIBS_URL}" | tar xJf - -C /tmp/gcc && \
   cp -dP /tmp/gcc/usr/lib/libgcc* /tmp/gcc/usr/lib/libstdc++* "${GLIBC_PREFIX}/lib" && \
-  rm -rf /tmp/gcc; fi && \
+  rm -rf /tmp/gcc; \
+  elif [ "$LIBERICA_ARCH" = "aarch64" ]; then ln -s /lib /lib64 && \
+  mkdir /tmp/gcc && wget "${EXT_GCC_LIBS_URL_AARCH64}" -O /tmp/gcc/gcc-libs.tar.xz && \
+  echo "${EXT_GCC_LIBS_SHA256_AARCH64} */tmp/gcc/gcc-libs.tar.xz" | sha256sum -c - && \
+  tar xJf /tmp/gcc/gcc-libs.tar.xz -C /tmp/gcc && \
+  cp -dP /tmp/gcc/usr/lib/libgcc* /tmp/gcc/usr/lib/libstdc++* "${GLIBC_PREFIX}/lib" && \
+  rm -rf /tmp/gcc; \
+  fi && \
   ${GLIBC_PREFIX}/sbin/ldconfig && \
   apk --no-cache add ttf-dejavu && \
   echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' > /etc/nsswitch.conf && \
@@ -105,5 +114,4 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   rm -rf /tmp/java
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
-	PATH=${LIBERICA_ROOT}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
+        PATH=${LIBERICA_ROOT}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
