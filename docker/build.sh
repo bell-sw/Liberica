@@ -6,19 +6,22 @@ set -e
 
 die() {
   echo "Error!"
-  echo $@
+  echo "$@"
   exit 1
 }
 
 getTags() {
-  image="$1"
-  _grep="$2"
-  tags=`curl -sSL https://registry.hub.docker.com/v1/repositories/${image}/tags |\
+  repo="$1"
+  pattern="$2"
+  tags=$(curl -sSL https://registry.hub.docker.com/v1/repositories/${repo}/tags |\
         sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' |\
         tr '}' '\n' |\
         awk -F: '{print $3}' |\
-        grep -E -- "$_grep"`
-  echo $tags
+        grep -E -- "${pattern}")
+   if [[ "${tags}" == "" ]] ; then
+     exit 1
+   fi
+   echo ${tags}
 }
 
 waitForTag() {
@@ -42,6 +45,7 @@ waitForTag() {
 
 execDockerCmd() {
   echo "---------- Run docker command ----------"
+  echo docker "$@"
   docker "$@" || die "Failed execute docker command"
 }
 
@@ -74,13 +78,11 @@ for os in ${LIBERICA_OS}; do
         V=$(echo "$version" | cut -d: -f1 | cut -f 1 -d\+) &&\
         BUILD=$(echo "$version" | cut -d: -f1 | cut -sf 2 -d\+)
 
-      echo BUILD = ${BUILD}
-      echo V = ${V}
-      echo TAG = ${TAG}
       major=$(echo ${V} | sed -e 's,\([1-9][0-9]*\).*,\1,')
       BUILD_PATH="./repos/liberica-open${variant}-$os/${major}"
-      #[ -f ./$ARCH/$os/Dockerfile ] && BUILD_PATH="./$ARCH/$os"
-            [[ ! -d ${BUILD_PATH} ]] && echo "Skipping target: ${variant}-${os}" && continue
+
+      [[ ! -d ${BUILD_PATH} ]] && echo "Skipping target: ${variant}-${os}" && continue
+
       RELEASE_TAG="$LIBERICA_RELEASE_TAG"
       [[ -z ${RELEASE_TAG} ]] && RELEASE_TAG="$V"
 
@@ -88,7 +90,6 @@ for os in ${LIBERICA_OS}; do
       if [[ "$os" = "alpine-musl" ]] && ([[ "$ARCH" = "aarch64" ]] || [[ "$ARCH" = "armv7l" ]]) ; then
         continue
       fi
-
 
       if [[ "$DO_BUILD" = "1" ]]; then
         EXTRA_ARGS=
@@ -122,7 +123,7 @@ for os in ${LIBERICA_OS}; do
 
       if [[ "$PUSH_MANIFEST" = "1" ]]; then
         waitForTag ${DOCKER_REPOSITORY} ${TAG}-${ARCH}
-        tags=`getTags ${DOCKER_REPOSITORY} "^$TAG-[a-zA-Z]"`
+        tags=$(getTags ${DOCKER_REPOSITORY} "^$TAG-[a-zA-Z]") || die "Cannot find tag matching \"^$TAG-[a-zA-Z]\" in repo \"${DOCKER_REPOSITORY}\""
         images=""
         for tag in ${tags}; do
           images="$images ${DOCKER_REPOSITORY}:$tag"
