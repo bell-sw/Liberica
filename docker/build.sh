@@ -129,10 +129,7 @@ for os in ${LIBERICA_OS}; do
           execDockerCmd manifest create ${DOCKER_REPOSITORY}:${TAG} ${images}
           execDockerCmd manifest push -p ${DOCKER_REPOSITORY}:${TAG}
         fi
-      else
-        echo "DO NOT PUSH MANIFEST!"
       fi
-
     done
   done
 done
