@@ -17,10 +17,7 @@ getTags() {
         sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' |\
         tr '}' '\n' |\
         awk -F: '{print $3}' |\
-        grep -E -- "${pattern}")
-   if [[ "${tags}" == "" ]] ; then
-     exit 1
-   fi
+        grep -E -- "${pattern}") || exit 1
    echo ${tags}
 }
 
@@ -36,10 +33,7 @@ waitForTag() {
     fi
     sleep 5
     passed=$((passed+5))
-    if [[ ${passed} -gt ${timeout} ]]; then
-      echo "Unable to get expected tag \"${tag}\" from \"${url}\"."
-      exit 1
-    fi
+    [[ ${passed} -gt ${timeout} ]] && die "Unable to get expected tag \"${tag}\" from \"${url}\"."
   done
 }
 
