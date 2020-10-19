@@ -44,23 +44,19 @@ FROM alpine:3.11 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
 ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.3.0-1-x86_64.pkg.tar.xz
-ARG EXT_GCC_LIBS_URL_AARCH64=https://download.bell-sw.com/archives/aarch64/gcc-libs-9.3.0-1-aarch64.pkg.tar.xz
-ARG EXT_GCC_LIBS_SHA256_AARCH64=cd4dfebb74a170fcae47fd12c4d2fef4cf6dc337a2edbb57c84a3a92afc9d89a
 ARG EXT_ZLIB_URL=https://archive.archlinux.org/packages/z/zlib/zlib-1%3A1.2.11-3-x86_64.pkg.tar.xz
 ARG LANG=en_US.UTF-8
+ARG OPT_PKGS=
 
 ENV  LANG=${LANG} \
      LANGUAGE=${LANG}:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jre-8u272-bellsoft
-ARG LIBERICA_VERSION=8u272
+ARG LIBERICA_ROOT=/usr/lib/jvm/jre-11.0.9-bellsoft
+ARG LIBERICA_VERSION=11.0.9
+ARG LIBERICA_BUILD=11
 ARG LIBERICA_VARIANT=jre
-ARG LIBERICA_BUILD=10
-ARG LIBERICA_RELEASE_TAG=8u272+10
-ARG LIBERICA_USE_LITE=1
-
-ARG OPT_PKGS=
+ARG LIBERICA_USE_LITE=0
 
 COPY --from=glibc-base /root/dest/ /
 
@@ -82,7 +78,6 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
             LIBERICA_ARCH=`uname -m` \
             ;; \
   esac  && \
-  LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then LITE_VERSION_EXCLUDES="--exclude=*/demo --exclude=*/sample --exclude=*/src.zip"; fi && \
   ln -s ${GLIBC_PREFIX}/lib/ld-*.so* /lib && \
   ln -s ${GLIBC_PREFIX}/etc/ld.so.cache /etc && \
   if [ "$LIBERICA_ARCH" = "amd64" ]; then ln -s /lib /lib64 && \
@@ -91,25 +86,20 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   rm -rf /tmp/zlib && \
   mkdir /tmp/gcc && wget -O - "${EXT_GCC_LIBS_URL}" | tar xJf - -C /tmp/gcc && \
   cp -dP /tmp/gcc/usr/lib/libgcc* /tmp/gcc/usr/lib/libstdc++* "${GLIBC_PREFIX}/lib" && \
-  rm -rf /tmp/gcc; \
-  elif [ "$LIBERICA_ARCH" = "aarch64" ]; then ln -s /lib /lib64 && \
-  mkdir /tmp/gcc && wget "${EXT_GCC_LIBS_URL_AARCH64}" -O /tmp/gcc/gcc-libs.tar.xz && \
-  echo "${EXT_GCC_LIBS_SHA256_AARCH64} */tmp/gcc/gcc-libs.tar.xz" | sha256sum -c - && \
-  tar xJf /tmp/gcc/gcc-libs.tar.xz -C /tmp/gcc && \
-  cp -dP /tmp/gcc/usr/lib/libgcc* /tmp/gcc/usr/lib/libstdc++* "${GLIBC_PREFIX}/lib" && \
-  rm -rf /tmp/gcc; \
-  fi && \
-  for pkg in $OPT_PKGS ; do apk add --no-cache $pkg ; done && \
+  rm -rf /tmp/gcc; fi && \
+  for pkg in $OPT_PKGS ; do apk --no-cache add $pkg ; done && \
   ${GLIBC_PREFIX}/sbin/ldconfig && \
   echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' > /etc/nsswitch.conf && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
-  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}+${LIBERICA_BUILD}-linux-${LIBERICA_ARCH}.tar.gz"` && \
-  wget "https://download.bell-sw.com/java/${LIBERICA_VERSION}+${LIBERICA_BUILD}/${PKG}" -O /tmp/java/jdk.tar.gz && \
-  SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}+${LIBERICA_BUILD}" -O - | grep ${PKG} | cut -f1 -d' '` && \
-  echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - && \
-  tar xzf /tmp/java/jdk.tar.gz -C /tmp/java $LITE_VERSION_EXCLUDES && \
-  find "/tmp/java/${LIBERICA_VARIANT}${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
+  RSUFFIX="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then RSUFFIX="-lite"; fi && \
+  LIBERICA_BUILD_STR=${LIBERICA_BUILD:+"+${LIBERICA_BUILD}"} && \
+  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}${LIBERICA_BUILD_STR}-linux-${LIBERICA_ARCH}${RSUFFIX}.tar.gz"` && \
+  wget "https://download.bell-sw.com/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}/${PKG}" -O /tmp/java/jre.tar.gz && \
+  SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}" -O - | grep ${PKG} | cut -f1 -d' '` && \
+  echo "${SHA1} */tmp/java/jre.tar.gz" | sha1sum -c - && \
+  tar xzf /tmp/java/jre.tar.gz -C /tmp/java && \
+  find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}${RSUFFIX}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   ln -s "${LIBERICA_ROOT}" /usr/lib/jvm/jre && \
   rm -rf /tmp/java
 

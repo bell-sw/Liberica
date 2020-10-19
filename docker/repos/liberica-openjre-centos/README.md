@@ -19,12 +19,23 @@ This repository contains CentOS Docker images of Liberica OpenJRE and available 
 
 The Liberica repository bellsoft/liberica-openjre-centos provides multiple tagged images. The latest Liberica versions are:
 
+* [`15.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/15/Dockerfile),
+[`15.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/15/Dockerfile),
+[`15`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/15/Dockerfile),
+[`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/15/Dockerfile),
+* [`11.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/11/Dockerfile),
+[`11.0.9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/11/Dockerfile),
+[`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/11/Dockerfile),
 * [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/10.0.2/Dockerfile), 
 [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/10.0.2/Dockerfile), 
 [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/10.0.2/Dockerfile)
 * [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/9.0.4/Dockerfile), 
 [`9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/9.0.4/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u252`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/8/Dockerfile), 
+* [`8u272-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/8/Dockerfile),
+[`8u272`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/8/Dockerfile), 
+[`8u265`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/8/Dockerfile), 
+[`8u262`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/8/Dockerfile), 
+[`8u252`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/8/Dockerfile), 
 [`8u242`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/8u242/Dockerfile), 
 [`8u232`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/8u232/Dockerfile), 
 [`8u222`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/8u222/Dockerfile), 
@@ -35,10 +46,10 @@ The Liberica repository bellsoft/liberica-openjre-centos provides multiple tagge
 
 # Usage
 
-For example, you can run a Liberica OpenJRE 8u212 container with the following command:
+For example, you can run a Liberica OpenJRE 8u272 container with the following command:
 
- `docker run -it --rm bellsoft/liberica-openjre-centos:8u212 java -version`
+ `docker run -it --rm bellsoft/liberica-openjre-centos:8u272 java -version`
 
 To run some application you can create Dockerfile, based on bellsoft/liberica-openjre-centos image or mount volume with your code/applicaiton, for example:
 
- `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjre-centos:8u212 java -jar /data/MyApp.jar`
+ `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjre-centos:8u272 java -jar /data/MyApp.jar`

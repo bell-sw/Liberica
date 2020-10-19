@@ -18,17 +18,24 @@ This repository contains CentOS Docker images of Liberica OpenJDK and available 
 # Tags
 
 The Liberica repository bellsoft/liberica-openjdk-centos provides multiple tagged images. The latest Liberica versions are:
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/14/Dockerfile),
-[`14`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/14/Dockerfile),
+
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile),
+[`15.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile)
+[`15-36`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile)
+[`15`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile),
+* [`14.0.2-13`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/14/Dockerfile),
 [`14.0.1-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/14/Dockerfile),
 [`14-36`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/14.0.0/Dockerfile)
+[`14`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/14/Dockerfile),
 * [`13.0.2-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/13/Dockerfile),
 [`13.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/13.0.1/Dockerfile),
 [`13`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/13.0.0/Dockerfile)
 * [`12.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/12.0.2/Dockerfile),
 [`12.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/12.0.1/Dockerfile),
 [`12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/12.0.0/Dockerfile)
-*[`11.0.7-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile),
+*[`11.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile),
+[`11.0.8-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile),
+[`11.0.7-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile),
 [`11.0.6-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/11.0.6/Dockerfile),
 [`11.0.5-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/11.0.5/Dockerfile),
 [`11.0.5`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/11.0.5/Dockerfile),
@@ -42,7 +49,10 @@ The Liberica repository bellsoft/liberica-openjdk-centos provides multiple tagge
 [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/10.0.0/Dockerfile) - armhf only (Raspberry Pi 2/3)
 * [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/9.0.4/Dockerfile),
 [`9.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/9.0.1/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
+* [`8u272-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
+[`8u272`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
+[`8u265-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
+[`8u262-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
 [`8u252-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
 [`8u242-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/8u242/Dockerfile),
 [`8u232-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/8u232/Dockerfile),
@@ -51,6 +61,7 @@ The Liberica repository bellsoft/liberica-openjdk-centos provides multiple tagge
 [`8u212`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/8u212/Dockerfile),
 [`8u202`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/8u202/Dockerfile),
 [`8u192`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/8u192/Dockerfile),
+[`8u`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
 [`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile)   - amd64 and aarch64 only
 
 # Usage

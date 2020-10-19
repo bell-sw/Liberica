@@ -14,8 +14,11 @@ This repository contains Alpine Musl Docker images of Liberica OpenJDK and avail
 
 The Liberica repository bellsoft/liberica-openjdk-alpine-musl provides multiple tagged images. The latest Liberica versions are:
 
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/14/Dockerfile),
-[`14`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/14/Dockerfile),
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/15/Dockerfile),
+[`15.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/15/Dockerfile),
+[`15-36`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/15/Dockerfile),
+[`15`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/15/Dockerfile),
+* [`14`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/14/Dockerfile),
 [`14.0.1-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/14/Dockerfile),
 [`14-36`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/14.0.0/Dockerfile)
 * [`13.0.2-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/13/Dockerfile),
@@ -24,19 +27,28 @@ The Liberica repository bellsoft/liberica-openjdk-alpine-musl provides multiple 
 * [`12.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/12.0.2/Dockerfile),
 [`12.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/12.0.1/Dockerfile),
 [`12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/12.0.0/Dockerfile)
-* [`11.0.7-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
+* [`11.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
+[`11.0.8-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
+[`11.0.7-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
 [`11.0.6-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/11.0.6/Dockerfile),
 [`11.0.5-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/11.0.5/Dockerfile),
 [`11.0.5`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/11.0.5/Dockerfile),
 [`11.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/11.0.4/Dockerfile),
 [`11.0.3`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/11.0.3/Dockerfile),
 [`11.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/11.0.2/Dockerfile),
-[`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile)
+[`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
+* [`8u272-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+[`8u272`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+[`8u265-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+[`8u262-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+[`8u`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+[`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile)
+
 
 # How to build custom Alpine Linux musl images
 
 1. Create an empty directory and cd into it.
-2. Run `curl https://raw.githubusercontent.com/bell-sw/Liberica/master/docker/repos/liberica-openjdk-alpine-musl/14/Dockerfile --output Dockerfile`
+2. Run `curl https://raw.githubusercontent.com/bell-sw/Liberica/master/docker/repos/liberica-openjdk-alpine-musl/15/Dockerfile --output Dockerfile`
 3. Run `docker build . --build-arg LIBERICA_IMAGE_VARIANT=[full|lite|base]`
 
 Dockerfile for Alpine Linux (musl variant) supports three target images out of the box:
@@ -98,12 +110,11 @@ On Alpine Linux, these libraries are provided by `fontconfig` and `ttf-dejavu` p
 The Liberica JDK Dockerfile can be built with these libraries by specifying `OPT_PKGS` build argument:
 
 ```
-docker build -t bellsoft/liberica-openjdk-alpine-musl:14 \
-  --build-arg LIBERICA_RELEASE_TAG=14 \
-  --build-arg LIBERICA_VERSION=14 \
-  --build-arg LIBERICA_BUILD=36 \
+docker build -t bellsoft/liberica-openjdk-alpine-musl:15 \
+  --build-arg LIBERICA_VERSION=15.0.1-9 \
+  --build-arg LIBERICA_BUILD=9 \
   --build-arg LIBERICA_VARIANT=jdk \
-  --build-arg LIBERICA_ROOT=/usr/lib/jvm/jdk-14-bellsoft-x86_64 \
+  --build-arg LIBERICA_ROOT=/usr/lib/jvm/jdk-15-bellsoft-x86_64 \
   --build-arg OPT_PKGS="fontconfig ttf-dejavu"
 ```
 
