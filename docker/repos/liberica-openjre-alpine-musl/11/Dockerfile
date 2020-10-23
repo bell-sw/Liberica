@@ -3,12 +3,12 @@ FROM alpine:3.11
 ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-8u272-bellsoft
-ARG LIBERICA_VERSION=8u272
-ARG LIBERICA_BUILD=10
+ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-11.0.9-bellsoft
+ARG LIBERICA_VERSION=11.0.9
+ARG LIBERICA_BUILD=11
 ARG LIBERICA_VARIANT=jre
-ARG LIBERICA_RELEASE_TAG=8u272
-ARG LIBERICA_USE_LITE=1
+ARG LIBERICA_RELEASE_TAG=11.0.9
+ARG LIBERICA_USE_LITE=0
 
 RUN LIBERICA_ARCH=x64-musl && \
   RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
@@ -23,7 +23,7 @@ RUN LIBERICA_ARCH=x64-musl && \
   SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}" -O - | grep ${PKG} | cut -f1 -d' '` && \
   echo "${SHA1} */tmp/java/jre.tar.gz" | sha1sum -c - && \
   tar xzf /tmp/java/jre.tar.gz -C /tmp/java $LITE_VERSION_EXCLUDES && \
-  find "/tmp/java/${LIBERICA_VARIANT}${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
+  find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   ln -s "${LIBERICA_ROOT}" /usr/lib/jvm/jre && \
   rm -rf /tmp/java
 
