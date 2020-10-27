@@ -125,7 +125,7 @@ for os in ${LIBERICA_OS}; do
         done
         if [[ -n "$images" ]]; then
           #We do push first as it's only way to purge local manifest for now
-          execDockerCmd manifest push -p ${DOCKER_REPOSITORY}:${TAG} || true
+          docker manifest push -p ${DOCKER_REPOSITORY}:${TAG} || true
           execDockerCmd manifest create ${DOCKER_REPOSITORY}:${TAG} ${images}
           execDockerCmd manifest push -p ${DOCKER_REPOSITORY}:${TAG}
         fi
