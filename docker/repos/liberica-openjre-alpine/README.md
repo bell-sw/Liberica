@@ -23,7 +23,8 @@ The Liberica repository bellsoft/liberica-openjre-alpine provides multiple tagge
 [`15.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
-* [`11.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
+* [`11.0.9-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
+[`11.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11.0.9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 * [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/old/10.0.2/Dockerfile),
@@ -100,7 +101,7 @@ docker build -t bellsoft/liberica-openjre-alpine:8u242 \
   --build-arg LIBERICA_VERSION=8u272 \
   --build-arg LIBERICA_BUILD=7 \
   --build-arg LIBERICA_VARIANT=jre \
-  --build-arg LIBERICA_ROOT=/usr/lib/jvm/jdk-8u272-bellsoft-x86_64 \
+  --build-arg LIBERICA_ROOT=/usr/lib/jvm/jre-8u272-bellsoft-x86_64 \
   --build-arg OPT_PKGS="fontconfig ttf-dejavu"
 ```
 

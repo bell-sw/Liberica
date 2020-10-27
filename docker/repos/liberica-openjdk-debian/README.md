@@ -33,7 +33,8 @@ The Liberica repository bellsoft/liberica-openjdk-debian provides multiple tagge
 * [`12.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/old/12.0.2/Dockerfile),
 [`12.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/old/12.0.1/Dockerfile),
 [`12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/old/12.0.0/Dockerfile)
-* [`11.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/11/Dockerfile),
+* [`11.0.9-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/11/Dockerfile),
+[`11.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/11/Dockerfile),
 [`11.0.8-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/11/Dockerfile),
 [`11.0.7-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/11/Dockerfile),
 [`11.0.6-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/11/Dockerfile),

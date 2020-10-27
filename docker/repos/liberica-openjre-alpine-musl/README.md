@@ -23,7 +23,8 @@ The Liberica repository bellsoft/liberica-openjre-alpine provides multiple tagge
 [`15.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
-* [`11.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
+* [`11.0.9-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
+[`11.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11.0.9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 * [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/old/10.0.2/Dockerfile), 
@@ -50,11 +51,11 @@ The Liberica repository bellsoft/liberica-openjre-alpine provides multiple tagge
 
 For example, you can run a Liberica OpenJRE 8u272 container with the following command:
 
- `docker run -it --rm bellsoft/liberica-openjre-alpine:8u272 java -version`
+ `docker run -it --rm bellsoft/liberica-openjre-alpine-musl:8u272 java -version`
 
-To run some application you can create Dockerfile, based on bellsoft/liberica-openjre-alpine image or mount volume with your code/applicaiton, for example:
+To run some application you can create Dockerfile, based on bellsoft/liberica-openjre-alpine-musl image or mount volume with your code/applicaiton, for example:
 
- `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjre-alpine:8u272 java -jar /data/MyApp.jar`
+ `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjre-alpine-musl:8u272 java -jar /data/MyApp.jar`
 
 # Off-screen rendering
 
@@ -93,12 +94,12 @@ On Alpine Linux, these libraries are provided by `fontconfig` and `ttf-dejavu` p
 The Liberica JDK Dockerfile can be built with these libraries by specifying `OPT_PKGS` build argument:
 
 ```
-docker build -t bellsoft/liberica-openjre-alpine:8u272 \
+docker build -t bellsoft/liberica-openjre-alpine-musl:8u272 \
   --build-arg LIBERICA_RELEASE_TAG=8u272+10 \
   --build-arg LIBERICA_VERSION=8u272 \
   --build-arg LIBERICA_BUILD=10 \
   --build-arg LIBERICA_VARIANT=jre \
-  --build-arg LIBERICA_ROOT=/usr/lib/jvm/jdk-8u272-bellsoft-x86_64 \
+  --build-arg LIBERICA_ROOT=/usr/lib/jvm/jre-8u272-bellsoft-x86_64 \
   --build-arg OPT_PKGS="fontconfig ttf-dejavu"
 ```
 
