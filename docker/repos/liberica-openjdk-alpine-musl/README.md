@@ -54,13 +54,13 @@ The Liberica repository bellsoft/liberica-openjdk-alpine-musl provides multiple 
 
 1. Create an empty directory and cd into it.
 2. Run `curl https://raw.githubusercontent.com/bell-sw/Liberica/master/docker/repos/liberica-openjdk-alpine-musl/15/Dockerfile --output Dockerfile`
-3. Run `docker build . --build-arg LIBERICA_IMAGE_VARIANT=[full|lite|base]`
+3. Run `docker build . --build-arg LIBERICA_IMAGE_VARIANT=[standard|lite|base]`
 
 Dockerfile for Alpine Linux (musl variant) supports three target images out of the box:
 
 * base: minimal runtime image with compressed java.base module, Server VM and optional files stripped, ~37 MB with Alpine base
 * lite: Liberica JDK lite image with minimal footprint and Server VM, ~ 100 MB (default)
-* full: Liberica JDK full image with Server VM and jmods, can be used to create arbitrary module set, ~180 MB
+* standard: Liberica JDK standard image with Server VM and jmods, can be used to create arbitrary module set, ~180 MB
 
 Target can be chosen by modifying argument LIBERICA_IMAGE_VARIANT or redefining it via --build-arg parameter to have specific Liberica image installed.
 
