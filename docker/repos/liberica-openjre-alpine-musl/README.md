@@ -19,21 +19,27 @@ This repository contains Alpine Docker images of Liberica OpenJRE and available 
 
 The Liberica repository bellsoft/liberica-openjre-alpine provides multiple tagged images. The latest Liberica versions are:
 
-* [`15.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
+[`15.0.2-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
+[`15.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
+[`15.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
-* [`11.0.9.1-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
+* [`11.0.10-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
+[`11.0.10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
+[`11.0.9.1-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11.0.9-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11.0.9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 * [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/old/10.0.2/Dockerfile), 
 [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/old/10.0.2/Dockerfile), 
-[`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/old/10.0.2/Dockerfile)
 * [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/old/9.0.4/Dockerfile), 
 [`9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/old/9.0.4/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u275-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/8/Dockerfile),
+* [`8u282-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/8/Dockerfile),
+[`8u282`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/8/Dockerfile),
+[`8u275-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/8/Dockerfile),
 [`8u275`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/8/Dockerfile),
 [`8u272-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/8/Dockerfile),
 [`8u272`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/8/Dockerfile),
