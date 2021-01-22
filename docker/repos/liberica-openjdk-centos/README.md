@@ -8,9 +8,10 @@ Liberica binaries for the Raspberry Pi also contain JavaFX with hardware-acceler
 
 Liberica is built, tested, supported and made available by BellSoft.
 
-https://bell-sw.com/java.html
+<https://bell-sw.com/java.html>
 
 This repository contains CentOS Docker images of Liberica OpenJDK and available for following architectures:
+
 * x86_64 (aka amd64)
 * aarch64 (i.e. ARM64)
 * armhf (for devices like Raspberry Pi 2/3)
@@ -20,10 +21,11 @@ This repository contains CentOS Docker images of Liberica OpenJDK and available 
 The Liberica repository bellsoft/liberica-openjdk-centos provides multiple tagged images. The latest Liberica versions are:
 
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile),
-[`15.0.2-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile)
-[`15.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile)
-[`15.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile)
-[`15-36`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile)
+[`15.0.2-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile),
+[`15.0.2-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile),
+[`15.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile),
+[`15.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile),
+[`15-36`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile),
 [`15`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/15/Dockerfile),
 * [`14.0.2-13`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/14/Dockerfile),
 [`14.0.1-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/14/Dockerfile),
