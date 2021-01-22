@@ -8,9 +8,10 @@ Liberica binaries for the Raspberry Pi also contain JavaFX with hardware-acceler
 
 Liberica is built, tested, supported and made available by BellSoft.
 
-https://bell-sw.com/java.html
+<https://bell-sw.com/java.html>
 
 This repository contains Alpine Docker images of Liberica OpenJRE and available for following architectures:
+
 * x86_64 (aka amd64)
 * aarch64 (i.e. ARM64)
 * armhf (for devices like Raspberry Pi 2/3)
@@ -20,6 +21,7 @@ This repository contains Alpine Docker images of Liberica OpenJRE and available 
 The Liberica repository bellsoft/liberica-openjre-alpine provides multiple tagged images. The latest Liberica versions are:
 
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
+[`15.0.2-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15.0.2-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
@@ -54,7 +56,6 @@ The Liberica repository bellsoft/liberica-openjre-alpine provides multiple tagge
 [`8u`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/8/Dockerfile),
 [`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/8/Dockerfile) - amd64 and aarch64 only
 
-
 # Usage
 
 For example, you can run a Liberica OpenJRE 8u272 container with the following command:
@@ -67,10 +68,10 @@ To run some application you can create Dockerfile, based on bellsoft/liberica-op
 
 # Off-screen rendering
 
-Containerized deployments sometimes do some off-screen rendering, such as when preparing documents, forms, and images. When performing off-screen rendering, the JDK requires OS fonts and `fontconfig` libraries to be present. 
+Containerized deployments sometimes do some off-screen rendering, such as when preparing documents, forms, and images. When performing off-screen rendering, the JDK requires OS fonts and `fontconfig` libraries to be present.
 In case when you don't have these libraries or fonts you will encounter the exception, similar to one below:
 
-```
+```shell
 Exception in thread "main" java.lang.InternalError: java.lang.reflect.InvocationTargetException
 	at java.desktop/sun.font.FontManagerFactory$1.run(FontManagerFactory.java:86)
 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:312)
@@ -98,10 +99,9 @@ On Alpine Linux, these libraries are provided by `fontconfig` and `ttf-dejavu` p
 
 ```apk add fontconfig ttf-dejavu```
 
- 
 The Liberica JDK Dockerfile can be built with these libraries by specifying `OPT_PKGS` build argument:
 
-```
+```shell
 docker build -t bellsoft/liberica-openjre-alpine:8u242 \
   --build-arg LIBERICA_RELEASE_TAG=8u272+10 \
   --build-arg LIBERICA_VERSION=8u272 \
@@ -110,4 +110,3 @@ docker build -t bellsoft/liberica-openjre-alpine:8u242 \
   --build-arg LIBERICA_ROOT=/usr/lib/jvm/jre-8u272-bellsoft-x86_64 \
   --build-arg OPT_PKGS="fontconfig ttf-dejavu"
 ```
-

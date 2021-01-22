@@ -8,9 +8,10 @@ Liberica binaries for the Raspberry Pi also contain JavaFX with hardware-acceler
 
 Liberica is built, tested, supported and made available by BellSoft.
 
-https://bell-sw.com/java.html
+<https://bell-sw.com/java.html>
 
 This repository contains Alpine Docker images of Liberica OpenJDK and available for following architectures:
+
 * x86_64 (aka amd64)
 * aarch64 (i.e. ARM64)
 * armhf (for devices like Raspberry Pi 2/3)
@@ -20,6 +21,7 @@ This repository contains Alpine Docker images of Liberica OpenJDK and available 
 The Liberica repository bellsoft/liberica-openjdk-alpine provides multiple tagged images. The latest Liberica versions are:
 
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/15/Dockerfile),
+[`15.0.2-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/15/Dockerfile),
 [`15.0.2-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/15/Dockerfile),
 [`15.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/15/Dockerfile),
 [`15.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/15/Dockerfile),
@@ -80,7 +82,7 @@ The Liberica repository bellsoft/liberica-openjdk-alpine provides multiple tagge
 
 Dockerfile accepts the following parameters:
 
-* `LANG` – Specifies a `locale` for this image. By default it's set to en_US.UTF-8, for locale names see https://www.gnu.org/software/gettext/manual/html_node/Locale-Names.html#Locale-Names. Note that the specified locale cannot be changed in runtime. 
+* `LANG` – Specifies a `locale` for this image. By default it's set to en_US.UTF-8, for locale names see <https://www.gnu.org/software/gettext/manual/html_node/Locale-Names.html#Locale-Names>. Note that the specified locale cannot be changed in runtime.
 * `OPT_PKGS` – Specifies a list of optional Alpine Linux packages to be installed, the packages should be separated by spaces, i.e. "curl lftp ttf-dejavu".
 
 # Usage
@@ -95,7 +97,7 @@ To run some application you can create Dockerfile, based on bellsoft/liberica-op
 
 # Off-screen rendering
 
-Containerized deployments sometimes do some off-screen rendering, such as when preparing documents, forms, and images. When performing off-screen rendering, the JDK requires OS fonts and `fontconfig` libraries to be present. 
+Containerized deployments sometimes do some off-screen rendering, such as when preparing documents, forms, and images. When performing off-screen rendering, the JDK requires OS fonts and `fontconfig` libraries to be present.
 In case when you don't have these libraries or fonts you will encounter the exception, similar to one below:
 
 ```
@@ -126,10 +128,9 @@ On Alpine Linux, these libraries are provided by `fontconfig` and `ttf-dejavu` p
 
 ```apk add fontconfig ttf-dejavu```
 
- 
 The Liberica JDK Dockerfile can be built with these libraries by specifying `OPT_PKGS` build argument:
 
-```
+```shell
 docker build -t bellsoft/liberica-openjdk-alpine:11 \
   --build-arg LIBERICA_RELEASE_TAG=11.0.6 \
   --build-arg LIBERICA_VERSION=11.0.6 \
@@ -138,4 +139,3 @@ docker build -t bellsoft/liberica-openjdk-alpine:11 \
   --build-arg LIBERICA_ROOT=/usr/lib/jvm/jdk-11.0.6-bellsoft-x86_64 \
   --build-arg OPT_PKGS="fontconfig ttf-dejavu"
 ```
-
