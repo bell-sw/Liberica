@@ -20,8 +20,10 @@ This repository contains CentOS Docker images of Liberica OpenJRE and available 
 
 The Liberica repository bellsoft/liberica-openjre-centos provides multiple tagged images. The latest Liberica versions are:
 
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/15/Dockerfile),
-[`15.0.2-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/15/Dockerfile),
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/16/Dockerfile),
+[`16-36`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/16/Dockerfile),
+[`16`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/16/Dockerfile),
+* [`15.0.2-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/15/Dockerfile),
 [`15.0.2-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/15/Dockerfile),
 [`15.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/15/Dockerfile),
 [`15.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/15/Dockerfile),
