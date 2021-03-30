@@ -9,7 +9,7 @@ Liberica is built, tested, supported and made available by BellSoft.
 This repository contains Alpine Musl Docker images of Liberica OpenJDK and available for following architectures:
 
 * x86_64 (aka amd64)
-
+* aarch64 (i.e. ARM64)
 # Tags
 
 The Liberica repository bellsoft/liberica-openjdk-alpine-musl provides multiple tagged images. The latest Liberica versions are:
