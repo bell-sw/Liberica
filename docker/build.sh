@@ -81,7 +81,7 @@ for os in ${LIBERICA_OS}; do
       [[ -z ${RELEASE_TAG} ]] && RELEASE_TAG="$V"
 
       # Skip some configurations
-      if [[ "$os" = "alpine-musl" ]] && [[ "$ARCH" = "armv7l" ]] ; then
+      if [[ "$os" = "alpine-musl" ]] && ([[ "$ARCH" = "aarch64" ]] || [[ "$ARCH" = "armv7l" ]]) ; then
         continue
       fi
 

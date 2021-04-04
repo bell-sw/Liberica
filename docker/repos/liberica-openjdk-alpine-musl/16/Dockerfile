@@ -18,23 +18,12 @@ ARG LIBERICA_VERSION=16
 ARG LIBERICA_BUILD=36
 ARG LIBERICA_VARIANT=jdk
 ARG LIBERICA_RELEASE_TAG=
+ARG LIBERICA_ARCH=x64
 ARG LIBERICA_GLIBC=no
 
 ARG OPT_PKGS=
 
-RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
-  case `uname -m` in \
-        x86_64) \
-            LIBERICA_ARCH="x64" \
-            ;; \
-        aarch64) \
-            LIBERICA_ARCH="aarch64" \
-            ;; \
-        *) \
-            LIBERICA_ARCH=`uname -m` \
-            ;; \
-  esac  && \
-  RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
+RUN RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
   RSUFFIX="" && if [ "$LIBERICA_IMAGE_VARIANT" = "lite" ]; then RSUFFIX="-lite"; fi && \
   LIBSUFFIX="" && if [ "$LIBERICA_GLIBC" = "no" ]; then LIBSUFFIX="-musl"; fi && \
   for pkg in $OPT_PKGS ; do apk --no-cache add $pkg ; done && \

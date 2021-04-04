@@ -9,20 +9,8 @@ ARG LIBERICA_BUILD=8
 ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_RELEASE_TAG=8u282
 ARG LIBERICA_USE_LITE=1
-ARG LIBSUFFIX="-musl"
 
-RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
-  case `uname -m` in \
-        x86_64) \
-            LIBERICA_ARCH="x64" \
-            ;; \
-        aarch64) \
-            LIBERICA_ARCH="aarch64" \
-            ;; \
-        *) \
-            LIBERICA_ARCH=`uname -m` \
-            ;; \
-  esac  && \
+RUN LIBERICA_ARCH=x64-musl && \
   RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
   PACKED_ROOT="jre${LIBERICA_VERSION}" && \
   LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then \
@@ -30,7 +18,7 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \
   LIBERICA_BUILD_STR=${LIBERICA_BUILD:+"+${LIBERICA_BUILD}"} && \
-  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}${LIBERICA_BUILD_STR}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz"` && \
+  PKG=`echo "bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}${LIBERICA_BUILD_STR}-linux-${LIBERICA_ARCH}${RSUFFIX}.tar.gz"` && \
   wget "https://download.bell-sw.com/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}/${PKG}" -O /tmp/java/jre.tar.gz && \
   SHA1=`wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}" -O - | grep ${PKG} | cut -f1 -d' '` && \
   echo "${SHA1} */tmp/java/jre.tar.gz" | sha1sum -c - && \
