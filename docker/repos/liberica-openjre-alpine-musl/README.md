@@ -10,11 +10,10 @@ Liberica is built, tested, supported and made available by BellSoft.
 
 <https://bell-sw.com/java.html>
 
-This repository contains Alpine Docker images of Liberica OpenJRE and available for following architectures:
+This repository contains Alpine Musl Docker images of Liberica OpenJRE and available for following architectures:
 
 * x86_64 (aka amd64)
 * aarch64 (i.e. ARM64)
-* armhf (for devices like Raspberry Pi 2/3)
 
 # Tags
 
