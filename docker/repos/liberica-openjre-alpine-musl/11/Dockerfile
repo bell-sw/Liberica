@@ -3,11 +3,12 @@ FROM alpine:3.13
 ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 
-ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-11.0.11-bellsoft
-ARG LIBERICA_VERSION=11.0.11
-ARG LIBERICA_BUILD=9
+
+ARG LIBERICA_VERSION=11.0.12
+ARG LIBERICA_BUILD=7
+ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-${LIBERICA_VERSION}-bellsoft
 ARG LIBERICA_VARIANT=jre
-ARG LIBERICA_RELEASE_TAG=11.0.11
+ARG LIBERICA_RELEASE_TAG=11.0.12
 ARG LIBERICA_USE_LITE=0
 ARG LIBSUFFIX="-musl"
 
@@ -37,7 +38,8 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   tar xzf /tmp/java/jre.tar.gz -C /tmp/java $LITE_VERSION_EXCLUDES && \
   find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   ln -s "${LIBERICA_ROOT}" /usr/lib/jvm/jre && \
-  rm -rf /tmp/java
+  rm -rf /tmp/java && \
+  (ls /usr/lib/jvm/jre/lib/client 1>/dev/null 2>&1 && (rm -rf /usr/lib/jvm/jre/lib/client && sed -i 's#-client\s\+KNOWN#-client IGNORE#g' /usr/lib/jvm/jre/lib/jvm.cfg) || : )
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
 	PATH=${LIBERICA_ROOT}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
