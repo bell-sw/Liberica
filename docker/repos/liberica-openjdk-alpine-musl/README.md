@@ -16,6 +16,8 @@ This repository contains Alpine Musl Docker images of Liberica OpenJDK and avail
 The Liberica repository bellsoft/liberica-openjdk-alpine-musl provides multiple tagged images. The latest Liberica versions are:
 
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile),
+[`17.0.1-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile),
+[`17.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile),
 [`17-35`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile),
 [`17`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile),
 * [`16.0.2-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/16/Dockerfile),
@@ -39,7 +41,9 @@ The Liberica repository bellsoft/liberica-openjdk-alpine-musl provides multiple 
 * [`12.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/12.0.2/Dockerfile),
 [`12.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/12.0.1/Dockerfile),
 [`12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/12.0.0/Dockerfile)
-* [`11.0.12-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
+* [`11.0.13-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
+[`11.0.13`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
+[`11.0.12-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
 [`11.0.12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
 [`11.0.11-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
 [`11.0.11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
@@ -58,7 +62,9 @@ The Liberica repository bellsoft/liberica-openjdk-alpine-musl provides multiple 
 [`11.0.3`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/11.0.3/Dockerfile),
 [`11.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/11.0.2/Dockerfile),
 [`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
-* [`8u302-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+* [`8u312-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+[`8u312`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+[`8u302-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
 [`8u302`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
 [`8u292-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
 [`8u292`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
@@ -76,12 +82,13 @@ The Liberica repository bellsoft/liberica-openjdk-alpine-musl provides multiple 
 # How to build custom Alpine Linux musl images
 
 1. Create an empty directory and cd into it.
-2. Run `curl https://raw.githubusercontent.com/bell-sw/Liberica/master/docker/repos/liberica-openjdk-alpine-musl/15/Dockerfile --output Dockerfile`
-3. Run `docker build . --build-arg LIBERICA_IMAGE_VARIANT=[standard|lite|base]`
+2. Run `curl https://raw.githubusercontent.com/bell-sw/Liberica/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile --output Dockerfile`
+3. Run `docker build . --build-arg LIBERICA_IMAGE_VARIANT=[standard|lite|base|base-minimal]`
 
-Dockerfile for Alpine Linux (musl variant) supports three target images out of the box:
+Dockerfile for Alpine Linux (musl variant) supports four target images out of the box:
 
 * base: minimal runtime image with compressed java.base module, Server VM and optional files stripped, ~37 MB with Alpine base
+* base-minimal: minimal runtime image with compressed java.base module, Minimal VM and optional files stripped
 * lite: Liberica JDK lite image with minimal footprint and Server VM, ~ 100 MB (default)
 * standard: Liberica JDK standard image with Server VM and jmods, can be used to create arbitrary module set, ~180 MB
 
@@ -90,6 +97,22 @@ Target can be chosen by modifying argument LIBERICA_IMAGE_VARIANT or redefining 
 To save space, users are encouraged to create their own runtimes using jmod command sufficient to run the target application.
 
 If you are ready to sacrifice performance for static footprint, please consider using Minimal VM instead of Server VM or Client VM. With that, it's possible to create a runtime as small as < 20 Mb.
+
+## Version specific variables ##
+
+* JDK 8u* version
+  * `LIBERICA_USE_LITE` – defines content of JDK for this image. `0` means keep jdk unchanged, `1` (default) creates lite image, where demos, samples and sources are removed from image.
+* JDK 11* and JDK 17* versions
+  * `LIBERICA_IMAGE_VARIANT` – possible image variants are: 
+    * `base` – server VM with `java.base` module.
+	* `base-minimal` – minimal VM with `java.base` module.
+	* `lite` (default) – lite JDK with minimal footprint.
+	* `standard` – standard JDK.
+  * `LIBERICA_VM` – this option defines included VM for lite and standard image variant. Possible values are:
+    * `server` (default) – add `server` VM to image.
+	* `client` – add `client` VM to image.
+	* `minimal` – add `minimal` VM to image.
+	* `all` – add all VMs from original bundle to image.
 
 # Usage
 

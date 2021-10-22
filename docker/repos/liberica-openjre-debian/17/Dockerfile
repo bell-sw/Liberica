@@ -1,4 +1,4 @@
-FROM debian:9
+FROM debian:10
 
 RUN apt-get update && \
 	apt-get install -y curl fontconfig && \
@@ -7,8 +7,8 @@ RUN apt-get update && \
 ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 
-ARG LIBERICA_VERSION=17
-ARG LIBERICA_BUILD=35
+ARG LIBERICA_VERSION=17.0.1
+ARG LIBERICA_BUILD=12
 ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_ROOT=/usr/lib/jvm/${LIBERICA_VARIANT}-${LIBERICA_VERSION}-bellsoft
 

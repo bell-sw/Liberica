@@ -1,4 +1,4 @@
-FROM debian:stable-slim as glibc-base
+FROM debian:10-slim as glibc-base
 
 ARG GLIBC_VERSION=2.28
 ARG GLIBC_PREFIX=/usr/glibc
@@ -40,7 +40,7 @@ RUN cd /root/dest${GLIBC_PREFIX} && \
 
 #sbin/[^l]*
 
-FROM alpine:3.13 as liberica
+FROM alpine:3.14 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
 ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.3.0-1-x86_64.pkg.tar.xz
@@ -52,8 +52,8 @@ ENV  LANG=${LANG} \
      LANGUAGE=${LANG}:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_VERSION=11.0.12
-ARG LIBERICA_BUILD=7
+ARG LIBERICA_VERSION=11.0.13
+ARG LIBERICA_BUILD=8
 ARG LIBERICA_ROOT=/usr/lib/jvm/jre-${LIBERICA_VERSION}-bellsoft
 ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_USE_LITE=0

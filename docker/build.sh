@@ -60,11 +60,15 @@ ARCH=`uname -m`
 [[ -z "$LIBERICA_OS" ]] && LIBERICA_OS="debian centos alpine alpine-musl"
 [[ -z "$LIBERICA_RELEASE_TAG" ]] && LIBERICA_RELEASE_TAG=""
 [[ -z "$LIBERICA_USE_LITE" ]] && LIBERICA_USE_LITE=""
+[[ -z "$LIBERICA_DESTINATION" ]] && LIBERICA_DESTINATION="open"
+if [[ $LIBERICA_DESTINATION == "private" ]] ; then
+  LIBERICA_DESTINATION=""
+fi
 
 for os in ${LIBERICA_OS}; do
   for version in ${LIBERICA_VERSION}; do
     for variant in ${LIBERICA_VARIANT}; do
-      DOCKER_REPOSITORY=${NS}/liberica-open${variant}-${os}
+      DOCKER_REPOSITORY=${NS}/liberica-${LIBERICA_DESTINATION}${variant}-${os}
       TAG=${version}
       V=${version}
       ( echo "$version" | grep -q -- ':' ) &&\
