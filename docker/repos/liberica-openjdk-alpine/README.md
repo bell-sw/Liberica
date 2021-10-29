@@ -21,6 +21,8 @@ This repository contains Alpine Docker images of Liberica OpenJDK and available 
 The Liberica repository bellsoft/liberica-openjdk-alpine provides multiple tagged images. The latest Liberica versions are:
 
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/17/Dockerfile),
+[`17.0.1-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/17/Dockerfile),
+[`17.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/17/Dockerfile),
 [`17-35`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/17/Dockerfile),
 [`17`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/17/Dockerfile),
 * [`16.0.2-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/16/Dockerfile),
@@ -46,7 +48,9 @@ The Liberica repository bellsoft/liberica-openjdk-alpine provides multiple tagge
 * [`12.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/12.0.2/Dockerfile),
 [`12.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/12.0.1/Dockerfile),
 [`12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/12.0.0/Dockerfile)
-* [`11.0.12-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
+* [`11.0.13-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
+[`11.0.13`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
+[`11.0.12-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
 [`11.0.12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
 [`11.0.11-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
 [`11.0.11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
@@ -71,7 +75,9 @@ The Liberica repository bellsoft/liberica-openjdk-alpine provides multiple tagge
 [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/10.0.0/Dockerfile) - armhf only (Raspberry Pi 2/3)
 * [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/9.0.4/Dockerfile),
 [`9.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/9.0.1/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u302-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
+* [`8u312-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
+[`8u312`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
+[`8u302-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
 [`8u302`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
 [`8u292-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
 [`8u292`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
@@ -101,15 +107,31 @@ Dockerfile accepts the following parameters:
 * `LANG` – Specifies a `locale` for this image. By default it's set to en_US.UTF-8, for locale names see <https://www.gnu.org/software/gettext/manual/html_node/Locale-Names.html#Locale-Names>. Note that the specified locale cannot be changed in runtime.
 * `OPT_PKGS` – Specifies a list of optional Alpine Linux packages to be installed, the packages should be separated by spaces, i.e. "curl lftp ttf-dejavu".
 
+## Version specific options ##
+
+* JDK 8u* version
+  * `LIBERICA_USE_LITE` – defines content of JDK for this image. `0` means keep jdk unchanged, `1` (default) creates lite image, where demos, samples and sources are removed from image.
+* JDK 11* and JDK 17* versions
+  * `LIBERICA_IMAGE_VARIANT` – possible image variants are: 
+    * `base` – server VM with `java.base` module.
+	* `base-minimal` – minimal VM with `java.base` module.
+	* `lite` (default) – lite JDK with minimal footprint.
+	* `standard` – standard JDK.
+  * `LIBERICA_VM` – this option defines included VM for lite and standard image variant. Possible values are:
+    * `server` (default) – add `server` VM to image.
+	* `client` – add `client` VM to image.
+	* `minimal` – add `minimal` VM to image.
+	* `all` – add all VMs from original bundle to image.
+
 # Usage
 
-For example, you can run a Liberica OpenJDK 11 container with the following command:
+For example, you can run a Liberica OpenJDK 17 container with the following command:
 
- ```docker run -it --rm bellsoft/liberica-openjdk-alpine:11 java -version```
+ ```docker run -it --rm bellsoft/liberica-openjdk-alpine:latest java -version```
 
 To run some application you can create Dockerfile, based on bellsoft/liberica-openjdk-alpine image or mount volume with your code/applicaiton, for example:
 
- ```docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjdk-alpine:11 java -jar /data/MyApp.jar```
+ ```docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjdk-alpine:latest java -jar /data/MyApp.jar```
 
 # Off-screen rendering
 
