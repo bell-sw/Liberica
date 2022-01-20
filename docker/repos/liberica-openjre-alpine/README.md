@@ -21,6 +21,8 @@ This repository contains Alpine Docker images of Liberica OpenJRE and available 
 The Liberica repository bellsoft/liberica-openjre-alpine provides multiple tagged images. The latest Liberica versions are:
 
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
+[`17.0.2-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
+[`17.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
 [`17.0.1-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
 [`17.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
 [`17-35`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
@@ -37,7 +39,9 @@ The Liberica repository bellsoft/liberica-openjre-alpine provides multiple tagge
 [`15.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
-* [`11.0.13-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
+* [`11.0.14-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
+[`11.0.14`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
+[`11.0.13-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11.0.13`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11.0.12-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11.0.12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
