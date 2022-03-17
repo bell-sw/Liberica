@@ -23,6 +23,8 @@ ARG LIBERICA_GLIBC=no
 
 ARG OPT_PKGS=
 
+ARG BASE_URL="https://download.bell-sw.com/java/"
+
 RUN LIBERICA_ARCH=''                     \
   && set -x                              \
   &&    case `uname -m` in               \
@@ -61,11 +63,12 @@ RUN LIBERICA_ARCH=''                     \
   &&    for pkg in $OPT_PKGS ; do apk --no-cache add $pkg ; done            \
   &&    mkdir -p /tmp/java                                                  \
   &&    LIBERICA_BUILD_STR=${LIBERICA_BUILD:+"+${LIBERICA_BUILD}"}          \
+  &&    DIST_URL=${BASE_URL}/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}${LITE_URL} \
   &&    PKG="bellsoft-jdk${LIBERICA_VERSION}${LIBERICA_BUILD_STR}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz" \
-  &&    PKG_URL="https://download.bell-sw.com/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}${LITE_URL}/${PKG}"         \
+  &&    PKG_URL="${DIST_URL}/${PKG}"         \
   &&    echo "Download ${PKG_URL}"                                                                   \
   &&    wget "${PKG_URL}" -O /tmp/java/jdk.tar.gz                                                    \
-  &&    SHA_URL="https://download.bell-sw.com/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}/docker/sha1sum.txt" \
+  &&    SHA_URL="${DIST_URL}/sha1sum.txt" \
   &&    if [ ${LIBERICA_IMAGE_VARIANT} == "standard" ]; then                                                    \
           SHA_URL="https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}";         \
         fi \
