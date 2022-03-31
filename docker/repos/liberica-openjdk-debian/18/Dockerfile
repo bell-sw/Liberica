@@ -93,6 +93,7 @@ RUN     LIBERICA_ARCH=''                       \
                     --no-man-pages --strip-debug            \
                     --module-path ${UNPACKED_ROOT}/jmods    \
                     --vm=server                             \
+                    --release-info ${UNPACKED_ROOT}/release \
                     --output "${LIBERICA_ROOT}"             \
   &&            apt-get remove --auto-remove -y binutils ;; \
             base-minimal)                                   \
@@ -106,6 +107,7 @@ RUN     LIBERICA_ARCH=''                       \
                     --no-man-pages --strip-debug            \
                     --module-path ${UNPACKED_ROOT}/jmods    \
                     --vm=minimal                            \
+                    --release-info ${UNPACKED_ROOT}/release \
                     --output "${LIBERICA_ROOT}"             \
   &&            apt-get remove --auto-remove -y binutils ;; \
             standard)                                       \
@@ -149,23 +151,24 @@ RUN     LIBERICA_ARCH=''                       \
   &&                 exit 1 ;;                            \
                 esac                                      \
                 ;;                                        \
-            *)                                            \
-                MODS=$( ls ${UNPACKED_ROOT}/jmods/        \
-                      | sed "s/.jmod//"                   \
-                      | grep -v javafx                    \
-                      | tr '\n' ', '                      \
-                      | sed "s/,$//")                     \
-  &&            mkdir -pv "${LIBERICA_JVM_DIR}"           \
-  &&            apt-get update                            \
-  &&            apt-get install -y binutils               \
-  &&            ${UNPACKED_ROOT}/bin/jlink                \
-                    --add-modules ${MODS}                 \
-                    --compress=2                          \
-                    --no-man-pages                        \
-                    --module-path ${UNPACKED_ROOT}/jmods  \
-                    --vm=${LIBERICA_VM}                   \
-                    --output "${LIBERICA_ROOT}"           \
-  &&            apt-get remove --auto-remove -y binutils  \
+            *)                                              \
+                MODS=$( ls ${UNPACKED_ROOT}/jmods/          \
+                      | sed "s/.jmod//"                     \
+                      | grep -v javafx                      \
+                      | tr '\n' ', '                        \
+                      | sed "s/,$//")                       \
+  &&            mkdir -pv "${LIBERICA_JVM_DIR}"             \
+  &&            apt-get update                              \
+  &&            apt-get install -y binutils                 \
+  &&            ${UNPACKED_ROOT}/bin/jlink                  \
+                    --add-modules ${MODS}                   \
+                    --compress=2                            \
+                    --no-man-pages                          \
+                    --module-path ${UNPACKED_ROOT}/jmods    \
+                    --vm=${LIBERICA_VM}                     \
+                    --release-info ${UNPACKED_ROOT}/release \
+                    --output "${LIBERICA_ROOT}"             \
+  &&            apt-get remove --auto-remove -y binutils    \
                 ;;                                        \
         esac                                              \
   &&    apt-get -y autoremove                             \
