@@ -151,6 +151,7 @@ RUN LIBERICA_ARCH=''                               \
                     --no-man-pages --strip-debug            \
                     --module-path ${UNPACKED_ROOT}/jmods    \
                     --vm=server                             \
+                    --release-info ${UNPACKED_ROOT}/release \
                     --output "${LIBERICA_ROOT}"             \
   &&            apk del binutils ;;                         \
             base-minimal)                                   \
@@ -162,6 +163,7 @@ RUN LIBERICA_ARCH=''                               \
                     --no-header-files                       \
                     --no-man-pages --strip-debug            \
                     --module-path ${UNPACKED_ROOT}/jmods    \
+                    --release-info ${UNPACKED_ROOT}/release \
                     --vm=minimal                            \
                     --output "${LIBERICA_ROOT}"             \
   &&            apk del binutils ;;                         \
@@ -207,25 +209,26 @@ RUN LIBERICA_ARCH=''                               \
   &&                 exit 1 ;;                            \
                 esac                                      \
   &&            apk del binutils ;;                       \
-            *)                                            \
-                MODS=$( ls ${UNPACKED_ROOT}/jmods/        \
-                      | sed "s/.jmod//"                   \
-                      | grep -v javafx                    \
-                      | tr '\n' ', '                      \
-                      | sed "s/,$//")                     \
-  &&            apk --no-cache add binutils               \
-  &&            mkdir -pv "${LIBERICA_JVM_DIR}"           \
-  &&            ${UNPACKED_ROOT}/bin/jlink                \
-                    --add-modules ${MODS}                 \
-                    --compress=2                          \
-                    --no-man-pages                        \
-                    --module-path ${UNPACKED_ROOT}/jmods  \
-                    --vm=${LIBERICA_VM}                   \
-                    --output "${LIBERICA_ROOT}"           \
-  &&            apk del binutils ;;                       \
-        esac                                              \
-  &&    ln -s $LIBERICA_ROOT /usr/lib/jvm/jdk             \
-  &&    rm -rf /tmp/java                                  \
+            *)                                              \
+                MODS=$( ls ${UNPACKED_ROOT}/jmods/          \
+                      | sed "s/.jmod//"                     \
+                      | grep -v javafx                      \
+                      | tr '\n' ', '                        \
+                      | sed "s/,$//")                       \
+  &&            apk --no-cache add binutils                 \
+  &&            mkdir -pv "${LIBERICA_JVM_DIR}"             \
+  &&            ${UNPACKED_ROOT}/bin/jlink                  \
+                    --add-modules ${MODS}                   \
+                    --compress=2                            \
+                    --no-man-pages                          \
+                    --module-path ${UNPACKED_ROOT}/jmods    \
+                    --vm=${LIBERICA_VM}                     \
+                    --release-info ${UNPACKED_ROOT}/release \
+                    --output "${LIBERICA_ROOT}"             \
+  &&            apk del binutils ;;                         \
+        esac                                                \
+  &&    ln -s $LIBERICA_ROOT /usr/lib/jvm/jdk               \
+  &&    rm -rf /tmp/java                                    \
   &&    rm -rf /tmp/hsperfdata_root
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
