@@ -1,4 +1,4 @@
-FROM alpine:3.14 as liberica
+FROM alpine:3.15 as liberica
 
 ### Modify argument LIBERICA_IMAGE_VARIANT or redefine it via --build-arg parameter to have specific liberica image installed:
 ###    docker build . --build-arg LIBERICA_IMAGE_VARIANT=[standard|lite|base|base-minimal]
