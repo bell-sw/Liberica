@@ -103,6 +103,9 @@ for os in ${LIBERICA_OS}; do
         if [[ "x$LIBERICA_USE_LITE" != "x" ]]; then
           EXTRA_ARGS="$EXTRA_ARGS --build-arg LIBERICA_USE_LITE=${LIBERICA_USE_LITE}"
         fi
+        if [[ "x$BASE_URL" != "x" ]]; then
+          EXTRA_ARGS="$EXTRA_ARGS --build-arg BASE_URL=${BASE_URL}"
+        fi
         echo "Building Liberica $variant v $version based on ${os}..."
         execDockerCmd build --pull -t ${DOCKER_REPOSITORY}:${TAG} \
           --build-arg LIBERICA_RELEASE_TAG="$RELEASE_TAG" \

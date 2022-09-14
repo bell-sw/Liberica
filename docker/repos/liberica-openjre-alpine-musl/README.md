@@ -19,8 +19,10 @@ This repository contains Alpine Musl Docker images of Liberica OpenJRE and avail
 
 The Liberica repository bellsoft/liberica-openjre-alpine-musl provides multiple tagged images. The latest Liberica versions are:
 
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/18/Dockerfile),
-[`18.0.2.1-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/18/Dockerfile),
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/19/Dockerfile),
+[`19-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/19/Dockerfile),
+[`19`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/19/Dockerfile),
+* [`18.0.2.1-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/18/Dockerfile),
 [`18.0.2.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/18/Dockerfile),
 [`18.0.2-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/18/Dockerfile),
 [`18.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/18/Dockerfile),
