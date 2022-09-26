@@ -13,10 +13,13 @@ die() {
 getTags() {
   repo="$1"
   pattern="$2"
-  tags=$(curl -sSL https://registry.hub.docker.com/v1/repositories/${repo}/tags |\
-        sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' |\
-        tr '}' '\n' |\
-        awk -F: '{print $3}' |\
+  tags=$(curl -sSL https://registry.hub.docker.com/v2/namespaces/${NS}/repositories/${repo}/tags |
+        tr '}' "\n" |
+        grep \"name\" |
+        tr "," "\n" |
+        grep \"name\" |
+        awk -F: '{print $2}' |
+        tr -d \" |
         grep -E -- "${pattern}") || exit 1
    echo ${tags}
 }
@@ -24,7 +27,7 @@ getTags() {
 waitForTag() {
   image=$1
   tag=$2
-  url=https://registry.hub.docker.com/v1/repositories/${image}/tags
+  url=https://registry.hub.docker.com/v2/namespaces/${NS}/repositories/${image}/tags
   timeout=60
   passed=0
   while true ; do
@@ -69,6 +72,7 @@ for os in ${LIBERICA_OS}; do
   for version in ${LIBERICA_VERSION}; do
     for variant in ${LIBERICA_VARIANT}; do
       DOCKER_REPOSITORY=${NS}/liberica-${LIBERICA_DESTINATION}${variant}-${os}
+      DOCKER_IMAGE_NAME=liberica-${LIBERICA_DESTINATION}${variant}-${os}
       TAG=${version}
       V=${version}
       ( echo "$version" | grep -q -- ':' ) &&\
@@ -103,6 +107,9 @@ for os in ${LIBERICA_OS}; do
         if [[ "x$LIBERICA_USE_LITE" != "x" ]]; then
           EXTRA_ARGS="$EXTRA_ARGS --build-arg LIBERICA_USE_LITE=${LIBERICA_USE_LITE}"
         fi
+        if [[ "x$BASE_URL" != "x" ]]; then
+          EXTRA_ARGS="$EXTRA_ARGS --build-arg BASE_URL=${BASE_URL}"
+        fi
         echo "Building Liberica $variant v $version based on ${os}..."
         execDockerCmd build --pull -t ${DOCKER_REPOSITORY}:${TAG} \
           --build-arg LIBERICA_RELEASE_TAG="$RELEASE_TAG" \
@@ -120,8 +127,8 @@ for os in ${LIBERICA_OS}; do
       fi
 
       if [[ "$PUSH_MANIFEST" = "1" ]]; then
-        waitForTag ${DOCKER_REPOSITORY} ${TAG}-${ARCH}
-        tags=$(getTags ${DOCKER_REPOSITORY} "^$TAG-[a-zA-Z]") || die "Cannot find tag matching \"^$TAG-[a-zA-Z]\" in repo \"${DOCKER_REPOSITORY}\""
+        waitForTag ${DOCKER_IMAGE_NAME} ${TAG}-${ARCH}
+        tags=$(getTags ${DOCKER_IMAGE_NAME} "^$TAG-[a-zA-Z]") || die "Cannot find tag matching \"^$TAG-[a-zA-Z]\" in repo \"${DOCKER_REPOSITORY}\""
         images=""
         for tag in ${tags}; do
           images="$images ${DOCKER_REPOSITORY}:$tag"
