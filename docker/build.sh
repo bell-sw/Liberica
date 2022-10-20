@@ -13,7 +13,7 @@ die() {
 getTags() {
   repo="$1"
   pattern="$2"
-  tags=$(curl -sSL https://registry.hub.docker.com/v2/namespaces/${NS}/repositories/${repo}/tags |
+  tags=$(curl -sSL https://registry.hub.docker.com/v2/namespaces/${NS}/repositories/${repo}/tags?page_size=100 |
         tr '}' "\n" |
         grep \"name\" |
         tr "," "\n" |
@@ -27,7 +27,7 @@ getTags() {
 waitForTag() {
   image=$1
   tag=$2
-  url=https://registry.hub.docker.com/v2/namespaces/${NS}/repositories/${image}/tags
+  url="https://registry.hub.docker.com/v2/namespaces/${NS}/repositories/${image}/tags?page_size=100"
   timeout=60
   passed=0
   while true ; do
