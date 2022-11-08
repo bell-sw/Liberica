@@ -65,6 +65,7 @@ ARG LIBERICA_ROOT=${LIBERICA_JVM_DIR}/jdk-${LIBERICA_VERSION}-bellsoft
 COPY --from=glibc-base /root/dest/ /
 
 RUN LIBERICA_ARCH=''                               \
+  && apk --no-cache upgrade libcrypto1.1 libssl1.1 \
   && set -x                                        \
   &&    case `uname -m` in                         \
             x86_64)                                \
