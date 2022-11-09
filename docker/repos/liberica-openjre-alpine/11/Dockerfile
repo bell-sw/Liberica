@@ -60,24 +60,25 @@ ARG LIBERICA_USE_LITE=0
 
 COPY --from=glibc-base /root/dest/ /
 
-RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
-  case `uname -m` in \
-        x86_64) \
-            LIBERICA_ARCH="amd64" \
-            ;; \
-        i686) \
-            LIBERICA_ARCH="i586" \
-            ;; \
-        aarch64) \
-            LIBERICA_ARCH="aarch64" \
-            ;; \
-        armv[67]l) \
-            LIBERICA_ARCH="arm32-vfp-hflt"; \
-            ;; \
-        *) \
-            LIBERICA_ARCH=`uname -m` \
-            ;; \
-  esac  && \
+RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' &&    \
+  apk --no-cache upgrade libcrypto1.1 libssl1.1 && \
+  case `uname -m` in                               \
+        x86_64)                                    \
+            LIBERICA_ARCH="amd64"                  \
+            ;;                                     \
+        i686)                                      \
+            LIBERICA_ARCH="i586"                   \
+            ;;                                     \
+        aarch64)                                   \
+            LIBERICA_ARCH="aarch64"                \
+            ;;                                     \
+        armv[67]l)                                 \
+            LIBERICA_ARCH="arm32-vfp-hflt";        \
+            ;;                                     \
+        *)                                         \
+            LIBERICA_ARCH=`uname -m`               \
+            ;;                                     \
+  esac  &&                                         \
   ln -s ${GLIBC_PREFIX}/lib/ld-*.so* /lib && \
   ln -s ${GLIBC_PREFIX}/etc/ld.so.cache /etc && \
   if [ "$LIBERICA_ARCH" = "amd64" ]; then ln -s /lib /lib64 && \

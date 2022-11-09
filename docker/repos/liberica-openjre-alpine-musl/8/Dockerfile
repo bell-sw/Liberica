@@ -12,19 +12,20 @@ ARG LIBERICA_RELEASE_TAG=8u352
 ARG LIBERICA_USE_LITE=1
 ARG LIBSUFFIX="-musl"
 
-RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
-  set -x && \
-  case `uname -m` in \
-        x86_64) \
-            LIBERICA_ARCH="x64" \
-            ;; \
-        aarch64) \
-            LIBERICA_ARCH="aarch64" \
-            ;; \
-        *) \
-            LIBERICA_ARCH=`uname -m` \
-            ;; \
-  esac  && \
+RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' &&    \
+  apk --no-cache upgrade libcrypto1.1 libssl1.1 && \
+  set -x &&                                        \
+  case `uname -m` in                               \
+        x86_64)                                    \
+            LIBERICA_ARCH="x64"                    \
+            ;;                                     \
+        aarch64)                                   \
+            LIBERICA_ARCH="aarch64"                \
+            ;;                                     \
+        *)                                         \
+            LIBERICA_ARCH=`uname -m`               \
+            ;;                                     \
+  esac  &&                                         \
   RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
   PACKED_ROOT="jre${LIBERICA_VERSION}" && \
   LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then \
