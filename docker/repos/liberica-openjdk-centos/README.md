@@ -1,26 +1,40 @@
-# What is Liberica?
+# bellsoft/liberica-openjdk-centos
 
-Liberica is a 100% open-source Java implementation.
-It is built from OpenJDK which BellSoft contributes to, is thoroughly
-tested and passed the JCK provided under the license from OpenJDK.
-Liberica supports the following architectures: x86_64, ARMv8, ARMv7
-Liberica binaries for the Raspberry Pi also contain JavaFX with hardware-accelerated EGL support and Device IO API as additional modules.
+## What is Liberica JDK?
+Liberica JDK is free and 100% open-source Progressive Java Runtime for modern Java deployments. It is developed and supported by BellSoft, a major OpenJDK contributor. Application development with Liberica JDK is
 
-Liberica is built, tested, supported and made available by BellSoft.
+*  Flexible. Liberica JDK supports the widest range of present-day architectures and operating systems, which makes it a unified Java runtime for desktop, server, cloud, and embedded use cases.
+* Cost- and time-efficient. BellSoft produces the smallest containers in the world based on Liberica Lite and Alpine Linux, which enable companies to minimize deployment time and reduce cloud expenses.
+* Secure. Liberica JDK is TCK-verified for Java SE specifications and thoroughly tested for exposures before every release. The CPU release cycle helps to deliver timely security patches and bug fixes to keep the runtime secure and performant at all times.
 
-<https://bell-sw.com/java.html>
+[Liberica JDK is recommended and used by Spring](https://spring.io/quickstart) as the end-to-end solution for Spring Native applications.
+BellSoft serves millions of developers and companies from various industries across the globe. For more information, visit [www.bell-sw.com](https://www.bell-sw.com).
 
-This repository contains CentOS Docker images of Liberica OpenJDK and available for following architectures:
+## How to choose an optimal Java image?
+
+We compiled an interactive scheme that will help you decide which BellSoft’s image is perfect for your project.
+![How to choose an optimal java image](https://download.bell-sw.com/static/images/how-to-choose-optimal-java-image.jpg)
+
+## What’s in this image?
+
+This repository contains the Liberica JDK images for CenOS available for following architectures:
 
 * x86_64 (aka amd64)
 * aarch64 (aka ARM64)
 * armhf (for devices like Raspberry Pi 2/3)
 
-# Tags
+The tags point at the Java version (right after the OS name) and supported architecture.
+Image name structure:
+X-Y,
+where X is the Java version and Y is the architecture type. If the architecture type is not included into the name, then the build supports AMD64 and ARM64 by default.
+The ‘latest’ tag points to the latest version of an image.
+For instance, [bellsoft/liberica-openjdk-centos:8u322-6-x86_64](https://hub.docker.com/layers/bellsoft/liberica-openjdk-centos/8u322-6-x86_64/images/sha256-76ea3f6f0975757015262f8d8ee13caa9499178c3cc8faf899b0466cc43dbff8?context=explore) is an image with Liberica JDK version 8u322 for CentOS running on AMD64.
 
-The Liberica repository bellsoft/liberica-openjdk-centos provides multiple tagged images. The latest Liberica versions are:
+## Tags
 
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/19/Dockerfile),
+[`19.0.2-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/19/Dockerfile),
+[`19.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/19/Dockerfile),
 [`19.0.1-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/19/Dockerfile),
 [`19.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/19/Dockerfile),
 [`19-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/19/Dockerfile),
@@ -35,7 +49,9 @@ The Liberica repository bellsoft/liberica-openjdk-centos provides multiple tagge
 [`18.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/18/Dockerfile),
 [`18-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/18/Dockerfile),
 [`18`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/18/Dockerfile),
-* [`17.0.5-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/17/Dockerfile),
+* [`17.0.6-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/17/Dockerfile),
+[`17.0.6`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/17/Dockerfile),
+[`17.0.5-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/17/Dockerfile),
 [`17.0.5`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/17/Dockerfile),
 [`17.0.4.1-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/17/Dockerfile),
 [`17.0.4.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/17/Dockerfile),
@@ -72,7 +88,9 @@ The Liberica repository bellsoft/liberica-openjdk-centos provides multiple tagge
 * [`12.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/12.0.2/Dockerfile),
 [`12.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/12.0.1/Dockerfile),
 [`12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/12.0.0/Dockerfile)
-* [`11.0.17-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile),
+* [`11.0.18-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile),
+[`11.0.18`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile),
+[`11.0.17-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile),
 [`11.0.17`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile),
 [`11.0.16.1-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile),
 [`11.0.16.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/11/Dockerfile),
@@ -112,7 +130,9 @@ The Liberica repository bellsoft/liberica-openjdk-centos provides multiple tagge
 [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/10.0.0/Dockerfile) - armhf only (Raspberry Pi 2/3)
 * [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/9.0.4/Dockerfile),
 [`9.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/9.0.1/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u352-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
+* [`8u362-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
+[`8u362`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
+[`8u352-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
 [`8u352`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
 [`8u345-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
 [`8u345`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
@@ -149,7 +169,7 @@ The Liberica repository bellsoft/liberica-openjdk-centos provides multiple tagge
 [`8u`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile),
 [`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/8/Dockerfile)   - amd64 and aarch64 only
 
-# Usage
+## Usage
 
 For example, you can run a Liberica OpenJDK 17 container with the following command:
 
@@ -159,7 +179,7 @@ To run some application you can create Dockerfile, based on bellsoft/liberica-op
 
  `docker run -it --rm  -v /home/user/project/:/data bellsoft/liberica-openjdk-centos:latest java -jar /data/MyApp.jar`
 
- ## Version specific options ##
+### Version specific options
 
 * JDK 8u* version
   * `LIBERICA_USE_LITE` – defines content of JDK for this image. `0` means keep jdk unchanged, `1` (default) creates lite image, where demos, samples and sources are removed from image.
