@@ -1,24 +1,37 @@
-# What is Liberica?
+# bellsoft/liberica-openjre-debian
 
-Liberica is a 100% open-source Java implementation.
-It is built from OpenJDK which BellSoft contributes to, is thoroughly
-tested and passed the JCK provided under the license from OpenJDK.
-Liberica supports the following architectures: x86_64, ARMv8, ARMv7
-Liberica binaries for the Raspberry Pi also contain JavaFX with hardware-accelerated EGL support and Device IO API as additional modules.
+## What is Liberica JDK?
+Liberica JDK is free and 100% open-source Progressive Java Runtime for modern Java deployments. It is developed and supported by BellSoft, a major OpenJDK contributor. Application development with Liberica JDK is
 
-Liberica is built, tested, supported and made available by BellSoft.
+*  Flexible. Liberica JDK supports the widest range of present-day architectures and operating systems, which makes it a unified Java runtime for desktop, server, cloud, and embedded use cases.
+* Cost- and time-efficient. BellSoft produces the smallest containers in the world based on Liberica Lite and Alpine Linux, which enable companies to minimize deployment time and reduce cloud expenses.
+* Secure. Liberica JDK is TCK-verified for Java SE specifications and thoroughly tested for exposures before every release. The CPU release cycle helps to deliver timely security patches and bug fixes to keep the runtime secure and performant at all times.
 
-<https://bell-sw.com/java.html>
+[Liberica JDK is recommended and used by Spring](https://spring.io/quickstart) as the end-to-end solution for Spring Native applications.
+BellSoft serves millions of developers and companies from various industries across the globe. For more information, visit [www.bell-sw.com](https://www.bell-sw.com).
 
-This repository contains Debian Docker images of Liberica OpenJRE and available for following architectures:
+## How to choose an optimal Java image?
+
+We compiled an interactive scheme that will help you decide which BellSoft’s image is perfect for your project.
+![How to choose an optimal java image](https://download.bell-sw.com/static/images/how-to-choose-optimal-java-image.jpg)
+
+
+## What’s in this image?
+
+This repository contains the Liberica JRE images for Debian available for following architectures:
 
 * x86_64 (aka amd64)
 * aarch64 (aka ARM64)
 * armhf (for devices like Raspberry Pi 2/3)
 
-# Tags
+The tags point at the Java version (right after the OS name) and supported architecture.
+Image name structure:
+X-Y,
+where X is the Java version and Y is the architecture type. If the architecture type is not included into the name, then the build supports AMD64 and ARM64 by default.
+The ‘latest’ tag points to the latest version of an image.
+For instance, [bellsoft/liberica-openjre-debian:19.0.1-x86_64](https://hub.docker.com/layers/bellsoft/liberica-openjre-debian/19.0.1-x86_64/images/sha256-2ae5877c55a0dca483ada8aaafbaa869f9c596ba1b25d5247ad8ccb231c30f9b?context=explore) is an image with Liberica JRE version 19.0.1 for Debian running on x86_64.
 
-The Liberica repository bellsoft/liberica-openjre-debian provides multiple tagged images. The latest Liberica versions are:
+## Tags
 
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/19/Dockerfile),
 [`19.0.2-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/19/Dockerfile),
@@ -136,7 +149,7 @@ The Liberica repository bellsoft/liberica-openjre-debian provides multiple tagge
 [`8u192`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/old/8u192/Dockerfile),
 [`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile) - amd64 and aarch64 only
 
-# Usage
+## Usage
 
 For example, you can run a Liberica OpenJRE 8u272 container with the following command:
 
