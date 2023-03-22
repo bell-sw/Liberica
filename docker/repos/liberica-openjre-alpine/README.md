@@ -40,13 +40,15 @@ For instance, [bellsoft/liberica-openjre-alpine:8u352-8-x86_64](https://hub.dock
 
 ## Tags
 
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/19/Dockerfile),
-[`19.0.2-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/19/Dockerfile),
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/20/Dockerfile),
+[`20-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/20/Dockerfile),
+[`20`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/20/Dockerfile)
+* [`19.0.2-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/19/Dockerfile),
 [`19.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/19/Dockerfile),
 [`19.0.1-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/19/Dockerfile),
 [`19.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/19/Dockerfile),
 [`19-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/19/Dockerfile),
-[`19`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/19/Dockerfile),
+[`19`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/19/Dockerfile)
 * [`18.0.2.1-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/18/Dockerfile),
 [`18.0.2.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/18/Dockerfile),
 [`18.0.2-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/18/Dockerfile),
@@ -56,7 +58,7 @@ For instance, [bellsoft/liberica-openjre-alpine:8u352-8-x86_64](https://hub.dock
 [`18.0.1-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/18/Dockerfile),
 [`18.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/18/Dockerfile),
 [`18-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/18/Dockerfile),
-[`18`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/18/Dockerfile),
+[`18`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/18/Dockerfile)
 * [`17.0.6-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
 [`17.0.6`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
 [`17.0.5-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
@@ -74,19 +76,19 @@ For instance, [bellsoft/liberica-openjre-alpine:8u352-8-x86_64](https://hub.dock
 [`17.0.1-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
 [`17.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
 [`17-35`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
-[`17`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile),
+[`17`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/17/Dockerfile)
 * [`16.0.2-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/16/Dockerfile),
 [`16.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/16/Dockerfile),
 [`16.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/16/Dockerfile),
 [`16.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/16/Dockerfile),
 [`16-36`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/16/Dockerfile),
-[`16`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/16/Dockerfile),
+[`16`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/16/Dockerfile)
 * [`15.0.2-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15.0.2-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15.0.1-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
 [`15.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
-[`15`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile),
+[`15`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/15/Dockerfile)
 * [`11.0.18-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11.0.18`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11.0.17-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
@@ -112,9 +114,9 @@ For instance, [bellsoft/liberica-openjre-alpine:8u352-8-x86_64](https://hub.dock
 [`11.0.9-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
 [`11.0.9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
-[`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile),
+[`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/11/Dockerfile)
 * [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/old/10.0.2/Dockerfile),
-[`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/old/10.0.2/Dockerfile),
+[`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/old/10.0.2/Dockerfile)
 * [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/old/9.0.4/Dockerfile),
 [`9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/old/9.0.4/Dockerfile) - armhf only (Raspberry Pi 2/3)
 * [`8u362-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/8/Dockerfile),
