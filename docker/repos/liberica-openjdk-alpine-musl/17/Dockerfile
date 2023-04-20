@@ -1,4 +1,4 @@
-FROM alpine:3.16 as liberica
+FROM alpine:3.17 as liberica
 
 ### Modify argument LIBERICA_IMAGE_VARIANT or redefine it via --build-arg parameter to have specific liberica image installed:
 ###    docker build . --build-arg LIBERICA_IMAGE_VARIANT=[standard|lite|base|base-minimal]
@@ -15,8 +15,8 @@ ARG LIBERICA_IMAGE_VARIANT=lite
 ARG LIBERICA_VM="server"
 
 ARG LIBERICA_JVM_DIR=/usr/lib/jvm
-ARG LIBERICA_VERSION=17.0.6
-ARG LIBERICA_BUILD=10
+ARG LIBERICA_VERSION=17.0.7
+ARG LIBERICA_BUILD=7
 
 ARG LIBERICA_ROOT=${LIBERICA_JVM_DIR}/jdk-${LIBERICA_VERSION}-bellsoft
 ARG LIBERICA_GLIBC=no
