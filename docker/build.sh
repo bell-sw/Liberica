@@ -13,7 +13,8 @@ die() {
 getTags() {
   repo="$1"
   pattern="$2"
-  tags=$(curl -sSL https://registry.hub.docker.com/v2/namespaces/${NS}/repositories/${repo}/tags?page_size=100 |
+  if [[ -z $EXTERNAL_API_UTILITY ]]; then
+    tags=$(curl -sSL https://registry.hub.docker.com/v2/namespaces/${NS}/repositories/${repo}/tags?page_size=100 |
         tr '}' "\n" |
         grep \"name\" |
         tr "," "\n" |
@@ -21,23 +22,41 @@ getTags() {
         awk -F: '{print $2}' |
         tr -d \" |
         grep -E -- "${pattern}") || exit 1
-   echo ${tags}
+     echo ${tags} > tags.txt
+  else
+    rm -rf tags.txt
+    TOKEN_OPTS=
+    if [[ ! -z $DOCKERHUB_TOKEN ]]; then
+      TOKEN_OPTS="--token ${DOCKERHUB_TOKEN}"
+    fi
+    python3 ${EXTERNAL_API_UTILITY} --api-type dockerhub --action tags -r tags.txt --container-name ${repo} --namespace ${NS} ${TOKEN_OPTS}
+    tags=$(cat tags.txt | grep -E -- "${pattern}") || exit 1
+    echo ${tags} > tags.txt
+  fi
 }
 
 waitForTag() {
   image=$1
   tag=$2
-  url="https://registry.hub.docker.com/v2/namespaces/${NS}/repositories/${image}/tags?page_size=100"
-  timeout=60
-  passed=0
-  while true ; do
-    if curl -sSL ${url} | grep -q ${tag} ; then
-      return
+  if [[ -z $EXTERNAL_API_UTILITY ]]; then
+    url="https://registry.hub.docker.com/v2/namespaces/${NS}/repositories/${image}/tags?page_size=100"
+    timeout=60
+    passed=0
+    while true ; do
+      if curl -sSL ${url} | grep -q ${tag} ; then
+        return
+      fi
+      sleep 5
+      passed=$((passed+5))
+      [[ ${passed} -gt ${timeout} ]] && die "Unable to get expected tag \"${tag}\" from \"${url}\"."
+    done
+  else
+    TOKEN_OPTS=
+    if [[ ! -z $DOCKERHUB_TOKEN ]]; then
+      TOKEN_OPTS="--token ${DOCKERHUB_TOKEN}"
     fi
-    sleep 5
-    passed=$((passed+5))
-    [[ ${passed} -gt ${timeout} ]] && die "Unable to get expected tag \"${tag}\" from \"${url}\"."
-  done
+    python3 ${EXTERNAL_API_UTILITY} --container-name ${image} --namespace ${NS} --expected-tag $tag ${TOKEN_OPTS}
+  fi
 }
 
 execDockerCmd() {
@@ -128,7 +147,9 @@ for os in ${LIBERICA_OS}; do
 
       if [[ "$PUSH_MANIFEST" = "1" ]]; then
         waitForTag ${DOCKER_IMAGE_NAME} ${TAG}-${ARCH}
-        tags=$(getTags ${DOCKER_IMAGE_NAME} "^$TAG-[a-zA-Z]") || die "Cannot find tag matching \"^$TAG-[a-zA-Z]\" in repo \"${DOCKER_REPOSITORY}\""
+        rm -rf tags.txt
+        getTags ${DOCKER_IMAGE_NAME} "^$TAG-[a-zA-Z]" || die "Cannot find tag matching \"^$TAG-[a-zA-Z]\" in repo \"${DOCKER_REPOSITORY}\""
+        tags=$(cat tags.txt)
         images=""
         for tag in ${tags}; do
           images="$images ${DOCKER_REPOSITORY}:$tag"
