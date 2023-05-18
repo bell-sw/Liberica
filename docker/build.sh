@@ -56,7 +56,7 @@ waitForTag() {
       TOKEN_OPTS="--token ${DOCKERHUB_TOKEN}"
     fi
     
-    python3 ${EXTERNAL_API_UTILITY} -api-type dockerhub --action wait-tag --container-name ${image} --namespace ${NS} --expected-tag $tag ${TOKEN_OPTS}
+    python3 ${EXTERNAL_API_UTILITY} --api-type dockerhub --action wait-tag --container-name ${image} --namespace ${NS} --expected-tag $tag ${TOKEN_OPTS}
   fi
 }
 
