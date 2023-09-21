@@ -33,8 +33,10 @@ For instance, [bellsoft/liberica-openjre-centos:19.0.1-11-aarch64](https://hub.d
 
 ## Tags
 
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/20/Dockerfile),
-[`20.0.1-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/20/Dockerfile),
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
+[`21-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
+[`21`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
+* [`20.0.1-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/20/Dockerfile),
 [`20.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/20/Dockerfile),
 [`20-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/20/Dockerfile),
 [`20`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/20/Dockerfile)
