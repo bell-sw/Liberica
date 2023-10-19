@@ -122,11 +122,15 @@ For instance, [bellsoft/liberica-openjre-alpine-musl:17.0.5-aarch64](https://hub
 [`11.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/11/Dockerfile),
 [`11.0.9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/11/Dockerfile),
 [`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/11/Dockerfile),
-* [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/10.0.2/Dockerfile), 
+* [`10.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/10.0.2/Dockerfile),
 [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/10.0.2/Dockerfile)
-* [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/9.0.4/Dockerfile), 
+* [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/9.0.4/Dockerfile),
 [`9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/9.0.4/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u372-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile),
+* [`8u392-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile),
+[`8u392`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile),
+[`8u382-6`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile),
+[`8u382`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile),
+[`8u372-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile),
 [`8u372`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile),
 [`8u362-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile),
 [`8u362`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile),
@@ -159,12 +163,12 @@ For instance, [bellsoft/liberica-openjre-alpine-musl:17.0.5-aarch64](https://hub
 [`8u262-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile),
 [`8u262`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile),
 [`8u252`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile),
-[`8u242`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/8u242/Dockerfile), 
-[`8u232`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/8u232/Dockerfile), 
-[`8u222`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/8u222/Dockerfile), 
-[`8u212`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/8u212/Dockerfile), 
-[`8u202`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/8u202/Dockerfile), 
-[`8u192`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/8u192/Dockerfile), 
+[`8u242`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/8u242/Dockerfile),
+[`8u232`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/8u232/Dockerfile),
+[`8u222`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/8u222/Dockerfile),
+[`8u212`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/8u212/Dockerfile),
+[`8u202`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/8u202/Dockerfile),
+[`8u192`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/old/8u192/Dockerfile),
 [`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine-musl/8/Dockerfile) - amd64 and aarch64 only
 
 ## Usage

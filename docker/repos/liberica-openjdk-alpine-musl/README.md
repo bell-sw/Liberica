@@ -139,7 +139,11 @@ For instance, [bellsoft/liberica-openjdk-alpine-musl:8u352-8-x86_64](https://hub
 [`11.0.3`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/11.0.3/Dockerfile),
 [`11.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/11.0.2/Dockerfile),
 [`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/11/Dockerfile),
-* [`8u372-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+* [`8u392-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+[`8u392`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+[`8u382-6`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+[`8u382`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
+[`8u372-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
 [`8u372`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
 [`8u362-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
 [`8u362`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/8/Dockerfile),
@@ -196,7 +200,7 @@ If you are ready to sacrifice performance for static footprint, please consider 
 * JDK 8u* version
   * `LIBERICA_USE_LITE` – defines content of JDK for this image. `0` means keep jdk unchanged, `1` (default) creates lite image, where demos, samples and sources are removed from image.
 * JDK 11* and JDK 17* versions
-  * `LIBERICA_IMAGE_VARIANT` – possible image variants are: 
+  * `LIBERICA_IMAGE_VARIANT` – possible image variants are:
     * `base` – server VM with `java.base` module.
 	* `base-minimal` – minimal VM with `java.base` module.
 	* `lite` (default) – lite JDK with minimal footprint.

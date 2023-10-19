@@ -3,11 +3,10 @@ FROM alpine:3.18
 ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 
-ARG LIBERICA_VERSION=8u372
-ARG LIBERICA_BUILD=7
+ARG LIBERICA_VERSION=8u392
+ARG LIBERICA_BUILD=9
 ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-${LIBERICA_VERSION}-bellsoft
 ARG LIBERICA_VARIANT=jdk
-ARG LIBERICA_RELEASE_TAG=8u372
 ARG LIBERICA_USE_LITE="1"
 ARG LIBSUFFIX="-musl"
 
@@ -24,7 +23,6 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' &&    \
             LIBERICA_ARCH=`uname -m`            \
             ;;                                  \
   esac  &&                                      \
-  RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
   PACKED_ROOT="jdk${LIBERICA_VERSION}"; \
   LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then \
   LITE_VERSION_EXCLUDES="--exclude ${PACKED_ROOT}/demo --exclude ${PACKED_ROOT}/sample --exclude ${PACKED_ROOT}/src.zip --exclude ${PACKED_ROOT}/man"; fi && \

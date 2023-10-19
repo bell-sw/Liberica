@@ -147,7 +147,11 @@ For instance, [bellsoft/liberica-openjdk-alpine:19.0.1-aarch64](https://hub.dock
 [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/10.0.0/Dockerfile) - armhf only (Raspberry Pi 2/3)
 * [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/9.0.4/Dockerfile),
 [`9.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/9.0.1/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u372-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
+* [`8u392-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
+[`8u392`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
+[`8u382-6`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
+[`8u382`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
+[`8u372-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
 [`8u372`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
 [`8u362-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
 [`8u362`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
@@ -200,7 +204,7 @@ Dockerfile accepts the following parameters:
 * JDK 8u* version
   * `LIBERICA_USE_LITE` – defines content of JDK for this image. `0` means keep jdk unchanged, `1` (default) creates lite image, where demos, samples and sources are removed from image.
 * JDK 11* and JDK 17* versions
-  * `LIBERICA_IMAGE_VARIANT` – possible image variants are: 
+  * `LIBERICA_IMAGE_VARIANT` – possible image variants are:
     * `base` – server VM with `java.base` module.
 	* `base-minimal` – minimal VM with `java.base` module.
 	* `lite` (default) – lite JDK with minimal footprint.

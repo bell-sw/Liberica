@@ -122,7 +122,11 @@ For instance, [bellsoft/liberica-openjre-debian:19.0.1-x86_64](https://hub.docke
 [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/old/10.0.2/Dockerfile)
 * [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/old/9.0.4/Dockerfile),
 [`9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/old/9.0.4/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u372-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
+* [`8u392-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
+[`8u392`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
+[`8u382-6`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
+[`8u382`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
+[`8u372-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
 [`8u372`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
 [`8u362-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
 [`8u362`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
