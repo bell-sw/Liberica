@@ -36,16 +36,16 @@ For instance, [bellsoft/liberica-openjre-centos:19.0.1-11-aarch64](https://hub.d
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
 [`21-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
 [`21`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
-* [`20.0.1-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/20/Dockerfile),
-[`20.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/20/Dockerfile),
-[`20-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/20/Dockerfile),
-[`20`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/20/Dockerfile)
-* [`19.0.2-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/19/Dockerfile),
-[`19.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/19/Dockerfile),
-[`19.0.1-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/19/Dockerfile),
-[`19.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/19/Dockerfile),
-[`19-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/19/Dockerfile),
-[`19`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/19/Dockerfile)
+* [`20.0.1-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/20/Dockerfile),
+[`20.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/20/Dockerfile),
+[`20-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/20/Dockerfile),
+[`20`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/20/Dockerfile)
+* [`19.0.2-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/19/Dockerfile),
+[`19.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/19/Dockerfile),
+[`19.0.1-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/19/Dockerfile),
+[`19.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/19/Dockerfile),
+[`19-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/19/Dockerfile),
+[`19`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/19/Dockerfile)
 * [`18.0.2.1-1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/18/Dockerfile),
 [`18.0.2.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/18/Dockerfile),
 [`18.0.2-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-centos/old/18/Dockerfile),
