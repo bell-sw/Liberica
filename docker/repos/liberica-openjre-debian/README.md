@@ -34,6 +34,8 @@ For instance, [bellsoft/liberica-openjre-debian:19.0.1-x86_64](https://hub.docke
 ## Tags
 
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
+[`21.0.1-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
+[`21.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
 [`21-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
 [`21`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
 * [`20.0.1-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/old/20/Dockerfile),

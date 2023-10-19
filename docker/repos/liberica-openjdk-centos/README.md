@@ -32,9 +32,11 @@ For instance, [bellsoft/liberica-openjdk-centos:8u322-6-x86_64](https://hub.dock
 
 ## Tags
 
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
-[`21-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
-[`21`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/21/Dockerfile),
+[`21.0.1-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/21/Dockerfile),
+[`21.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/21/Dockerfile),
+[`21-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/21/Dockerfile),
+[`21`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/21/Dockerfile),
 * [`20.0.1-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/20/Dockerfile),
 [`20.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/20/Dockerfile),
 [`20-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-centos/old/20/Dockerfile),
