@@ -10,11 +10,10 @@ ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_VERSION=8u372
-ARG LIBERICA_BUILD=7
+ARG LIBERICA_VERSION=8u392
+ARG LIBERICA_BUILD=9
 ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-${LIBERICA_VERSION}-bellsoft
 ARG LIBERICA_VARIANT=jdk
-ARG LIBERICA_RELEASE_TAG=8u372
 ARG LIBERICA_USE_LITE=1
 
 RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
@@ -35,7 +34,6 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
             LIBERICA_ARCH=`uname -m` \
             ;; \
   esac  && \
-  RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="$LIBERICA_VERSION"; fi && \
   LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then LITE_VERSION_EXCLUDES="--exclude=demo --exclude=sample --exclude=src.zip "; fi && \
   mkdir -p $LIBERICA_ROOT && \
   mkdir -p /tmp/java && \

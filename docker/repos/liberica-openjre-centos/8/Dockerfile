@@ -5,11 +5,10 @@ ENV  LANG=en_US.UTF-8 \
 #	 LC_ALL=en_US.UTF-8
 
 
-ARG LIBERICA_VERSION=8u372
-ARG LIBERICA_BUILD=7
+ARG LIBERICA_VERSION=8u392
+ARG LIBERICA_BUILD=9
 ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_ROOT=/usr/lib/jvm/jre-${LIBERICA_VERSION}-bellsoft
-ARG LIBERICA_RELEASE_TAG=8u372
 ARG LIBERICA_USE_LITE=1
 
 RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
@@ -31,7 +30,6 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
             ;; \
   esac  && \
   yum install -y fontconfig && \
-  RTAG="$LIBERICA_RELEASE_TAG" && if [ "x${RTAG}" = "x" ]; then RTAG="${LIBERICA_VERSION}+${LIBERICA_BUILD}"; fi && \
   LITE_VERSION_EXCLUDES="" && if [ "$LIBERICA_USE_LITE" = "1" ]; then \
   LITE_VERSION_EXCLUDES="--exclude ${PACKED_ROOT}/demo --exclude ${PACKED_ROOT}/sample --exclude ${PACKED_ROOT}/src.zip --exclude ${PACKED_ROOT}/man"; fi && \
   mkdir -p $LIBERICA_ROOT && \
