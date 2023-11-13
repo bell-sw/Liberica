@@ -10,6 +10,7 @@ ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_ROOT=/usr/lib/jvm/${LIBERICA_VARIANT}-${LIBERICA_VERSION}-bellsoft
 
 ARG LIBERICA_USE_LITE=0
+ARG LIBERICA_GENERATE_CDS=false
 
 RUN LIBERICA_ARCH='' \
   &&    LIBERICA_ARCH_TAG='' \
@@ -49,8 +50,15 @@ RUN LIBERICA_ARCH='' \
   &&    rm -rf /var/cache/yum \
   &&    rm -rf /var/lib/rpm/__db* \
   &&    rpm --rebuilddb \
-  &&    rm -rf /tmp/java \
-  &&    (ls /usr/lib/jvm/jre/lib/client 1>/dev/null 2>&1 && (rm -rf /usr/lib/jvm/jre/lib/client && sed -i 's#-client\s\+KNOWN#-client IGNORE#g' /usr/lib/jvm/jre/lib/jvm.cfg) || : )
+  &&    (ls /usr/lib/jvm/jre/lib/client 1>/dev/null 2>&1 && (rm -rf /usr/lib/jvm/jre/lib/client && sed -i 's#-client\s\+KNOWN#-client IGNORE#g' /usr/lib/jvm/jre/lib/jvm.cfg) || : ) \
+  &&    if [ $LIBERICA_GENERATE_CDS = true ]; then                       \
+        ${LIBERICA_ROOT}/bin/java -XX:+UseCompressedOops -Xshare:dump;   \
+        ${LIBERICA_ROOT}/bin/java -XX:-UseCompressedOops -Xshare:dump;   \
+    else                                                                 \
+        find ${LIBERICA_ROOT} -name "classes*.jsa" -exec rm {} \; ;      \
+    fi                               \
+  &&    rm -rf /tmp/java             \
+  &&    rm -rf /tmp/hsperfdata_root
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
 	PATH=${LIBERICA_ROOT}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

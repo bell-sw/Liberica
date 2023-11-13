@@ -55,6 +55,7 @@ ENV  LANG=${LANG} \
 
 ARG LIBERICA_IMAGE_VARIANT=lite
 ARG LIBERICA_VM="server"
+ARG LIBERICA_GENERATE_CDS=false
 
 ARG LIBERICA_JVM_DIR=/usr/lib/jvm
 ARG LIBERICA_VERSION=11.0.21
@@ -229,7 +230,12 @@ RUN LIBERICA_ARCH=''                               \
   &&            apk del binutils ;;                         \
         esac                                                \
   &&    ln -s $LIBERICA_ROOT /usr/lib/jvm/jdk               \
-  &&    rm -rf /tmp/java                                    \
+  &&    if [ $LIBERICA_GENERATE_CDS = true ]; then                  \
+        ${LIBERICA_ROOT}/bin/java -Xshare:dump;                     \
+    else                                                            \
+        find ${LIBERICA_ROOT} -name "classes*.jsa" -exec rm {} \; ; \
+    fi                               \
+  &&    rm -rf /tmp/java             \
   &&    rm -rf /tmp/hsperfdata_root
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
