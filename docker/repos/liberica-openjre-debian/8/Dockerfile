@@ -19,6 +19,7 @@ ARG LIBERICA_BUILD=9
 ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_ROOT=/usr/lib/jvm/jre-${LIBERICA_VERSION}-bellsoft
 ARG LIBERICA_USE_LITE=1
+ARG LIBERICA_GENERATE_CDS=false
 
 RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   case `uname -m` in \
@@ -48,8 +49,14 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
   echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - && \
   tar xzf /tmp/java/jdk.tar.gz -C /tmp/java $LITE_VERSION_EXCLUDES && \
   find "/tmp/java/${LIBERICA_VARIANT}${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
-  ln -s "${LIBERICA_ROOT}" /usr/lib/jvm/jre && \
-  rm -rf /tmp/java
+  ln -s "${LIBERICA_ROOT}" /usr/lib/jvm/jre \
+  &&  if [ $LIBERICA_GENERATE_CDS = true ]; then                     \
+        ${LIBERICA_ROOT}/bin/java -Xshare:dump;                      \
+      else                                                           \
+        find ${LIBERICA_ROOT} -name "classes*.jsa" -exec rm {} \; ;  \
+      fi                           \
+  &&  rm -rf /tmp/java             \
+  &&  rm -rf /tmp/hsperfdata_root
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
 	PATH=${LIBERICA_ROOT}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

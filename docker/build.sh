@@ -13,6 +13,8 @@ die() {
 getTags() {
   repo="$1"
   pattern="$2"
+  cds_pattern="$3"
+  
   if [[ -z $EXTERNAL_API_UTILITY ]]; then
     tags=$(curl -sSL https://registry.hub.docker.com/v2/namespaces/${NS}/repositories/${repo}/tags?page_size=100 |
         tr '}' "\n" |
@@ -22,7 +24,7 @@ getTags() {
         awk -F: '{print $2}' |
         tr -d \" |
         grep -E -- "${pattern}") || exit 1
-     echo ${tags} > tags.txt
+    echo ${tags} > tags.txt
   else
     rm -rf tags.txt
     TOKEN_OPTS=
@@ -31,8 +33,14 @@ getTags() {
     fi
     python3 ${EXTERNAL_API_UTILITY} --api-type dockerhub --action tags -r tags.txt --container-name ${repo} --namespace ${NS} ${TOKEN_OPTS}
     tags=$(cat tags.txt | grep -E -- "${pattern}") || exit 1
+    if [[ $cds_pattern == '' ]]; then
+      tags=$(cat tags.txt | grep -E -- "${pattern}" | grep -v "\-cds" ) || exit 1
+    else
+      tags=$(cat tags.txt | grep -E -- "${pattern}") || exit 1
+    fi
     echo ${tags} > tags.txt
   fi
+  
 }
 
 waitForTag() {
@@ -55,7 +63,7 @@ waitForTag() {
     if [[ ! -z $DOCKERHUB_TOKEN ]]; then
       TOKEN_OPTS="--token ${DOCKERHUB_TOKEN}"
     fi
-    
+
     python3 ${EXTERNAL_API_UTILITY} --api-type dockerhub --action wait-tag --container-name ${image} --namespace ${NS} --expected-tag $tag ${TOKEN_OPTS}
   fi
 }
@@ -84,6 +92,14 @@ ARCH=`uname -m`
 [[ -z "$LIBERICA_RELEASE_TAG" ]] && LIBERICA_RELEASE_TAG=""
 [[ -z "$LIBERICA_USE_LITE" ]] && LIBERICA_USE_LITE=""
 [[ -z "$LIBERICA_DESTINATION" ]] && LIBERICA_DESTINATION="open"
+if [[ -z "$LIBERICA_GENERATE_CDS" || "$LIBERICA_GENERATE_CDS" == false ]]; then
+  LIBERICA_GENERATE_CDS=false
+  TAG_CDS_DECORATE=""
+else
+  LIBERICA_GENERATE_CDS=true
+  TAG_CDS_DECORATE="-cds"
+fi
+
 if [[ $LIBERICA_DESTINATION == "private" ]] ; then
   LIBERICA_DESTINATION=""
 fi
@@ -99,6 +115,8 @@ for os in ${LIBERICA_OS}; do
         TAG=$(echo "$version" | cut -d: -f2) &&\
         V=$(echo "$version" | cut -d: -f1 | cut -f 1 -d\+) &&\
         BUILD=$(echo "$version" | cut -d: -f1 | cut -sf 2 -d\+)
+
+      FINAL_TAG=${TAG}${TAG_CDS_DECORATE}
 
       major=$(echo ${V} | sed -e 's,\([1-9][0-9]*\).*,\1,')
       BUILD_PATH="./repos/liberica-open${variant}-$os/${major}"
@@ -131,25 +149,26 @@ for os in ${LIBERICA_OS}; do
           EXTRA_ARGS="$EXTRA_ARGS --build-arg BASE_URL=${BASE_URL}"
         fi
         echo "Building Liberica $variant v $version based on ${os}..."
-        execDockerCmd build --pull -t ${DOCKER_REPOSITORY}:${TAG} \
+        execDockerCmd build --pull -t ${DOCKER_REPOSITORY}:${FINAL_TAG} \
           --build-arg LIBERICA_RELEASE_TAG="$RELEASE_TAG" \
           --build-arg LIBERICA_VERSION="$V" \
           --build-arg LIBERICA_BUILD="$BUILD" \
           --build-arg LIBERICA_VARIANT="$variant" \
           --build-arg LIBERICA_ROOT="/usr/lib/jvm/${variant}-${V}-bellsoft-${ARCH}" \
+          --build-arg LIBERICA_GENERATE_CDS=${LIBERICA_GENERATE_CDS} \
           ${EXTRA_ARGS} \
           ${BUILD_PATH}
         fi
 
       if [[ "$PUSH" = "1" ]]; then
-        execDockerCmd tag  ${DOCKER_REPOSITORY}:${TAG} ${DOCKER_REPOSITORY}:${TAG}-${ARCH}
-        execDockerCmd push ${DOCKER_REPOSITORY}:${TAG}-${ARCH}
+        execDockerCmd tag  ${DOCKER_REPOSITORY}:${FINAL_TAG} ${DOCKER_REPOSITORY}:${FINAL_TAG}-${ARCH}
+        execDockerCmd push ${DOCKER_REPOSITORY}:${FINAL_TAG}-${ARCH}
       fi
 
       if [[ "$PUSH_MANIFEST" = "1" ]]; then
-        waitForTag ${DOCKER_IMAGE_NAME} ${TAG}-${ARCH}
+        waitForTag ${DOCKER_IMAGE_NAME} ${FINAL_TAG}-${ARCH}
         rm -rf tags.txt
-        getTags ${DOCKER_IMAGE_NAME} "^$TAG-[a-zA-Z]" || die "Cannot find tag matching \"^$TAG-[a-zA-Z]\" in repo \"${DOCKER_REPOSITORY}\""
+        getTags ${DOCKER_IMAGE_NAME} "^$FINAL_TAG-[a-zA-Z]" "${TAG_CDS_DECORATE}" || die "Cannot find tag matching \"^$FINAL_TAG-[a-zA-Z]\" in repo \"${DOCKER_REPOSITORY}\""
         tags=$(cat tags.txt)
         images=""
         for tag in ${tags}; do
@@ -158,9 +177,9 @@ for os in ${LIBERICA_OS}; do
         done
         if [[ -n "$images" ]]; then
           #We do push first as it's only way to purge local manifest for now
-          docker manifest push -p ${DOCKER_REPOSITORY}:${TAG} || true
-          execDockerCmd manifest create ${DOCKER_REPOSITORY}:${TAG} ${images}
-          execDockerCmd manifest push -p ${DOCKER_REPOSITORY}:${TAG}
+          docker manifest push -p ${DOCKER_REPOSITORY}:${FINAL_TAG} || true
+          execDockerCmd manifest create ${DOCKER_REPOSITORY}:${FINAL_TAG} ${images}
+          execDockerCmd manifest push -p ${DOCKER_REPOSITORY}:${FINAL_TAG}
         fi
       fi
     done

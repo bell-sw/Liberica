@@ -49,12 +49,13 @@ ARG EXT_ZLIB_URL=https://archive.archlinux.org/packages/z/zlib/zlib-1%3A1.2.11-3
 ARG LANG=en_US.UTF-8
 ARG OPT_PKGS=
 
-ENV  LANG=${LANG} \
-     LANGUAGE=${LANG}:en
+ENV LANG=${LANG} \
+    LANGUAGE=${LANG}:en
 #	 LC_ALL=en_US.UTF-8
 
 ARG LIBERICA_IMAGE_VARIANT=lite
 ARG LIBERICA_VM="server"
+ARG LIBERICA_GENERATE_CDS=false
 
 ARG LIBERICA_JVM_DIR=/usr/lib/jvm
 ARG LIBERICA_VERSION=21.0.1
@@ -223,17 +224,25 @@ RUN LIBERICA_ARCH=''                               \
   &&            mkdir -pv "${LIBERICA_JVM_DIR}"             \
   &&            ${UNPACKED_ROOT}/bin/jlink                  \
                     --add-modules ${MODS}                   \
-                    --compress=zip-9                            \
+                    --compress=zip-9                        \
                     --no-man-pages                          \
                     --module-path ${UNPACKED_ROOT}/jmods    \
                     --vm=${LIBERICA_VM}                     \
                     --release-info ${UNPACKED_ROOT}/release \
                     --output "${LIBERICA_ROOT}"             \
   &&            apk del binutils ;;                         \
-        esac                                              \
-  &&    ln -s $LIBERICA_ROOT /usr/lib/jvm/jdk             \
-  &&    rm -rf /tmp/java                                  \
+        esac                                                \
+  &&    ln -s $LIBERICA_ROOT /usr/lib/jvm/jdk               \
+  &&    if [[ $LIBERICA_GENERATE_CDS == true ]]; then                    \
+        ${LIBERICA_ROOT}/bin/java -XX:+UseCompressedOops -Xshare:dump;   \
+        ${LIBERICA_ROOT}/bin/java -XX:-UseCompressedOops -Xshare:dump;   \
+    else                                                                 \
+        find ${LIBERICA_ROOT} -name "classes*.jsa" -exec rm {} \; ;      \
+    fi                               \
+  &&    rm -rf /tmp/java             \
   &&    rm -rf /tmp/hsperfdata_root
+
+
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
 	PATH=${LIBERICA_ROOT}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

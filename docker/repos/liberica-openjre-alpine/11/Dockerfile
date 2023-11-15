@@ -57,6 +57,7 @@ ARG LIBERICA_BUILD=10
 ARG LIBERICA_ROOT=/usr/lib/jvm/jre-${LIBERICA_VERSION}-bellsoft
 ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_USE_LITE=0
+ARG LIBERICA_GENERATE_CDS=false
 
 COPY --from=glibc-base /root/dest/ /
 
@@ -102,8 +103,14 @@ RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' &&    \
   tar xzf /tmp/java/jre.tar.gz -C /tmp/java && \
   find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}${RSUFFIX}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; && \
   ln -s "${LIBERICA_ROOT}" /usr/lib/jvm/jre && \
-  rm -rf /tmp/java && \
-  (ls /usr/lib/jvm/jre/lib/client 1>/dev/null 2>&1 && (rm -rf /usr/lib/jvm/jre/lib/client && sed -i 's#-client\s\+KNOWN#-client IGNORE#g' /usr/lib/jvm/jre/lib/jvm.cfg) || : )
+  (ls /usr/lib/jvm/jre/lib/client 1>/dev/null 2>&1 && (rm -rf /usr/lib/jvm/jre/lib/client && sed -i 's#-client\s\+KNOWN#-client IGNORE#g' /usr/lib/jvm/jre/lib/jvm.cfg) || : ) \
+  &&    if [ $LIBERICA_GENERATE_CDS = true ]; then                  \
+        ${LIBERICA_ROOT}/bin/java -Xshare:dump;                     \
+    else                                                            \
+        find ${LIBERICA_ROOT} -name "classes*.jsa" -exec rm {} \; ; \
+    fi                               \
+  &&    rm -rf /tmp/java             \
+  &&    rm -rf /tmp/hsperfdata_root
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
 	PATH=${LIBERICA_ROOT}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

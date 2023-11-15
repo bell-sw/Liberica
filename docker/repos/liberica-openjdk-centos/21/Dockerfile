@@ -6,6 +6,7 @@ ENV  LANG=en_US.UTF-8 \
 
 ARG LIBERICA_IMAGE_VARIANT=lite
 ARG LIBERICA_VM="server"
+ARG LIBERICA_GENERATE_CDS=false
 
 ARG LIBERICA_JVM_DIR=/usr/lib/jvm
 ARG LIBERICA_VERSION=21.0.1
@@ -161,7 +162,14 @@ RUN     LIBERICA_ARCH=''                       \
   &&    rm -rf /var/cache/yum                              \
   &&    rm -rf /var/lib/rpm/__db*                          \
   &&    rpm --rebuilddb                                    \
-  &&    rm -rf /tmp/java
+  &&    if [ $LIBERICA_GENERATE_CDS = true ]; then                       \
+        ${LIBERICA_ROOT}/bin/java -XX:+UseCompressedOops -Xshare:dump;   \
+        ${LIBERICA_ROOT}/bin/java -XX:-UseCompressedOops -Xshare:dump;   \
+    else                                                                 \
+        find ${LIBERICA_ROOT} -name "classes*.jsa" -exec rm {} \; ;      \
+    fi                               \
+  &&    rm -rf /tmp/java             \
+  &&    rm -rf /tmp/hsperfdata_root
 
 ENV JAVA_HOME=${LIBERICA_ROOT} \
 	PATH=${LIBERICA_ROOT}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
