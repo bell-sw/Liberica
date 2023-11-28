@@ -35,10 +35,28 @@ X-Y, where X is the Java version and Y is the architecture type. If the architec
 The ‘latest’ tag points to the latest version of an image. Images with '-cds' in tag contain CDS (Class Data Sharing) archive.
 For instance, [bellsoft/liberica-openjdk-alpine-musl:8u352-8-x86_64](https://hub.docker.com/layers/bellsoft/liberica-openjdk-alpine-musl/8u352-x86_64/images/sha256-8558eeb7cee69402c95669cdc11c1b041f8b566e4afde2b53f3ed2a14e61f3e3?context=explore) is an image with Liberica JDK version 8u352-8 for Alpine musl running on x86_64
 
+## Alpaquita Linux is a free and advanced replacement for Alpine to use in containers with Liberica JDK.
+
+[Alpaquita](https://bell-sw.com/alpaquita-linux/) is a lightweight Linux distribution that integrates all the main features of Alpine plus multiple enhancements and enterprise support.
+
+Like Alpine, Alpaquita is a small and performant Linux distribution, but in addition to that, it
+ - supports both musl and glibc,
+ - provides an optimized version of musl,
+ - is more secure thanks to the kernel hardening, Secure Boot support, and other features,
+ - contains [multiple performance enhancements](https://bell-sw.com/blog/alpaquita-linux-features-explained/).
+
+The most important Alpaquita’s feature for the enterprise development is the support from the BellSoft team. Containers with Alpaquita and Liberica JDK are a unified solution with tested and perfectly compatible components that receive support and regular updates from a single vendor. Our clients obtain fixes on demand, which are implemented in the next release and become available for everyone. We provide Long-Term Support and a software bill of materials both for Liberica JDK and Alpaquita Linux.
+
+As such, containers with Alpaquita are a free and better alternative to Alpine-based solutions.
+
+You can find them at https://hub.docker.com/r/bellsoft/liberica-runtime-container
+
 ## Tags
 
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/21/Dockerfile),
 [`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/21/Dockerfile),
+[`21.0.1-16`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/21/Dockerfile),
+[`21.0.1-16-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/21/Dockerfile),
 [`21.0.1-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/21/Dockerfile),
 [`21.0.1-12-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/21/Dockerfile),
 [`21.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/21/Dockerfile),
@@ -66,7 +84,9 @@ For instance, [bellsoft/liberica-openjdk-alpine-musl:8u352-8-x86_64](https://hub
 [`18.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/18/Dockerfile),
 [`18-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/18/Dockerfile),
 [`18`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/old/18/Dockerfile)
-* [`17.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile),
+* [`17.0.9-17`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile),
+[`17.0.9-17-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile),
+[`17.0.9-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile),
 [`17.0.9-11-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile),
 [`17.0.9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile),
 [`17.0.9-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine-musl/17/Dockerfile),

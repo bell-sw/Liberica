@@ -38,6 +38,22 @@ X-Y, where X is the Java version and Y is the architecture type. If the architec
 The ‘latest’ tag points to the latest version of an image. Images with '-cds' in tag contain CDS (Class Data Sharing) archive.
 For instance, [bellsoft/liberica-openjre-alpine:8u352-8-x86_64](https://hub.docker.com/layers/bellsoft/liberica-openjre-alpine/8u352-8-x86_64/images/sha256-f336b969c632f3707538f93c0c8a99e7c9fb37aca5cf03de56d13a8bf6dea32e?context=explore) is an image with Liberica JDK version 8u352 for Alpine glibc running on x86_64.
 
+## Alpaquita Linux is a free and advanced replacement for Alpine to use in containers with Liberica JDK.
+
+[Alpaquita](https://bell-sw.com/alpaquita-linux/) is a lightweight Linux distribution that integrates all the main features of Alpine plus multiple enhancements and enterprise support.
+
+Like Alpine, Alpaquita is a small and performant Linux distribution, but in addition to that, it
+ - supports both musl and glibc,
+ - provides an optimized version of musl,
+ - is more secure thanks to the kernel hardening, Secure Boot support, and other features,
+ - contains [multiple performance enhancements](https://bell-sw.com/blog/alpaquita-linux-features-explained/).
+
+The most important Alpaquita’s feature for the enterprise development is the support from the BellSoft team. Containers with Alpaquita and Liberica JDK are a unified solution with tested and perfectly compatible components that receive support and regular updates from a single vendor. Our clients obtain fixes on demand, which are implemented in the next release and become available for everyone. We provide Long-Term Support and a software bill of materials both for Liberica JDK and Alpaquita Linux.
+
+As such, containers with Alpaquita are a free and better alternative to Alpine-based solutions.
+
+You can find them at https://hub.docker.com/r/bellsoft/liberica-runtime-container
+
 ## Tags
 
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/21/Dockerfile),
