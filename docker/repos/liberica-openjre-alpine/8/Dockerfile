@@ -66,7 +66,7 @@ ARG OPT_PKGS=
 COPY --from=glibc-base /root/dest/ /
 
 RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' &&    \
-  apk --no-cache upgrade libcrypto1.1 libssl1.1 && \
+  apk --no-cache upgrade libcrypto3 libssl3  &&    \
   case `uname -m` in                               \
         x86_64)                                    \
             LIBERICA_ARCH="amd64"                  \

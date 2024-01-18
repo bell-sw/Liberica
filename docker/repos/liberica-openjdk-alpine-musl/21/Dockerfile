@@ -27,8 +27,8 @@ ARG OPT_PKGS=
 ARG BASE_URL="https://download.bell-sw.com/java/"
 
 RUN LIBERICA_ARCH=''                     \
-  && apk --no-cache upgrade libcrypto1.1 \
-                            libssl1.1    \
+  && apk --no-cache upgrade libcrypto3   \
+                            libssl3      \
   && set -x                              \
   &&    case `uname -m` in               \
             x86_64)                      \

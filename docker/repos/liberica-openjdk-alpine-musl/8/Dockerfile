@@ -11,8 +11,8 @@ ARG LIBERICA_USE_LITE="1"
 ARG LIBSUFFIX="-musl"
 ARG LIBERICA_GENERATE_CDS=false
 
-RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' &&    \
-  apk --no-cache upgrade libcrypto1.1 libssl1.1 && \
+RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' && \
+  apk --no-cache upgrade libcrypto3 libss3   && \
   case `uname -m` in                            \
         x86_64)                                 \
             LIBERICA_ARCH="x64"                 \

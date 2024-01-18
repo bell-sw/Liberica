@@ -25,8 +25,8 @@ ARG LIBERICA_GLIBC=no
 ARG OPT_PKGS=
 
 RUN LIBERICA_ARCH=''                     \
-  && apk --no-cache upgrade libcrypto1.1 \
-                            libssl1.1    \
+  && apk --no-cache upgrade libcrypto3   \
+                            libssl3      \
   && set -x                              \
   &&    case `uname -m` in               \
             x86_64)                      \

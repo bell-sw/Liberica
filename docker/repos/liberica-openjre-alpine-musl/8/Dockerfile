@@ -13,7 +13,7 @@ ARG LIBSUFFIX="-musl"
 ARG LIBERICA_GENERATE_CDS=false
 
 RUN LIBERICA_ARCH='' && LIBERICA_ARCH_TAG='' &&    \
-  apk --no-cache upgrade libcrypto1.1 libssl1.1 && \
+  apk --no-cache upgrade libcrypto3 libssl3  &&    \
   set -x &&                                        \
   case `uname -m` in                               \
         x86_64)                                    \
