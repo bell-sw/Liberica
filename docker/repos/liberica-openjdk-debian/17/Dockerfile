@@ -74,7 +74,7 @@ RUN     LIBERICA_ARCH=''                       \
           SHA_URL="https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}";         \
         fi \
   &&    SHA1=$(curl -fSL "${SHA_URL}"             \
-               | grep ${PKG}                      \
+               | grep ${PKG} | grep -v json       \
                | cut -f1 -d' '                    \
               )                                   \
   &&    echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - \
