@@ -9,8 +9,8 @@ ARG LIBERICA_VM="server"
 ARG LIBERICA_GENERATE_CDS=false
 
 ARG LIBERICA_JVM_DIR=/usr/lib/jvm
-ARG LIBERICA_VERSION=11.0.21
-ARG LIBERICA_BUILD=10
+ARG LIBERICA_VERSION=11.0.22
+ARG LIBERICA_BUILD=12
 ARG LIBERICA_ROOT=${LIBERICA_JVM_DIR}/jdk-${LIBERICA_VERSION}-bellsoft
 
 RUN     LIBERICA_ARCH=''                       \
@@ -68,7 +68,7 @@ RUN     LIBERICA_ARCH=''                       \
           SHA_URL="https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}";         \
         fi \
   &&    SHA1=$(curl -fSL "${SHA_URL}"             \
-               | grep ${PKG}                      \
+               | grep ${PKG} | grep -v json       \
                | cut -f1 -d' '                    \
               )                                   \
   &&    echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - \

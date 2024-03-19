@@ -1,4 +1,4 @@
-FROM alpine:3.18 as liberica
+FROM alpine:3.19 as liberica
 
 ### Modify argument LIBERICA_IMAGE_VARIANT or redefine it via --build-arg parameter to have specific liberica image installed:
 ###    docker build . --build-arg LIBERICA_IMAGE_VARIANT=[standard|lite|base|base-minimal]
@@ -16,8 +16,8 @@ ARG LIBERICA_VM="server"
 ARG LIBERICA_GENERATE_CDS=false
 
 ARG LIBERICA_JVM_DIR=/usr/lib/jvm
-ARG LIBERICA_VERSION=11.0.21
-ARG LIBERICA_BUILD=10
+ARG LIBERICA_VERSION=11.0.22
+ARG LIBERICA_BUILD=12
 
 ARG LIBERICA_ROOT=${LIBERICA_JVM_DIR}/jdk-${LIBERICA_VERSION}-bellsoft
 ARG LIBERICA_GLIBC=no
@@ -25,8 +25,8 @@ ARG LIBERICA_GLIBC=no
 ARG OPT_PKGS=
 
 RUN LIBERICA_ARCH=''                     \
-  && apk --no-cache upgrade libcrypto1.1 \
-                            libssl1.1    \
+  && apk --no-cache upgrade libcrypto3   \
+                            libssl3      \
   && set -x                              \
   &&    case `uname -m` in               \
             x86_64)                      \
@@ -73,7 +73,7 @@ RUN LIBERICA_ARCH=''                     \
           SHA_URL="https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}";         \
         fi \
   &&    SHA1=$(wget -q "${SHA_URL}" -O -          \
-               | grep ${PKG}                      \
+               | grep ${PKG} | grep -v json       \
                | cut -f1 -d' '                    \
               )                                   \
   &&    echo "${SHA1} */tmp/java/jdk.tar.gz" | sha1sum -c - \
