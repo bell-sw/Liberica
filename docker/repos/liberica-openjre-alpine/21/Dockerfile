@@ -58,7 +58,7 @@ ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_GENERATE_CDS=false
 ARG LIBERICA_ROOT=/usr/lib/jvm/${LIBERICA_VARIANT}-${LIBERICA_VERSION}-bellsoft
 
-ARG LIBERICA_USE_LITE=0
+ARG LIBERICA_USE_LITE=1
 ARG LIBERICA_GENERATE_CDS=false
 
 COPY --from=glibc-base /root/dest/ /
@@ -97,18 +97,27 @@ RUN LIBERICA_ARCH='' &&  LIBERICA_ARCH_TAG='' &&   \
   &&    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' > /etc/nsswitch.conf \
   &&    mkdir -p $LIBERICA_ROOT \
   &&    mkdir -p /tmp/java \
-  &&    RSUFFIX="" \
-  &&    if [ "$LIBERICA_USE_LITE" = "1" ]; then RSUFFIX="-lite"; fi \
+  &&    if [ "$LIBERICA_USE_LITE" = "1" ]; then  \
+            RSUFFIX="-lite";                     \
+            LITE_URL="/docker" ;                 \
+        else                                     \
+            RSUFFIX="";                          \
+            LITE_URL="";                         \
+        fi \
   &&    LIBERICA_BUILD_STR=${LIBERICA_BUILD:+"+${LIBERICA_BUILD}"} \
   &&    echo LIBERICA_BUILD_STR - ${LIBERICA_BUILD_STR} \
-  &&    PKG="bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}${LIBERICA_BUILD_STR}-linux-${LIBERICA_ARCH}${RSUFFIX}.tar.gz" \
-  &&    PKG_URL="https://download.bell-sw.com/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}/${PKG}" \
+  &&    PKG="bellsoft-${LIBERICA_VARIANT}${LIBERICA_VERSION}${LIBERICA_BUILD_STR}-linux-${LIBERICA_ARCH}${LIBSUFFIX}${RSUFFIX}.tar.gz" \
+  &&    PKG_URL="https://download.bell-sw.com/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}${LITE_URL}/${PKG}" \
   &&    echo "Download ${PKG_URL}" \
   &&    wget "${PKG_URL}" -O /tmp/java/jre.tar.gz \
-  &&    SHA1=$(wget -q "https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}" -O - | grep ${PKG} | grep -v json | cut -f1 -d' ') \
+  &&    SHA_URL="https://download.bell-sw.com/sha1sum/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}" \
+  &&    if [ "$LIBERICA_USE_LITE" = "1" ]; then                                                    \
+          SHA_URL="https://download.bell-sw.com/java/${LIBERICA_VERSION}${LIBERICA_BUILD_STR}/docker/sha1sum.txt";         \
+        fi \
+  &&    SHA1=$(wget -q ${SHA_URL} -O -  | grep ${PKG} | grep -v json | cut -f1 -d' ')    \
   &&    echo "${SHA1} */tmp/java/jre.tar.gz" | sha1sum -c - \
   &&    tar xzf /tmp/java/jre.tar.gz -C /tmp/java \
-  &&    find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}${RSUFFIX}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; \
+  &&    find "/tmp/java/${LIBERICA_VARIANT}-${LIBERICA_VERSION}" -maxdepth 1 -mindepth 1 -exec mv "{}" "${LIBERICA_ROOT}/" \; \
   &&    ln -s $LIBERICA_ROOT /usr/lib/jvm/jre \
   &&    (ls /usr/lib/jvm/jre/lib/client 1>/dev/null 2>&1 && (rm -rf /usr/lib/jvm/jre/lib/client && sed -i 's#-client\s\+KNOWN#-client IGNORE#g' /usr/lib/jvm/jre/lib/jvm.cfg) || : ) \
   &&    if [ $LIBERICA_GENERATE_CDS = true ]; then                       \
