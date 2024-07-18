@@ -41,7 +41,7 @@ RUN cd /root/dest${GLIBC_PREFIX} && \
   rm -rf etc/rpc var include share bin sbin/[^l]*  \
 	lib/*.o lib/*.a lib/audit lib/gconv lib/getconf
 
-FROM alpine:3.19 as liberica
+FROM alpine:3.20 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
 ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.3.0-1-x86_64.pkg.tar.xz
@@ -58,8 +58,8 @@ ARG LIBERICA_VM="server"
 ARG LIBERICA_GENERATE_CDS=false
 
 ARG LIBERICA_JVM_DIR=/usr/lib/jvm
-ARG LIBERICA_VERSION=22.0.1
-ARG LIBERICA_BUILD=10
+ARG LIBERICA_VERSION=22.0.2
+ARG LIBERICA_BUILD=11
 
 ARG LIBERICA_ROOT=${LIBERICA_JVM_DIR}/jdk-${LIBERICA_VERSION}-bellsoft
 
