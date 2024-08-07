@@ -1,6 +1,6 @@
 FROM debian:10-slim as glibc-base
 
-ARG GLIBC_VERSION=2.28
+ARG GLIBC_VERSION=2.34
 ARG GLIBC_PREFIX=/usr/glibc
 ARG LANG=en_US.UTF-8
 
