@@ -5,7 +5,7 @@ FROM alpine:3.20 as liberica
 ### base: minimal image with compressed java.base module, Server VM and optional files stripped, ~37 MB with Alpine base
 ### base-minimal: minimal image with compressed java.base module, Minimal VM and optional files stripped
 ### lite: lite image with minimal footprint and Server VM, ~ 100 MB
-### standard: standard jdk image with Server VM and jmods, can be used to create arbirary module set, ~180 MB
+### standard: standard jdk image with Server VM and jmods, can be used to create arbitrary module set, ~180 MB
 
 ENV  LANG=en_US.UTF-8 \
      LANGUAGE=en_US:en
