@@ -1,4 +1,4 @@
-FROM debian:stable-slim as glibc-base
+FROM debian:stable-slim AS glibc-base
 
 ARG GLIBC_VERSION=2.28
 ARG GLIBC_PREFIX=/usr/glibc
@@ -31,7 +31,7 @@ RUN cd /root/dest${GLIBC_PREFIX} && \
 
 #sbin/[^l]*
 
-FROM alpine:3.8 as liberica
+FROM alpine:3.8 AS liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
 
