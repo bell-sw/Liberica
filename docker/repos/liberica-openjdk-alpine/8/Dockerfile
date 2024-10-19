@@ -46,15 +46,15 @@ ARG GLIBC_PREFIX=/usr/glibc
 ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.3.0-1-x86_64.pkg.tar.xz
 ARG EXT_GCC_LIBS_URL_AARCH64=https://download.bell-sw.com/archives/aarch64/gcc-libs-9.3.0-1-aarch64.pkg.tar.xz
 ARG EXT_GCC_LIBS_SHA256_AARCH64=cd4dfebb74a170fcae47fd12c4d2fef4cf6dc337a2edbb57c84a3a92afc9d89a
-ARG EXT_ZLIB_URL=https://archive.archlinux.org/packages/z/zlib/zlib-1%3A1.2.11-3-x86_64.pkg.tar.xz
+ARG EXT_ZLIB_URL=https://archive.archlinux.org/packages/z/zlib/zlib-1%3A1.2.11-4-x86_64.pkg.tar.xz
 ARG LANG=en_US.UTF-8
 
 ENV  LANG=${LANG} \
      LANGUAGE=${LANG}:en
 #        LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_VERSION=8u422
-ARG LIBERICA_BUILD=6
+ARG LIBERICA_VERSION=8u432
+ARG LIBERICA_BUILD=7
 ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-${LIBERICA_VERSION}-bellsoft
 ARG LIBERICA_VARIANT=jdk
 ARG LIBERICA_USE_LITE=1

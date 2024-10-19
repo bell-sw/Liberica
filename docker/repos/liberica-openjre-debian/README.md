@@ -35,13 +35,21 @@ For instance, [bellsoft/liberica-openjre-debian:19.0.1-x86_64](https://hub.docke
 
 * [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
 [`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
+[`23.0.1-13`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
+[`23.0.1-13-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
+[`23.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
+[`23.0.1-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
 [`23-38`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
 [`23-38-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
 [`23`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
 [`23-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
 * [`22`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/22/Dockerfile),
 [`22-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/22/Dockerfile)
-* [`21.0.4-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
+* [`21.0.5-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
+[`21.0.5-11-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
+[`21.0.5`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
+[`21.0.5-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
+[`21.0.4-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
 [`21.0.4-9-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
 [`21.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
 [`21.0.4-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/21/Dockerfile),
@@ -57,7 +65,11 @@ For instance, [bellsoft/liberica-openjre-debian:19.0.1-x86_64](https://hub.docke
 * [`20`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/old/20/Dockerfile)
 * [`19`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/old/19/Dockerfile)
 * [`18`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/18/Dockerfile)
-* [`17.0.12-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/17/Dockerfile),
+* [`17.0.13-12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/17/Dockerfile),
+[`17.0.13-12-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/17/Dockerfile),
+[`17.0.13`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/17/Dockerfile),
+[`17.0.13-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/17/Dockerfile),
+[`17.0.12-10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/17/Dockerfile),
 [`17.0.12-10-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/17/Dockerfile),
 [`17.0.12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/17/Dockerfile),
 [`17.0.12-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/17/Dockerfile),
@@ -73,7 +85,11 @@ For instance, [bellsoft/liberica-openjre-debian:19.0.1-x86_64](https://hub.docke
 [`17-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/17/Dockerfile)
 * [`16`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/16/Dockerfile)
 * [`15`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/15/Dockerfile)
-* [`11.0.24-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
+* [`11.0.25-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
+[`11.0.25-11-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
+[`11.0.25`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
+[`11.0.25-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
+[`11.0.24-9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
 [`11.0.24-9-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
 [`11.0.24`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
 [`11.0.24-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
@@ -85,13 +101,15 @@ For instance, [bellsoft/liberica-openjre-debian:19.0.1-x86_64](https://hub.docke
 [`11.0.21-10-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
 [`11.0.21`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
 [`11.0.21-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
-[`11.0.20-8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
-[`11.0.20`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
 [`11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile),
 [`11-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/11/Dockerfile)
 * [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/old/10.0.2/Dockerfile)
 * [`9`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/old/9.0.4/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u422-6`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
+* [`8u432-7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
+[`8u432-7-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
+[`8u432`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
+[`8u432-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
+[`8u422-6`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
 [`8u422-6-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
 [`8u422`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
 [`8u422-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
@@ -103,8 +121,6 @@ For instance, [bellsoft/liberica-openjre-debian:19.0.1-x86_64](https://hub.docke
 [`8u392-9-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
 [`8u392`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
 [`8u392-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
-[`8u382-6`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
-[`8u382`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
 [`8u`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
 [`8u-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),
 [`8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/8/Dockerfile),

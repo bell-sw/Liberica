@@ -44,7 +44,7 @@ FROM alpine:3.20 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
 ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.3.0-1-x86_64.pkg.tar.xz
-ARG EXT_ZLIB_URL=https://archive.archlinux.org/packages/z/zlib/zlib-1%3A1.2.11-3-x86_64.pkg.tar.xz
+ARG EXT_ZLIB_URL=https://archive.archlinux.org/packages/z/zlib/zlib-1%3A1.2.11-4-x86_64.pkg.tar.xz
 ARG LANG=en_US.UTF-8
 ARG OPT_PKGS=
 
@@ -52,8 +52,8 @@ ENV  LANG=${LANG} \
      LANGUAGE=${LANG}:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_VERSION=11.0.24
-ARG LIBERICA_BUILD=9
+ARG LIBERICA_VERSION=11.0.25
+ARG LIBERICA_BUILD=11
 ARG LIBERICA_ROOT=/usr/lib/jvm/jre-${LIBERICA_VERSION}-bellsoft
 ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_USE_LITE=1
