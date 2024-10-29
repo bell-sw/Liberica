@@ -14,7 +14,7 @@ getTags() {
   repo="$1"
   pattern="$2"
   cds_pattern="$3"
-  
+
   if [[ -z $EXTERNAL_API_UTILITY ]]; then
     tags=$(curl -sSL https://registry.hub.docker.com/v2/namespaces/${NS}/repositories/${repo}/tags?page_size=100 |
         tr '}' "\n" |
@@ -40,7 +40,7 @@ getTags() {
     fi
     echo ${tags} > tags.txt
   fi
-  
+
 }
 
 waitForTag() {
@@ -88,7 +88,7 @@ ARCH=`uname -m`
 
 [[ -z "$LIBERICA_VERSION" ]] && LIBERICA_VERSION="11 11:11.0.0 11:latest"
 [[ -z "$LIBERICA_VARIANT" ]] && LIBERICA_VARIANT="jdk"
-[[ -z "$LIBERICA_OS" ]] && LIBERICA_OS="debian centos alpine alpine-musl"
+[[ -z "$LIBERICA_OS" ]] && LIBERICA_OS="debian rocky alpine alpine-musl"
 [[ -z "$LIBERICA_RELEASE_TAG" ]] && LIBERICA_RELEASE_TAG=""
 [[ -z "$LIBERICA_USE_LITE" ]] && LIBERICA_USE_LITE=""
 [[ -z "$LIBERICA_DESTINATION" ]] && LIBERICA_DESTINATION="open"
@@ -103,6 +103,8 @@ fi
 if [[ $LIBERICA_DESTINATION == "private" ]] ; then
   LIBERICA_DESTINATION=""
 fi
+
+ALL_TAGS_FOR_CLEANUP=
 
 for os in ${LIBERICA_OS}; do
   for version in ${LIBERICA_VERSION}; do
@@ -158,10 +160,13 @@ for os in ${LIBERICA_OS}; do
           --build-arg LIBERICA_GENERATE_CDS=${LIBERICA_GENERATE_CDS} \
           ${EXTRA_ARGS} \
           ${BUILD_PATH}
-        fi
+
+        ALL_TAGS_FOR_CLEANUP="$ALL_TAGS_FOR_CLEANUP ${DOCKER_REPOSITORY}:${FINAL_TAG}"
+      fi
 
       if [[ "$PUSH" = "1" ]]; then
         execDockerCmd tag  ${DOCKER_REPOSITORY}:${FINAL_TAG} ${DOCKER_REPOSITORY}:${FINAL_TAG}-${ARCH}
+        ALL_TAGS_FOR_CLEANUP="$ALL_TAGS_FOR_CLEANUP ${DOCKER_REPOSITORY}:${FINAL_TAG}-${ARCH}"
         execDockerCmd push ${DOCKER_REPOSITORY}:${FINAL_TAG}-${ARCH}
       fi
 
@@ -181,8 +186,17 @@ for os in ${LIBERICA_OS}; do
           execDockerCmd manifest create ${DOCKER_REPOSITORY}:${FINAL_TAG} ${images}
           execDockerCmd manifest push -p ${DOCKER_REPOSITORY}:${FINAL_TAG}
         fi
+
+        if [[ -n "$images" && ${CLEANUP} == true ]]; then
+          ALL_TAGS_FOR_CLEANUP="$ALL_TAGS_FOR_CLEANUP $images"
+        fi
       fi
     done
   done
 done
+
+if [[ $CLEANUP == true && -n "${ALL_TAGS_FOR_CLEANUP}" ]]; then
+  echo docker image rm ${ALL_TAGS_FOR_CLEANUP}
+  docker image rm ${ALL_TAGS_FOR_CLEANUP} || true
+fi
 
