@@ -71,7 +71,7 @@ For instance, [bellsoft/liberica-openjdk-rocky:8u432-7-x86_64](https://hub.docke
 
 For example, you can run a Liberica OpenJDK 17 container with the following command:
 
- `docker run -it --rm bellsoft/liberica-openjdk-rocky:latest java -version`
+ `docker run -it --rm bellsoft/liberica-openjdk-rocky:17 java -version`
 
 To run some application you can create Dockerfile, based on bellsoft/liberica-openjdk-rocky image or mount volume with your code/applicaiton, for example:
 
