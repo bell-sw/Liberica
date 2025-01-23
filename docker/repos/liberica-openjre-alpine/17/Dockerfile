@@ -1,6 +1,6 @@
-FROM debian:10-slim as glibc-base
+FROM debian:12-slim as glibc-base
 
-ARG GLIBC_VERSION=2.28
+ARG GLIBC_VERSION=2.36
 ARG GLIBC_PREFIX=/usr/glibc
 ARG LANG=en_US.UTF-8
 
@@ -35,12 +35,10 @@ RUN apt-get update && apt-get install -y \
   echo "/lib" >> /root/dest${GLIBC_PREFIX}/etc/ld.so.conf
 
 RUN cd /root/dest${GLIBC_PREFIX} && \
-  rm -rf etc/rpc var include share bin sbin/[^l]*  \
+  rm -rf etc/rpc var include share bin "sbin/[^l]*"  \
 	lib/*.o lib/*.a lib/audit lib/gconv lib/getconf
 
-#sbin/[^l]*
-
-FROM alpine:3.20 as liberica
+FROM alpine:3.21 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
 ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.3.0-1-x86_64.pkg.tar.xz
@@ -52,8 +50,8 @@ ENV  LANG=${LANG} \
      LANGUAGE=${LANG}:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_VERSION=17.0.13
-ARG LIBERICA_BUILD=12
+ARG LIBERICA_VERSION=17.0.14
+ARG LIBERICA_BUILD=10
 ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_ROOT=/usr/lib/jvm/${LIBERICA_VARIANT}-${LIBERICA_VERSION}-bellsoft
 
