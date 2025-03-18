@@ -32,17 +32,14 @@ The ‘latest’ tag points to the latest version of an image. Images with '-cds
 For instance, [bellsoft/liberica-openjdk-debian:17](https://hub.docker.com/layers/bellsoft/liberica-openjdk-debian/17/images/sha256-305f23015e1a40436624b5ea1928051a39cd1484a6ee68553006cc1a38eb1b76?context=explore) is an image with Liberica JDK version 17 (the latest release) for Debian running on AMD64 or ARM64
 
 ## Tags
-
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/23/Dockerfile),
-[`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/23/Dockerfile),
-[`23.0.1-13`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/23/Dockerfile),
-[`23.0.1-13-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/23/Dockerfile)
-[`23.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/23/Dockerfile),
-[`23.0.1-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/23/Dockerfile)
-[`23-38`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/23/Dockerfile),
-[`23-38-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/23/Dockerfile)
-[`23`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/23/Dockerfile),
-[`23-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/23/Dockerfile)
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/24/Dockerfile),
+[`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/24/Dockerfile),
+[`24-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/24/Dockerfile),
+[`24-37-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/24/Dockerfile)
+[`24`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/24/Dockerfile),
+[`24-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/24/Dockerfile),
+* [`23`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/23/Dockerfile),
+[`23-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/23/Dockerfile),
 * [`22`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/22/Dockerfile),
 [`22-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/22/Dockerfile)
 * [`21.0.5-11`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-debian/21/Dockerfile),

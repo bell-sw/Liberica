@@ -33,15 +33,13 @@ For instance, [bellsoft/liberica-openjre-debian:19.0.1-x86_64](https://hub.docke
 
 ## Tags
 
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
-[`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
-[`23.0.1-13`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
-[`23.0.1-13-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
-[`23.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
-[`23.0.1-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
-[`23-38`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
-[`23-38-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
-[`23`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
+[`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
+[`24-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
+[`24-37-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
+[`24`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
+[`24-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
+* [`23`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
 [`23-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
 * [`22`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/22/Dockerfile),
 [`22-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/22/Dockerfile)
