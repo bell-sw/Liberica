@@ -55,15 +55,13 @@ As such, containers with Alpaquita are a free and better alternative to Alpine-b
 You can find them at https://hub.docker.com/r/bellsoft/liberica-runtime-container
 
 ## Tags
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/23/Dockerfile),
-[`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/23/Dockerfile),
-[`23.0.1-13`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/23/Dockerfile),
-[`23.0.1-13-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/23/Dockerfile),
-[`23.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/23/Dockerfile),
-[`23.0.1-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/23/Dockerfile),
-[`23-38`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/23/Dockerfile),
-[`23-38-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/23/Dockerfile),
-[`23`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/23/Dockerfile),
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/24/Dockerfile),
+[`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/24/Dockerfile),
+[`24-37`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/24/Dockerfile),
+[`24-37-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/24/Dockerfile),
+[`24`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/24/Dockerfile),
+[`24-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/24/Dockerfile),
+* [`23`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/23/Dockerfile),
 [`23-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/23/Dockerfile),
 * [`22`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/22/Dockerfile),
 [`22-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-alpine/22/Dockerfile)
