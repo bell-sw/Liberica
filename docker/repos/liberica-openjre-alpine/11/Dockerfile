@@ -38,7 +38,7 @@ RUN cd /root/dest${GLIBC_PREFIX} && \
   rm -rf etc/rpc var include share bin "sbin/[^l]*"  \
 	lib/*.o lib/*.a lib/audit lib/gconv lib/getconf
 
-FROM alpine:3.21 as liberica
+FROM alpine:3.22 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
 ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.3.0-1-x86_64.pkg.tar.xz
@@ -50,8 +50,8 @@ ENV  LANG=${LANG} \
      LANGUAGE=${LANG}:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_VERSION=11.0.27
-ARG LIBERICA_BUILD=9
+ARG LIBERICA_VERSION=11.0.28
+ARG LIBERICA_BUILD=12
 ARG LIBERICA_ROOT=/usr/lib/jvm/jre-${LIBERICA_VERSION}-bellsoft
 ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_USE_LITE=1

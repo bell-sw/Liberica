@@ -55,6 +55,8 @@ You can find them at https://hub.docker.com/r/bellsoft/liberica-runtime-containe
 ## Tags
 * [`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/24/Dockerfile),
 [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/24/Dockerfile),
+[`24.0.2-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/24/Dockerfile),
+[`24.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/24/Dockerfile),
 [`24.0.1-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/24/Dockerfile),
 [`24.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/24/Dockerfile),
 [`24-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/24/Dockerfile),
@@ -63,7 +65,9 @@ You can find them at https://hub.docker.com/r/bellsoft/liberica-runtime-containe
 [`23`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/23/Dockerfile),
 * [`22`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/22/Dockerfile),
 [`22-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/22/Dockerfile),
-* [`21.0.7-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/21/Dockerfile),
+* [`21.0.8-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/21/Dockerfile),
+[`21.0.8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/21/Dockerfile),
+[`21.0.7-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/21/Dockerfile),
 [`21.0.7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/21/Dockerfile),
 [`21.0.6-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/21/Dockerfile),
 [`21.0.6`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/21/Dockerfile),
@@ -78,7 +82,9 @@ You can find them at https://hub.docker.com/r/bellsoft/liberica-runtime-containe
 * [`20`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/20/Dockerfile)
 * [`19`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/19/Dockerfile)
 * [`18`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/18/Dockerfile)
-* [`17.0.15-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/17/Dockerfile),
+* [`17.0.16-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/17/Dockerfile),
+[`17.0.16`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/17/Dockerfile),
+[`17.0.15-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/17/Dockerfile),
 [`17.0.15`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/17/Dockerfile),
 [`17.0.14-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/17/Dockerfile),
 [`17.0.14`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/17/Dockerfile),
@@ -95,7 +101,9 @@ You can find them at https://hub.docker.com/r/bellsoft/liberica-runtime-containe
 * [`14`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/14/Dockerfile)
 * [`13`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/13.0.0/Dockerfile)
 * [`12`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/12.0.0/Dockerfile)
-* [`11.0.27-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
+* [`11.0.28-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
+[`11.0.28`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
+[`11.0.27-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
 [`11.0.27`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
 [`11.0.26-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
 [`11.0.26`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/11/Dockerfile),
@@ -112,7 +120,9 @@ You can find them at https://hub.docker.com/r/bellsoft/liberica-runtime-containe
 [`10`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/10.0.0/Dockerfile) - armhf only (Raspberry Pi 2/3)
 * [`9.0.4`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/9.0.4/Dockerfile),
 [`9.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/old/9.0.1/Dockerfile) - armhf only (Raspberry Pi 2/3)
-* [`8u432`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
+* [`8u462`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
+[`8u462-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
+[`8u432`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
 [`8u432-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
 [`8u422`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
 [`8u422-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-alpine/8/Dockerfile),
