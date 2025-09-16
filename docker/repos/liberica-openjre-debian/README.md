@@ -32,14 +32,11 @@ The ‘latest’ tag points to the latest version of an image. Images with '-cds
 For instance, [bellsoft/liberica-openjre-debian:19.0.1-x86_64](https://hub.docker.com/layers/bellsoft/liberica-openjre-debian/19.0.1-x86_64/images/sha256-2ae5877c55a0dca483ada8aaafbaa869f9c596ba1b25d5247ad8ccb231c30f9b?context=explore) is an image with Liberica JRE version 19.0.1 for Debian running on x86_64.
 
 ## Tags
-
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
-[`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
-[`24.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
-[`24.0.2-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
-[`24.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
-[`24.0.1-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
-[`24`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/25/Dockerfile),
+[`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/25/Dockerfile),
+[`25`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/25/Dockerfile),
+[`25-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/25/Dockerfile),
+* [`24`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
 [`24-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/24/Dockerfile),
 * [`23`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),
 [`23-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-debian/23/Dockerfile),

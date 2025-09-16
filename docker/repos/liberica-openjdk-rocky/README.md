@@ -31,14 +31,11 @@ The ‘latest’ tag points to the latest version of an image. Images with '-cds
 For instance, [bellsoft/liberica-openjdk-rocky:8u432-7-x86_64](https://hub.docker.com/layers/bellsoft/liberica-openjdk-rocky/8u432-7-x86_64/images/sha256-3e36546c8525d36a26bd6005eecb6c403db9a54b4d3ce9ca901c65609eb70544?context=explore) is an image with Liberica JDK version 8u432 for Rocky  running on AMD64.
 
 ## Tags
-
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/24/Dockerfile),
-[`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/24/Dockerfile),
-[`24.0.2`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/24/Dockerfile),
-[`24.0.2-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/24/Dockerfile),
-[`24.0.1`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/24/Dockerfile),
-[`24.0.1-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/24/Dockerfile),
-[`24`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/24/Dockerfile),
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/25/Dockerfile),
+[`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/25/Dockerfile),
+[`25`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/25/Dockerfile),
+[`25-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/25/Dockerfile),
+* [`24`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/24/Dockerfile),
 [`24-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/24/Dockerfile),
 * [`23`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/23/Dockerfile),
 [`23-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjdk-rocky/23/Dockerfile),
