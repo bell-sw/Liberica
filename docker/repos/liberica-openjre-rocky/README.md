@@ -33,14 +33,16 @@ For instance, [bellsoft/liberica-openjre-rocky:11.0.25-11-cds-x86_64](https://hu
 
 ## Tags
 
-* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/25/Dockerfile),
-[`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/25/Dockerfile),
-[`25`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/25/Dockerfile),
-[`25-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/25/Dockerfile),
+* [`latest`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/26/Dockerfile),
+[`latest-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/26/Dockerfile),
+[`26`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/26/Dockerfile),
+[`26-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/26/Dockerfile)
+* [`25`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/25/Dockerfile),
+[`25-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/25/Dockerfile)
 * [`24`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/24/Dockerfile),
-[`24-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/24/Dockerfile),
+[`24-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/24/Dockerfile)
 * [`23`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/23/Dockerfile),
-[`23-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/23/Dockerfile),
+[`23-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/23/Dockerfile)
 * [`21.0.8`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/21/Dockerfile),
 [`21.0.8-cds`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/21/Dockerfile),
 [`21.0.7`](https://github.com/bell-sw/Liberica/blob/master/docker/repos/liberica-openjre-rocky/21/Dockerfile),
