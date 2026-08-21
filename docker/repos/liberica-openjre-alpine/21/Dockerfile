@@ -40,7 +40,7 @@ RUN cd /root/dest${GLIBC_PREFIX} && \
 
 #sbin/[^l]*
 
-FROM alpine:3.23 as liberica
+FROM alpine:3 as liberica
 
 ARG GLIBC_PREFIX=/usr/glibc
 ARG EXT_GCC_LIBS_URL=https://archive.archlinux.org/packages/g/gcc-libs/gcc-libs-8.3.0-1-x86_64.pkg.tar.xz
@@ -52,7 +52,7 @@ ENV  LANG=${LANG} \
      LANGUAGE=${LANG}:en
 #	 LC_ALL=en_US.UTF-8
 
-ARG LIBERICA_VERSION=21.0.10
+ARG LIBERICA_VERSION=21.0.12
 ARG LIBERICA_BUILD=10
 ARG LIBERICA_VARIANT=jre
 ARG LIBERICA_GENERATE_CDS=false
